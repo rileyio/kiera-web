@@ -14,6 +14,8 @@
 
 F
 <script lang="ts">
+declare var process: any;
+
 import Vue from "vue";
 import Axios from "axios";
 import { Component, Prop, Watch } from "vue-property-decorator";
@@ -47,7 +49,7 @@ export default class PermissionsSub extends Vue {
   ) {
     console.log(_id, $e);
     const resp = await Axios(
-      "https://dev.tdm.io:8234/api/permission/allowed/update",
+      `${process.env.BOT_HOST}/permission/allowed/update`,
       {
         method: "POST",
         data: {

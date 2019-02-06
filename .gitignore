@@ -55,12 +55,13 @@ typings/
 
 # dotenv environment variables file
 .env
+.env-webpack
 
 # next.js build output
 .next
 
 # ignore compiled directory
-app/
+#app/build
 
 # ignore databases folder contents
 db/*.db
@@ -70,3 +71,4 @@ server.key
 server.crt
 ca.crt
 *.rdb
+.DS_Store

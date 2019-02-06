@@ -2,7 +2,7 @@
   <div id="sidebar">
     <el-row v-if="state.focusedView === 'new'">
       <el-col :span="24">
-        <PermissionBuilder/>
+        <!-- <PermissionBuilder/> -->
       </el-col>
     </el-row>
     <el-row v-if="state.focusedView === 'all'">
@@ -26,14 +26,13 @@
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 import { state } from "../defaults/app-state";
-import { Permission } from "../types/permissions";
-import { permissionDefault, newPermissionState } from "../defaults/permission";
+import { newPermissionState } from "../defaults/permission";
 
-import PermissionBuilder from "../components/permission-builder.vue";
+// import PermissionBuilder from "../components/permission-builder.vue";
 
 @Component({
   components: {
-    PermissionBuilder
+    // PermissionBuilder
   }
 })
 export default class PermissionsPanel extends Vue {

@@ -37,10 +37,7 @@
           </el-option-group>
         </el-select>
 
-        <Sidebar
-          v-show="isGuildOwner"
-          v-on:onPanelChange="handlePanelChange"
-        />
+        <Sidebar v-show="isGuildOwner" v-on:onPanelChange="handlePanelChange"/>
       </div>
       <div class="column-8">
         <component v-bind:is="state.focusedPanel" :state="state"></component>
@@ -54,6 +51,8 @@
 </template>
 
 <script <script lang="ts">
+declare var process: any;
+
 import Vue from "vue";
 import Axios from "axios";
 import { Component, Prop } from "vue-property-decorator";
@@ -83,7 +82,7 @@ export default class App extends Vue {
   })
   private state!: typeof state;
   @Prop({
-    default: () => SocketIO.connect("wss://dev.tdm.io:8234")
+    default: () => SocketIO.connect(process.env.BOT_SOCKET)
   })
   public socket!: SocketIOClient.Socket;
   @Prop({
@@ -134,7 +133,7 @@ export default class App extends Vue {
   }
 
   private async getUser() {
-    const resp = await Axios("https://dev.tdm.io:8234/api/user", {
+    const resp = await Axios(`${process.env.BOT_HOST}/user`, {
       method: "POST",
       data: {
         id: (<any>document.cookie)
@@ -180,6 +179,9 @@ export default class App extends Vue {
       // Update focused Guild object
       this.state.focusedGuild = this.bot.user.guilds[guild];
       console.log("state.focusedGuild =>", this.state);
+      // If guild is now owned by this user clear the panel
+      this.state.focusedPanel = "";
+      this.state.focusedView = "";
     }
   }
 }
@@ -222,4 +224,5 @@ export default class App extends Vue {
 .server-select {
   width: 100%;
 }
+
 </style>
