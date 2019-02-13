@@ -10679,6 +10679,12 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(104);
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
@@ -10870,7 +10876,7 @@ function setStyle(element, styleName, value) {
 };
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -10882,7 +10888,7 @@ if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11148,7 +11154,7 @@ exports.mixins = mixins;
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11292,7 +11298,7 @@ var isEdge = exports.isEdge = function isEdge() {
 };
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 var hasOwnProperty = {}.hasOwnProperty;
@@ -11300,12 +11306,6 @@ module.exports = function (it, key) {
   return hasOwnProperty.call(it, key);
 };
 
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(104);
 
 /***/ }),
 /* 9 */
@@ -12248,7 +12248,7 @@ module.exports = function (it) {
 
 var store = __webpack_require__(59)('wks');
 var uid = __webpack_require__(32);
-var Symbol = __webpack_require__(4).Symbol;
+var Symbol = __webpack_require__(5).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
 
 var $exports = module.exports = function (name) {
@@ -13394,7 +13394,7 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = __webpack_require__(34).default
-var update = add("5349de9c", content, true, {});
+var update = add("331fd172", content, true, {});
 
 /***/ }),
 /* 38 */
@@ -17323,11 +17323,11 @@ exports.default = function (ref) {
 /* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(4);
+var global = __webpack_require__(5);
 var core = __webpack_require__(20);
 var ctx = __webpack_require__(185);
 var hide = __webpack_require__(14);
-var has = __webpack_require__(7);
+var has = __webpack_require__(8);
 var PROTOTYPE = 'prototype';
 
 var $export = function (type, name, source) {
@@ -17444,7 +17444,7 @@ module.exports = function (key) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var core = __webpack_require__(20);
-var global = __webpack_require__(4);
+var global = __webpack_require__(5);
 var SHARED = '__core-js_shared__';
 var store = global[SHARED] || (global[SHARED] = {});
 
@@ -17486,7 +17486,7 @@ module.exports = {};
 /***/ (function(module, exports, __webpack_require__) {
 
 var def = __webpack_require__(15).f;
-var has = __webpack_require__(7);
+var has = __webpack_require__(8);
 var TAG = __webpack_require__(18)('toStringTag');
 
 module.exports = function (it, tag, stat) {
@@ -17505,7 +17505,7 @@ exports.f = __webpack_require__(18);
 /* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(4);
+var global = __webpack_require__(5);
 var core = __webpack_require__(20);
 var LIBRARY = __webpack_require__(31);
 var wksExt = __webpack_require__(64);
@@ -19539,7 +19539,7 @@ var _scrollbarWidth = __webpack_require__(50);
 
 var _scrollbarWidth2 = _interopRequireDefault(_scrollbarWidth);
 
-var _dom = __webpack_require__(3);
+var _dom = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19773,7 +19773,7 @@ var _vue = __webpack_require__(0);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _dom = __webpack_require__(3);
+var _dom = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20024,14 +20024,14 @@ module.exports = __webpack_require__(52);
 /***/ 2:
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__(6);
+module.exports = __webpack_require__(7);
 
 /***/ }),
 
 /***/ 3:
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__(3);
+module.exports = __webpack_require__(4);
 
 /***/ }),
 
@@ -20402,7 +20402,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 exports.isVNode = isVNode;
 exports.getFirstComponentChild = getFirstComponentChild;
 
-var _util = __webpack_require__(6);
+var _util = __webpack_require__(7);
 
 function isVNode(node) {
   return node !== null && (typeof node === 'undefined' ? 'undefined' : _typeof(node)) === 'object' && (0, _util.hasOwn)(node, 'componentOptions');
@@ -20769,7 +20769,7 @@ module.exports = !__webpack_require__(16) && !__webpack_require__(22)(function (
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(21);
-var document = __webpack_require__(4).document;
+var document = __webpack_require__(5).document;
 // typeof document.createElement is 'object' in old IE
 var is = isObject(document) && isObject(document.createElement);
 module.exports = function (it) {
@@ -20781,7 +20781,7 @@ module.exports = function (it) {
 /* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var has = __webpack_require__(7);
+var has = __webpack_require__(8);
 var toIObject = __webpack_require__(17);
 var arrayIndexOf = __webpack_require__(188)(false);
 var IE_PROTO = __webpack_require__(58)('IE_PROTO');
@@ -21266,7 +21266,7 @@ module.exports = __webpack_require__(13);
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__(6);
+module.exports = __webpack_require__(7);
 
 /***/ }),
 /* 3 */
@@ -21278,7 +21278,7 @@ module.exports = __webpack_require__(83);
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__(3);
+module.exports = __webpack_require__(4);
 
 /***/ }),
 /* 5 */
@@ -58382,7 +58382,7 @@ Backoff.prototype.setJitter = function(jitter){
 
 exports = module.exports = __webpack_require__(27)(false);
 // Module
-exports.push([module.i, ".ui.avatar.image{border-radius:50%;width:36px;height:36px;background-image:url(\"//cdn.discordapp.com/avatars/146439529824256000/c261586002cc23c078500f749e62a9e4.png\");background-size:contain;cursor:pointer}", ""]);
+exports.push([module.i, ".ui.avatar.image{border-radius:50%;width:36px;height:36px;background-size:contain;cursor:pointer}.ui .username{position:absolute;bottom:23px;right:50px;font-size:15px;color:#a8afb5}", ""]);
 
 
 
@@ -58411,10 +58411,10 @@ exports.push([module.i, "#center-loader{position:fixed;top:0;left:0;right:0;bott
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_permissions_vue_vue_type_style_index_0_lang_less___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(37);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_permissions_vue_vue_type_style_index_0_lang_less___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_permissions_vue_vue_type_style_index_0_lang_less___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_PermissionsList_vue_vue_type_style_index_0_lang_less___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(37);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_PermissionsList_vue_vue_type_style_index_0_lang_less___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_PermissionsList_vue_vue_type_style_index_0_lang_less___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_permissions_vue_vue_type_style_index_0_lang_less___WEBPACK_IMPORTED_MODULE_0___default.a); 
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_less_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_PermissionsList_vue_vue_type_style_index_0_lang_less___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 /* 154 */
@@ -58724,7 +58724,7 @@ exports.default = function (Vue) {
   return template;
 };
 
-var _util = __webpack_require__(6);
+var _util = __webpack_require__(7);
 
 var RE_NARGS = /(%|)\{([0-9a-zA-Z_]+)\}/g;
 /**
@@ -58746,7 +58746,7 @@ var _vue = __webpack_require__(0);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _dom = __webpack_require__(3);
+var _dom = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -61985,7 +61985,7 @@ var index = (function () {
 
 exports.__esModule = true;
 
-var _dom = __webpack_require__(3);
+var _dom = __webpack_require__(4);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -62155,7 +62155,7 @@ module.exports = __webpack_require__(51);
 /***/ 2:
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__(6);
+module.exports = __webpack_require__(7);
 
 /***/ }),
 
@@ -62455,7 +62455,7 @@ exports.default = {
 /***/ 3:
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__(3);
+module.exports = __webpack_require__(4);
 
 /***/ }),
 
@@ -64719,7 +64719,7 @@ module.exports = __webpack_require__(53);
 /***/ 2:
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__(6);
+module.exports = __webpack_require__(7);
 
 /***/ }),
 
@@ -65209,7 +65209,7 @@ exports.default = _option2.default;
 /***/ 2:
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__(6);
+module.exports = __webpack_require__(7);
 
 /***/ }),
 
@@ -67168,7 +67168,7 @@ module.exports = __webpack_require__(16) ? Object.defineProperties : function de
 /* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var document = __webpack_require__(4).document;
+var document = __webpack_require__(5).document;
 module.exports = document && document.documentElement;
 
 
@@ -67177,7 +67177,7 @@ module.exports = document && document.documentElement;
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
-var has = __webpack_require__(7);
+var has = __webpack_require__(8);
 var toObject = __webpack_require__(97);
 var IE_PROTO = __webpack_require__(58)('IE_PROTO');
 var ObjectProto = Object.prototype;
@@ -67196,7 +67196,7 @@ module.exports = Object.getPrototypeOf || function (O) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(200);
-var global = __webpack_require__(4);
+var global = __webpack_require__(5);
 var hide = __webpack_require__(14);
 var Iterators = __webpack_require__(62);
 var TO_STRING_TAG = __webpack_require__(18)('toStringTag');
@@ -67297,8 +67297,8 @@ module.exports = __webpack_require__(20).Symbol;
 "use strict";
 
 // ECMAScript 6 symbols shim
-var global = __webpack_require__(4);
-var has = __webpack_require__(7);
+var global = __webpack_require__(5);
+var has = __webpack_require__(8);
 var DESCRIPTORS = __webpack_require__(16);
 var $export = __webpack_require__(54);
 var redefine = __webpack_require__(99);
@@ -67537,7 +67537,7 @@ setToStringTag(global.JSON, 'JSON', true);
 
 var META = __webpack_require__(32)('meta');
 var isObject = __webpack_require__(21);
-var has = __webpack_require__(7);
+var has = __webpack_require__(8);
 var setDesc = __webpack_require__(15).f;
 var id = 0;
 var isExtensible = Object.isExtensible || function () {
@@ -67655,7 +67655,7 @@ var pIE = __webpack_require__(33);
 var createDesc = __webpack_require__(29);
 var toIObject = __webpack_require__(17);
 var toPrimitive = __webpack_require__(55);
-var has = __webpack_require__(7);
+var has = __webpack_require__(8);
 var IE8_DOM_DEFINE = __webpack_require__(92);
 var gOPD = Object.getOwnPropertyDescriptor;
 
@@ -68271,7 +68271,7 @@ exports.default = {
 /***/ 3:
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__(3);
+module.exports = __webpack_require__(4);
 
 /***/ }),
 
@@ -68294,19 +68294,19 @@ __webpack_require__.r(__webpack_exports__);
 // EXTERNAL MODULE: ./node_modules/vue/dist/vue.esm.js
 var vue_esm = __webpack_require__(0);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/App.vue?vue&type=template&id=087eb1c6&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"app"}},[_c('div',{staticClass:"header small top header-img",attrs:{"id":"status-header"}},[_c('span',{staticClass:"title center"},[_vm._v("Kiera Bot")]),_vm._v(" "),_c('span',{staticClass:"sub-title center"},[_vm._v("Welcome to my web portal ^_^")]),_vm._v(" "),_c('span',{staticClass:"sub-title center",attrs:{"id":"bot-connectivity"}},[(_vm.state.isConnected)?_c('span',[_vm._v("🔌")]):_vm._e(),_vm._v(" "),(_vm.state.isConnecting)?_c('span',[_vm._v("⛔")]):_vm._e()]),_vm._v(" "),_c('nav',{staticClass:"center"}),_vm._v(" "),_c('nav',{staticClass:"right"},[_c('AccountDropdown')],1)]),_vm._v(" "),_c('div',{staticClass:"content centered max-width-1000"},[_c('div',{staticClass:"column-4"},[_c('el-select',{staticClass:"server-select",attrs:{"placeholder":"Select a Discord server"},on:{"input":_vm.updateSelectedGuild},model:{value:(_vm.state.focusedGuildId),callback:function ($$v) {_vm.$set(_vm.state, "focusedGuildId", $$v)},expression:"state.focusedGuildId"}},_vm._l((_vm.bot.guilds),function(guildGroup){return _c('el-option-group',{key:guildGroup.label,attrs:{"label":guildGroup.label}},_vm._l((guildGroup.options),function(guild){return _c('el-option',{key:guild.id,attrs:{"label":guild.name,"value":guild.id}})}),1)}),1),_vm._v(" "),_c('Sidebar',{directives:[{name:"show",rawName:"v-show",value:(_vm.isGuildOwner),expression:"isGuildOwner"}],on:{"onPanelChange":_vm.handlePanelChange}})],1),_vm._v(" "),_c('div',{staticClass:"column-8"},[_c(_vm.state.focusedPanel,{tag:"component",attrs:{"state":_vm.state}})],1)]),_vm._v(" "),_c('transition',{attrs:{"name":"fade"}},[(_vm.state.isConnecting)?_c('CenterLoader'):_vm._e()],1)],1)}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/App.vue?vue&type=template&id=5ee8cc64&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"app"}},[_c('div',{staticClass:"header small top header-img",attrs:{"id":"status-header"}},[_c('span',{staticClass:"title center"},[_vm._v("Kiera Bot")]),_vm._v(" "),_c('span',{staticClass:"sub-title center"},[_vm._v("Welcome to my web portal ^_^")]),_vm._v(" "),_c('span',{staticClass:"sub-title center",attrs:{"id":"bot-connectivity"}},[(_vm.state.isConnected)?_c('span',[_vm._v("🔌")]):_vm._e(),_vm._v(" "),(_vm.state.isConnecting)?_c('span',[_vm._v("⛔")]):_vm._e()]),_vm._v(" "),_c('nav',{staticClass:"center"}),_vm._v(" "),_c('nav',{staticClass:"right"},[_c('AccountDropdown',{attrs:{"bot":_vm.bot}})],1)]),_vm._v(" "),_c('div',{staticClass:"content centered max-width-1000"},[_c('div',{staticClass:"column-4"},[_c('el-select',{staticClass:"server-select",attrs:{"placeholder":"Select a Discord server"},on:{"input":_vm.updateSelectedGuild},model:{value:(_vm.state.focusedGuildId),callback:function ($$v) {_vm.$set(_vm.state, "focusedGuildId", $$v)},expression:"state.focusedGuildId"}},_vm._l((_vm.bot.guilds),function(guildGroup){return _c('el-option-group',{key:guildGroup.label,attrs:{"label":guildGroup.label}},_vm._l((guildGroup.options),function(guild){return _c('el-option',{key:guild.id,attrs:{"label":guild.name,"value":guild.id}})}),1)}),1),_vm._v(" "),_c('Sidebar',{directives:[{name:"show",rawName:"v-show",value:(_vm.state.focusedGuildId !== ''),expression:"state.focusedGuildId !== ''"}],attrs:{"state":_vm.state},on:{"onPanelChange":_vm.handlePanelChange}})],1),_vm._v(" "),_c('div',{staticClass:"column-8"},[_c(_vm.state.focusedPanel,{tag:"component",attrs:{"bot":_vm.bot,"state":_vm.state}})],1)]),_vm._v(" "),_c('transition',{attrs:{"name":"fade"}},[(_vm.state.isConnecting)?_c('CenterLoader'):_vm._e()],1)],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/App.vue?vue&type=template&id=087eb1c6&
+// CONCATENATED MODULE: ./src/App.vue?vue&type=template&id=5ee8cc64&
 
 // EXTERNAL MODULE: ./node_modules/axios/index.js
-var axios = __webpack_require__(8);
+var axios = __webpack_require__(3);
 var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
 
 // EXTERNAL MODULE: ./node_modules/vue-class-component/dist/vue-class-component.common.js
-var vue_class_component_common = __webpack_require__(5);
+var vue_class_component_common = __webpack_require__(6);
 var vue_class_component_common_default = /*#__PURE__*/__webpack_require__.n(vue_class_component_common);
 
 // CONCATENATED MODULE: ./node_modules/vue-property-decorator/lib/vue-property-decorator.js
@@ -68454,7 +68454,8 @@ var state = {
     focusedPanel: '',
     focusedView: '',
     focusedGuildId: '',
-    focusedGuild: focusedGuild
+    focusedGuild: focusedGuild,
+    isGuildOwner: false
 };
 
 // CONCATENATED MODULE: ./src/defaults/user.ts
@@ -68478,12 +68479,12 @@ var mappedGuilds = [
     }
 ];
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/account-dropdown.vue?vue&type=template&id=5d2a6d68&
-var account_dropdownvue_type_template_id_5d2a6d68_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
-var account_dropdownvue_type_template_id_5d2a6d68_staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"nav-dropdown",attrs:{"id":"navmenu-autoid-0"}},[_c('div',{staticClass:"ui avatar image"})])}]
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/account-dropdown.vue?vue&type=template&id=e67d7498&
+var account_dropdownvue_type_template_id_e67d7498_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"nav-dropdown",attrs:{"id":"navmenu-autoid-0"}},[_c('div',{staticClass:"ui avatar image",style:({ 'background-image': ("url('https://cdn.discordapp.com/avatars/146439529824256000/" + (_vm.bot.user.avatar) + ".png')") })},[_c('span',{staticClass:"username"},[_vm._v(_vm._s(_vm.bot.user.username)+"#"+_vm._s(_vm.bot.user.discriminator))])])])}
+var account_dropdownvue_type_template_id_e67d7498_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/account-dropdown.vue?vue&type=template&id=5d2a6d68&
+// CONCATENATED MODULE: ./src/components/account-dropdown.vue?vue&type=template&id=e67d7498&
 
 // CONCATENATED MODULE: ./node_modules/ts-loader??ref--1!./node_modules/vue-loader/lib??vue-loader-options!./src/components/account-dropdown.vue?vue&type=script&lang=ts&
 var __extends = (undefined && undefined.__extends) || (function () {
@@ -68510,11 +68511,26 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+
+
 var account_dropdownvue_type_script_lang_ts_AccountDropdown = (function (_super) {
     __extends(AccountDropdown, _super);
     function AccountDropdown() {
         return _super.call(this) || this;
     }
+    __decorate([
+        Prop({ default: function () { return state; } }),
+        __metadata("design:type", Object)
+    ], AccountDropdown.prototype, "state", void 0);
+    __decorate([
+        Prop({
+            default: function () {
+                return { webToken: "", user: user, guilds: mappedGuilds };
+            }
+        }),
+        __metadata("design:type", Object)
+    ], AccountDropdown.prototype, "bot", void 0);
     AccountDropdown = __decorate([
         vue_class_component_common_default.a,
         __metadata("design:paramtypes", [])
@@ -68634,8 +68650,8 @@ function normalizeComponent (
 
 var component = normalizeComponent(
   components_account_dropdownvue_type_script_lang_ts_,
-  account_dropdownvue_type_template_id_5d2a6d68_render,
-  account_dropdownvue_type_template_id_5d2a6d68_staticRenderFns,
+  account_dropdownvue_type_template_id_e67d7498_render,
+  account_dropdownvue_type_template_id_e67d7498_staticRenderFns,
   false,
   null,
   null,
@@ -68717,34 +68733,15 @@ var center_loader_component = normalizeComponent(
 
 center_loader_component.options.__file = "center-loader.vue"
 /* harmony default export */ var center_loader = (center_loader_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/panels/permissions.vue?vue&type=template&id=b5b34fe2&
-var permissionsvue_type_template_id_b5b34fe2_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"sidebar"}},[(_vm.state.focusedView === 'all')?_c('el-row',[_c('el-col',{attrs:{"span":24}},[_c('div',{staticClass:"grid-content bg-purple-dark"},[_c('div',{staticClass:"h3"},[_vm._v("All Permissions")]),_vm._v(" "),_c('span',{staticClass:"panel-description"},[_vm._v("\n          Permissions are broken up into 3 categories:\n          "),_c('br'),_vm._v(" "),_c('span',{staticStyle:{"margin-left":"10px","color":"#666"}},[_vm._v("- Global status (Base Server Property)")]),_vm._v(" "),_c('br'),_vm._v(" "),_c('span',{staticStyle:{"margin-left":"10px","color":"#666"}},[_vm._v("- (Expanded) By Channel")]),_vm._v(" "),_c('br'),_vm._v(" "),_c('span',{staticStyle:{"margin-left":"10px","color":"#666"}},[_vm._v("- (Expanded) Coming Soon: By User | By Role")]),_vm._v(" "),_c('br'),_vm._v(" "),_c('br'),_vm._v("Priority will always be:\n          "),_c('span',{staticClass:"md"},[_vm._v("user > role > channel > server")]),_vm._v(" "),_c('br'),_vm._v(" "),_c('br'),_vm._v("Coming Soon: Global stats toggle will modify the first descended level.\n        ")]),_vm._v(" "),_c('el-table',{directives:[{name:"loading",rawName:"v-loading",value:(_vm.loading.isLoading),expression:"loading.isLoading"}],staticStyle:{"width":"100%"},attrs:{"data":_vm.permissions}},[_c('el-table-column',{attrs:{"type":"expand","prop":"allowed"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('PermissionsSub',{attrs:{"data":scope}})]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"Command","prop":"command"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"Global status","prop":"enabled","align":"right"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"permission-override-stats"},[_c('span',[_vm._v(_vm._s(_vm.displaySubAllowed(scope.row))+" allowed")]),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.displaySubDenied(scope.row))+" denied")]),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.displaySubExceptions(scope.row))+" exceptions")])]),_vm._v(" "),_c('el-switch',{attrs:{"active-color":"#13ce66","inactive-color":"#ff4949"},on:{"change":function($event){_vm.updateGlobalPermission(scope.row._id, scope.row.serverID, $event)}},model:{value:(scope.row.enabled),callback:function ($$v) {_vm.$set(scope.row, "enabled", $$v)},expression:"scope.row.enabled"}})]}}])})],1)],1)])],1):_vm._e()],1)}
-var permissionsvue_type_template_id_b5b34fe2_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/sidebar.vue?vue&type=template&id=50af00fd&
+var sidebarvue_type_template_id_50af00fd_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"sidebar"}},[_c('el-menu',{staticClass:"el-menu-vertical-demo",attrs:{"default-active":"2"},on:{"open":_vm.handleOpen,"close":_vm.handleClose}},[_c('el-menu-item',{directives:[{name:"show",rawName:"v-show",value:(_vm.state.isGuildOwner),expression:"state.isGuildOwner"}],attrs:{"index":"1-2"},on:{"click":function($event){_vm.$emit('onPanelChange', { panel: 'PermissionsPanel', view: 'all' })}}},[_c('i',{staticClass:"el-icon-menu"}),_vm._v(" "),_c('span',[_vm._v("Command Permission")])]),_vm._v(" "),_c('el-menu-item',{attrs:{"index":"1-3"},on:{"click":function($event){_vm.$emit('onPanelChange', { panel: 'ServerNotificationsPanel', view: 'all' })}}},[_c('i',{staticClass:"el-icon-bell"}),_vm._v(" "),_c('span',[_vm._v("Server Notifications")])])],1)],1)}
+var sidebarvue_type_template_id_50af00fd_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/panels/permissions.vue?vue&type=template&id=b5b34fe2&
+// CONCATENATED MODULE: ./src/components/sidebar.vue?vue&type=template&id=50af00fd&
 
-// CONCATENATED MODULE: ./src/utils.ts
-function buildRequestHeaders() {
-    return {
-        webToken: document.cookie
-            .match("(^|;)\\s*kiera-webToken\\s*=\\s*([^;]+)")
-            .pop(),
-        id: document.cookie
-            .match("(^|;)\\s*kiera-discord-id\\s*=\\s*([^;]+)")
-            .pop()
-    };
-}
-
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/permissions-sub.vue?vue&type=template&id=7ae9fea2&
-var permissions_subvue_type_template_id_7ae9fea2_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',_vm._l((_vm.data.row.allowed),function(allowed,i){return _c('div',{key:i},[_c('el-switch',{attrs:{"active-color":"#13ce66","inactive-color":"#ff4949"},on:{"change":function($event){_vm.updatePermission(_vm.data.row._id, _vm.data.row.serverID, _vm.data.row.command, allowed.target, $event)}},model:{value:(allowed.allow),callback:function ($$v) {_vm.$set(allowed, "allow", $$v)},expression:"allowed.allow"}}),_vm._v("\n    "+_vm._s(allowed.name)+"\n  ")],1)}),0)}
-var permissions_subvue_type_template_id_7ae9fea2_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/components/permissions-sub.vue?vue&type=template&id=7ae9fea2&
-
-// CONCATENATED MODULE: ./node_modules/ts-loader??ref--1!./node_modules/vue-loader/lib??vue-loader-options!./src/components/permissions-sub.vue?vue&type=script&lang=ts&
-var permissions_subvue_type_script_lang_ts_extends = (undefined && undefined.__extends) || (function () {
+// CONCATENATED MODULE: ./node_modules/ts-loader??ref--1!./node_modules/vue-loader/lib??vue-loader-options!./src/components/sidebar.vue?vue&type=script&lang=ts&
+var sidebarvue_type_script_lang_ts_extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -68757,13 +68754,183 @@ var permissions_subvue_type_script_lang_ts_extends = (undefined && undefined.__e
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var permissions_subvue_type_script_lang_ts_decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var sidebarvue_type_script_lang_ts_decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var permissions_subvue_type_script_lang_ts_metadata = (undefined && undefined.__metadata) || function (k, v) {
+var sidebarvue_type_script_lang_ts_metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var sidebarvue_type_script_lang_ts_Sidebar = (function (_super) {
+    sidebarvue_type_script_lang_ts_extends(Sidebar, _super);
+    function Sidebar() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    sidebarvue_type_script_lang_ts_decorate([
+        Prop({ default: function () { return state; } }),
+        sidebarvue_type_script_lang_ts_metadata("design:type", Object)
+    ], Sidebar.prototype, "state", void 0);
+    Sidebar = sidebarvue_type_script_lang_ts_decorate([
+        vue_class_component_common_default.a
+    ], Sidebar);
+    return Sidebar;
+}(vue_esm["default"]));
+/* harmony default export */ var sidebarvue_type_script_lang_ts_ = (sidebarvue_type_script_lang_ts_Sidebar);
+
+// CONCATENATED MODULE: ./src/components/sidebar.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var components_sidebarvue_type_script_lang_ts_ = (sidebarvue_type_script_lang_ts_); 
+// CONCATENATED MODULE: ./src/components/sidebar.vue
+
+
+
+
+
+/* normalize component */
+
+var sidebar_component = normalizeComponent(
+  components_sidebarvue_type_script_lang_ts_,
+  sidebarvue_type_template_id_50af00fd_render,
+  sidebarvue_type_template_id_50af00fd_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+sidebar_component.options.__file = "sidebar.vue"
+/* harmony default export */ var sidebar = (sidebar_component.exports);
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/panels/Welcome.vue?vue&type=template&id=227eb9ed&
+var Welcomevue_type_template_id_227eb9ed_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
+var Welcomevue_type_template_id_227eb9ed_staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"app"}},[_vm._v("\n  Welcome to the Kiera Bot webportal!\n  "),_c('br'),_vm._v(" "),_c('br'),_vm._v("If you're a server owner you'll find options on any servers containing the ⭐️\n  listed under the owners category of the dropdown.\n  "),_c('br'),_vm._v(" "),_c('br'),_vm._v("Every user will see all other available Bot options in the left menu\n  after selecting a server.\n")])}]
+
+
+// CONCATENATED MODULE: ./src/panels/Welcome.vue?vue&type=template&id=227eb9ed&
+
+// CONCATENATED MODULE: ./node_modules/ts-loader??ref--1!./node_modules/vue-loader/lib??vue-loader-options!./src/panels/Welcome.vue?vue&type=script&lang=ts&
+var Welcomevue_type_script_lang_ts_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var Welcomevue_type_script_lang_ts_decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var Welcomevue_type_script_lang_ts_WelcomePanel = (function (_super) {
+    Welcomevue_type_script_lang_ts_extends(WelcomePanel, _super);
+    function WelcomePanel() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    WelcomePanel = Welcomevue_type_script_lang_ts_decorate([
+        vue_class_component_common_default()({
+            components: {}
+        })
+    ], WelcomePanel);
+    return WelcomePanel;
+}(vue_esm["default"]));
+/* harmony default export */ var Welcomevue_type_script_lang_ts_ = (Welcomevue_type_script_lang_ts_WelcomePanel);
+
+// CONCATENATED MODULE: ./src/panels/Welcome.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var panels_Welcomevue_type_script_lang_ts_ = (Welcomevue_type_script_lang_ts_); 
+// CONCATENATED MODULE: ./src/panels/Welcome.vue
+
+
+
+
+
+/* normalize component */
+
+var Welcome_component = normalizeComponent(
+  panels_Welcomevue_type_script_lang_ts_,
+  Welcomevue_type_template_id_227eb9ed_render,
+  Welcomevue_type_template_id_227eb9ed_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+Welcome_component.options.__file = "Welcome.vue"
+/* harmony default export */ var Welcome = (Welcome_component.exports);
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/panels/ServerNotifications.vue?vue&type=template&id=3dd0dd45&
+var ServerNotificationsvue_type_template_id_3dd0dd45_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"sidebar"}},[_c('el-row',[_c('el-table',{directives:[{name:"loading",rawName:"v-loading",value:(_vm.loading.isLoading),expression:"loading.isLoading"}],staticStyle:{"width":"100%"},attrs:{"data":_vm.notifications}},[_c('el-table-column',{attrs:{"label":"Name","prop":"_title"}}),_vm._v(" "),_c('el-table-column',{attrs:{"align":"right","label":"Notification state","prop":"state"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('el-switch',{attrs:{"active-color":"#13ce66","inactive-color":"#ff4949"},on:{"change":function($event){_vm.updateNotification(scope.row.name, { _discordEnabled: scope.row._discordEnabled, state: $event })}},model:{value:(scope.row.state),callback:function ($$v) {_vm.$set(scope.row, "state", $$v)},expression:"scope.row.state"}})]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"align":"right","label":"Notify in","prop":"_discordEnabled"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('el-switch',{staticStyle:{"display":"block"},attrs:{"active-color":"#13ce66","inactive-color":"#ff4949","inactive-text":"Web","active-text":"Discord"},on:{"change":function($event){_vm.updateNotification(scope.row.name, { _discordEnabled: $event, state: scope.row.state })}},model:{value:(scope.row._discordEnabled),callback:function ($$v) {_vm.$set(scope.row, "_discordEnabled", $$v)},expression:"scope.row._discordEnabled"}})]}}])})],1)],1)],1)}
+var ServerNotificationsvue_type_template_id_3dd0dd45_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/panels/ServerNotifications.vue?vue&type=template&id=3dd0dd45&
+
+// CONCATENATED MODULE: ./src/defaults/notification.ts
+var defaultNotifications = [
+    {
+        _title: 'ChastiKey - KH stats lookup',
+        _description: "Send a notification when someone Look's up your CK stats on this server.",
+        _discordEnabled: true,
+        authorID: '',
+        serverID: '',
+        owner: '',
+        name: 'notify-ck-stats-keyholder',
+        state: false,
+        where: 'Discord'
+    }
+];
+
+// CONCATENATED MODULE: ./src/utils.ts
+function buildRequestHeaders() {
+    return {
+        webToken: document.cookie
+            .match("(^|;)\\s*kiera-webToken\\s*=\\s*([^;]+)")
+            .pop(),
+        id: document.cookie
+            .match("(^|;)\\s*kiera-discord-id\\s*=\\s*([^;]+)")
+            .pop()
+    };
+}
+function getUserID() {
+    return document.cookie
+        .match("(^|;)\\s*kiera-discord-id\\s*=\\s*([^;]+)")
+        .pop();
+}
+
+// CONCATENATED MODULE: ./node_modules/ts-loader??ref--1!./node_modules/vue-loader/lib??vue-loader-options!./src/panels/ServerNotifications.vue?vue&type=script&lang=ts&
+var ServerNotificationsvue_type_script_lang_ts_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var ServerNotificationsvue_type_script_lang_ts_decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var ServerNotificationsvue_type_script_lang_ts_metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -68805,6 +68972,226 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 
+
+
+
+
+var ServerNotificationsvue_type_script_lang_ts_ServerNotificationsPanel = (function (_super) {
+    ServerNotificationsvue_type_script_lang_ts_extends(ServerNotificationsPanel, _super);
+    function ServerNotificationsPanel() {
+        var _this = _super.call(this) || this;
+        _this.getServerNotifications();
+        return _this;
+    }
+    ServerNotificationsPanel.prototype.getServerNotifications = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var resp, error_1;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4, axios_default()("https://dev.tdm.io:8234/api" + "/notifications", {
+                                method: "POST",
+                                data: {
+                                    serverID: this.state.focusedGuildId
+                                },
+                                headers: buildRequestHeaders()
+                            })];
+                    case 1:
+                        resp = _a.sent();
+                        if (resp.status === 200) {
+                            resp.data.forEach(function (notification) {
+                                var defaultNotification = _this.notifications.find(function (n) { return n.name === notification.name; });
+                                Object.assign(defaultNotification || {}, notification);
+                                defaultNotification._discordEnabled =
+                                    defaultNotification.where === "Discord";
+                            });
+                        }
+                        return [3, 3];
+                    case 2:
+                        error_1 = _a.sent();
+                        return [3, 3];
+                    case 3:
+                        this.loading.isLoading = false;
+                        return [2];
+                }
+            });
+        });
+    };
+    ServerNotificationsPanel.prototype.updateNotification = function (name, update) {
+        return __awaiter(this, void 0, void 0, function () {
+            var resp;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log(name, update, {
+                            owner: this.bot.user._id,
+                            authorID: getUserID(),
+                            serverID: this.state.focusedGuildId,
+                            name: name,
+                            state: update.state,
+                            where: update._discordEnabled ? "Discord" : "Web"
+                        });
+                        return [4, axios_default()("https://dev.tdm.io:8234/api" + "/notification/update", {
+                                method: "POST",
+                                data: {
+                                    owner: this.bot.user._id,
+                                    authorID: getUserID(),
+                                    serverID: this.state.focusedGuildId,
+                                    name: name,
+                                    state: update.state,
+                                    where: update._discordEnabled ? "Discord" : "Web"
+                                },
+                                headers: buildRequestHeaders()
+                            })];
+                    case 1:
+                        resp = _a.sent();
+                        console.log("updateNotification outcome =>", resp.data);
+                        return [2];
+                }
+            });
+        });
+    };
+    ServerNotificationsvue_type_script_lang_ts_decorate([
+        Prop({ default: function () { return state; } }),
+        ServerNotificationsvue_type_script_lang_ts_metadata("design:type", Object)
+    ], ServerNotificationsPanel.prototype, "state", void 0);
+    ServerNotificationsvue_type_script_lang_ts_decorate([
+        Prop({
+            default: function () {
+                return { webToken: "", user: user, guilds: mappedGuilds };
+            }
+        }),
+        ServerNotificationsvue_type_script_lang_ts_metadata("design:type", Object)
+    ], ServerNotificationsPanel.prototype, "bot", void 0);
+    ServerNotificationsvue_type_script_lang_ts_decorate([
+        Prop({
+            default: function () { return defaultNotifications; }
+        }),
+        ServerNotificationsvue_type_script_lang_ts_metadata("design:type", Array)
+    ], ServerNotificationsPanel.prototype, "notifications", void 0);
+    ServerNotificationsvue_type_script_lang_ts_decorate([
+        Prop({ default: "" }),
+        ServerNotificationsvue_type_script_lang_ts_metadata("design:type", String)
+    ], ServerNotificationsPanel.prototype, "search", void 0);
+    ServerNotificationsvue_type_script_lang_ts_decorate([
+        Prop({
+            default: function () {
+                return { isLoading: true, loaded: false };
+            }
+        }),
+        ServerNotificationsvue_type_script_lang_ts_metadata("design:type", Object)
+    ], ServerNotificationsPanel.prototype, "loading", void 0);
+    ServerNotificationsPanel = ServerNotificationsvue_type_script_lang_ts_decorate([
+        vue_class_component_common_default()({
+            components: {}
+        }),
+        ServerNotificationsvue_type_script_lang_ts_metadata("design:paramtypes", [])
+    ], ServerNotificationsPanel);
+    return ServerNotificationsPanel;
+}(vue_esm["default"]));
+/* harmony default export */ var ServerNotificationsvue_type_script_lang_ts_ = (ServerNotificationsvue_type_script_lang_ts_ServerNotificationsPanel);
+
+// CONCATENATED MODULE: ./src/panels/ServerNotifications.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var panels_ServerNotificationsvue_type_script_lang_ts_ = (ServerNotificationsvue_type_script_lang_ts_); 
+// CONCATENATED MODULE: ./src/panels/ServerNotifications.vue
+
+
+
+
+
+/* normalize component */
+
+var ServerNotifications_component = normalizeComponent(
+  panels_ServerNotificationsvue_type_script_lang_ts_,
+  ServerNotificationsvue_type_template_id_3dd0dd45_render,
+  ServerNotificationsvue_type_template_id_3dd0dd45_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+ServerNotifications_component.options.__file = "ServerNotifications.vue"
+/* harmony default export */ var ServerNotifications = (ServerNotifications_component.exports);
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/panels/PermissionsList.vue?vue&type=template&id=5dacbfb1&
+var PermissionsListvue_type_template_id_5dacbfb1_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"sidebar"}},[(_vm.state.focusedView === 'all')?_c('el-row',[_c('el-col',{attrs:{"span":24}},[_c('div',{staticClass:"grid-content bg-purple-dark"},[_c('div',{staticClass:"h3"},[_vm._v("All Permissions")]),_vm._v(" "),_c('span',{staticClass:"panel-description"},[_vm._v("\n          Permissions are broken up into 3 categories:\n          "),_c('br'),_vm._v(" "),_c('span',{staticStyle:{"margin-left":"10px","color":"#666"}},[_vm._v("- Global status (Base Server Property)")]),_vm._v(" "),_c('br'),_vm._v(" "),_c('span',{staticStyle:{"margin-left":"10px","color":"#666"}},[_vm._v("- (Expanded) By Channel")]),_vm._v(" "),_c('br'),_vm._v(" "),_c('span',{staticStyle:{"margin-left":"10px","color":"#666"}},[_vm._v("- (Expanded) Coming Soon: By User | By Role")]),_vm._v(" "),_c('br'),_vm._v(" "),_c('br'),_vm._v("Priority will always be:\n          "),_c('span',{staticClass:"md"},[_vm._v("user > role > channel > server")]),_vm._v(" "),_c('br'),_vm._v(" "),_c('br'),_vm._v("Coming Soon: Global stats toggle will modify the first descended level.\n        ")]),_vm._v(" "),_c('el-table',{directives:[{name:"loading",rawName:"v-loading",value:(_vm.loading.isLoading),expression:"loading.isLoading"}],staticStyle:{"width":"100%"},attrs:{"data":_vm.permissions}},[_c('el-table-column',{attrs:{"type":"expand","prop":"allowed"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('PermissionsSub',{attrs:{"data":scope}})]}}])}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"Command","prop":"command"}}),_vm._v(" "),_c('el-table-column',{attrs:{"label":"Global status","prop":"enabled","align":"right"},scopedSlots:_vm._u([{key:"default",fn:function(scope){return [_c('div',{staticClass:"permission-override-stats"},[_c('span',[_vm._v(_vm._s(_vm.displaySubAllowed(scope.row))+" allowed")]),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.displaySubDenied(scope.row))+" denied")]),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.displaySubExceptions(scope.row))+" exceptions")])]),_vm._v(" "),_c('el-switch',{attrs:{"active-color":"#13ce66","inactive-color":"#ff4949"},on:{"change":function($event){_vm.updateGlobalPermission(scope.row._id, scope.row.serverID, $event)}},model:{value:(scope.row.enabled),callback:function ($$v) {_vm.$set(scope.row, "enabled", $$v)},expression:"scope.row.enabled"}})]}}])})],1)],1)])],1):_vm._e()],1)}
+var PermissionsListvue_type_template_id_5dacbfb1_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/panels/PermissionsList.vue?vue&type=template&id=5dacbfb1&
+
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/permissions-sub.vue?vue&type=template&id=7ae9fea2&
+var permissions_subvue_type_template_id_7ae9fea2_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',_vm._l((_vm.data.row.allowed),function(allowed,i){return _c('div',{key:i},[_c('el-switch',{attrs:{"active-color":"#13ce66","inactive-color":"#ff4949"},on:{"change":function($event){_vm.updatePermission(_vm.data.row._id, _vm.data.row.serverID, _vm.data.row.command, allowed.target, $event)}},model:{value:(allowed.allow),callback:function ($$v) {_vm.$set(allowed, "allow", $$v)},expression:"allowed.allow"}}),_vm._v("\n    "+_vm._s(allowed.name)+"\n  ")],1)}),0)}
+var permissions_subvue_type_template_id_7ae9fea2_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/permissions-sub.vue?vue&type=template&id=7ae9fea2&
+
+// CONCATENATED MODULE: ./node_modules/ts-loader??ref--1!./node_modules/vue-loader/lib??vue-loader-options!./src/components/permissions-sub.vue?vue&type=script&lang=ts&
+var permissions_subvue_type_script_lang_ts_extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var permissions_subvue_type_script_lang_ts_decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var permissions_subvue_type_script_lang_ts_metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var permissions_subvue_type_script_lang_ts_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var permissions_subvue_type_script_lang_ts_generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
 var permissions_subvue_type_script_lang_ts_PermissionsSub = (function (_super) {
     permissions_subvue_type_script_lang_ts_extends(PermissionsSub, _super);
     function PermissionsSub() {
@@ -68816,9 +69203,9 @@ var permissions_subvue_type_script_lang_ts_PermissionsSub = (function (_super) {
         console.log(_old, _new);
     };
     PermissionsSub.prototype.updatePermission = function (_id, serverID, command, target, $e) {
-        return __awaiter(this, void 0, void 0, function () {
+        return permissions_subvue_type_script_lang_ts_awaiter(this, void 0, void 0, function () {
             var resp;
-            return __generator(this, function (_a) {
+            return permissions_subvue_type_script_lang_ts_generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         console.log(_id, $e);
@@ -68884,8 +69271,8 @@ var permissions_sub_component = normalizeComponent(
 
 permissions_sub_component.options.__file = "permissions-sub.vue"
 /* harmony default export */ var permissions_sub = (permissions_sub_component.exports);
-// CONCATENATED MODULE: ./node_modules/ts-loader??ref--1!./node_modules/vue-loader/lib??vue-loader-options!./src/panels/permissions.vue?vue&type=script&lang=ts&
-var permissionsvue_type_script_lang_ts_extends = (undefined && undefined.__extends) || (function () {
+// CONCATENATED MODULE: ./node_modules/ts-loader??ref--1!./node_modules/vue-loader/lib??vue-loader-options!./src/panels/PermissionsList.vue?vue&type=script&lang=ts&
+var PermissionsListvue_type_script_lang_ts_extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -68898,16 +69285,16 @@ var permissionsvue_type_script_lang_ts_extends = (undefined && undefined.__exten
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var permissionsvue_type_script_lang_ts_decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+var PermissionsListvue_type_script_lang_ts_decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var permissionsvue_type_script_lang_ts_metadata = (undefined && undefined.__metadata) || function (k, v) {
+var PermissionsListvue_type_script_lang_ts_metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var permissionsvue_type_script_lang_ts_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+var PermissionsListvue_type_script_lang_ts_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
@@ -68915,7 +69302,7 @@ var permissionsvue_type_script_lang_ts_awaiter = (undefined && undefined.__await
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var permissionsvue_type_script_lang_ts_generator = (undefined && undefined.__generator) || function (thisArg, body) {
+var PermissionsListvue_type_script_lang_ts_generator = (undefined && undefined.__generator) || function (thisArg, body) {
     var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
     return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
@@ -68950,17 +69337,17 @@ var permissionsvue_type_script_lang_ts_generator = (undefined && undefined.__gen
 
 
 
-var permissionsvue_type_script_lang_ts_PermissionsPanel = (function (_super) {
-    permissionsvue_type_script_lang_ts_extends(PermissionsPanel, _super);
+var PermissionsListvue_type_script_lang_ts_PermissionsPanel = (function (_super) {
+    PermissionsListvue_type_script_lang_ts_extends(PermissionsPanel, _super);
     function PermissionsPanel() {
         var _this = _super.call(this) || this;
         _this.getChannelPermissions();
         return _this;
     }
     PermissionsPanel.prototype.getChannelPermissions = function () {
-        return permissionsvue_type_script_lang_ts_awaiter(this, void 0, void 0, function () {
+        return PermissionsListvue_type_script_lang_ts_awaiter(this, void 0, void 0, function () {
             var resp, error_1;
-            return permissionsvue_type_script_lang_ts_generator(this, function (_a) {
+            return PermissionsListvue_type_script_lang_ts_generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
@@ -68989,9 +69376,9 @@ var permissionsvue_type_script_lang_ts_PermissionsPanel = (function (_super) {
         });
     };
     PermissionsPanel.prototype.updateGlobalPermission = function (_id, serverID, $e) {
-        return permissionsvue_type_script_lang_ts_awaiter(this, void 0, void 0, function () {
+        return PermissionsListvue_type_script_lang_ts_awaiter(this, void 0, void 0, function () {
             var resp;
-            return permissionsvue_type_script_lang_ts_generator(this, function (_a) {
+            return PermissionsListvue_type_script_lang_ts_generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         console.log(_id, $e);
@@ -69025,115 +69412,51 @@ var permissionsvue_type_script_lang_ts_PermissionsPanel = (function (_super) {
         });
         return count;
     };
-    permissionsvue_type_script_lang_ts_decorate([
+    PermissionsListvue_type_script_lang_ts_decorate([
         Prop({ default: function () { return state; } }),
-        permissionsvue_type_script_lang_ts_metadata("design:type", Object)
+        PermissionsListvue_type_script_lang_ts_metadata("design:type", Object)
     ], PermissionsPanel.prototype, "state", void 0);
-    permissionsvue_type_script_lang_ts_decorate([
+    PermissionsListvue_type_script_lang_ts_decorate([
         Prop({
             default: function () {
                 return { webToken: "", user: user, guilds: mappedGuilds };
             }
         }),
-        permissionsvue_type_script_lang_ts_metadata("design:type", Object)
+        PermissionsListvue_type_script_lang_ts_metadata("design:type", Object)
     ], PermissionsPanel.prototype, "bot", void 0);
-    permissionsvue_type_script_lang_ts_decorate([
+    PermissionsListvue_type_script_lang_ts_decorate([
         Prop({
             default: function () { return []; }
         }),
-        permissionsvue_type_script_lang_ts_metadata("design:type", Array)
+        PermissionsListvue_type_script_lang_ts_metadata("design:type", Array)
     ], PermissionsPanel.prototype, "permissions", void 0);
-    permissionsvue_type_script_lang_ts_decorate([
+    PermissionsListvue_type_script_lang_ts_decorate([
         Prop({
             default: function () {
                 return { isLoading: true, loaded: false };
             }
         }),
-        permissionsvue_type_script_lang_ts_metadata("design:type", Object)
+        PermissionsListvue_type_script_lang_ts_metadata("design:type", Object)
     ], PermissionsPanel.prototype, "loading", void 0);
-    PermissionsPanel = permissionsvue_type_script_lang_ts_decorate([
+    PermissionsPanel = PermissionsListvue_type_script_lang_ts_decorate([
         vue_class_component_common_default()({
             components: {
                 PermissionsSub: permissions_sub
             }
         }),
-        permissionsvue_type_script_lang_ts_metadata("design:paramtypes", [])
+        PermissionsListvue_type_script_lang_ts_metadata("design:paramtypes", [])
     ], PermissionsPanel);
     return PermissionsPanel;
 }(vue_esm["default"]));
-/* harmony default export */ var permissionsvue_type_script_lang_ts_ = (permissionsvue_type_script_lang_ts_PermissionsPanel);
+/* harmony default export */ var PermissionsListvue_type_script_lang_ts_ = (PermissionsListvue_type_script_lang_ts_PermissionsPanel);
 
-// CONCATENATED MODULE: ./src/panels/permissions.vue?vue&type=script&lang=ts&
- /* harmony default export */ var panels_permissionsvue_type_script_lang_ts_ = (permissionsvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/panels/permissions.vue?vue&type=style&index=0&lang=less&
-var permissionsvue_type_style_index_0_lang_less_ = __webpack_require__(153);
+// CONCATENATED MODULE: ./src/panels/PermissionsList.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var panels_PermissionsListvue_type_script_lang_ts_ = (PermissionsListvue_type_script_lang_ts_); 
+// EXTERNAL MODULE: ./src/panels/PermissionsList.vue?vue&type=style&index=0&lang=less&
+var PermissionsListvue_type_style_index_0_lang_less_ = __webpack_require__(153);
 
-// CONCATENATED MODULE: ./src/panels/permissions.vue
+// CONCATENATED MODULE: ./src/panels/PermissionsList.vue
 
-
-
-
-
-
-/* normalize component */
-
-var permissions_component = normalizeComponent(
-  panels_permissionsvue_type_script_lang_ts_,
-  permissionsvue_type_template_id_b5b34fe2_render,
-  permissionsvue_type_template_id_b5b34fe2_staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-permissions_component.options.__file = "permissions.vue"
-/* harmony default export */ var permissions = (permissions_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/sidebar.vue?vue&type=template&id=00ac5c4a&
-var sidebarvue_type_template_id_00ac5c4a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"sidebar"}},[_c('el-menu',{staticClass:"el-menu-vertical-demo",attrs:{"default-active":"2"},on:{"open":_vm.handleOpen,"close":_vm.handleClose}},[_c('el-menu-item',{attrs:{"index":"1-2"},on:{"click":function($event){_vm.$emit('onPanelChange', { panel: 'PermissionsPanel', view: 'all' })}}},[_c('i',{staticClass:"el-icon-menu"}),_vm._v(" "),_c('span',[_vm._v("Command Permission")])])],1)],1)}
-var sidebarvue_type_template_id_00ac5c4a_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/components/sidebar.vue?vue&type=template&id=00ac5c4a&
-
-// CONCATENATED MODULE: ./node_modules/ts-loader??ref--1!./node_modules/vue-loader/lib??vue-loader-options!./src/components/sidebar.vue?vue&type=script&lang=ts&
-var sidebarvue_type_script_lang_ts_extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var sidebarvue_type_script_lang_ts_decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-var sidebarvue_type_script_lang_ts_Sidebar = (function (_super) {
-    sidebarvue_type_script_lang_ts_extends(Sidebar, _super);
-    function Sidebar() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Sidebar = sidebarvue_type_script_lang_ts_decorate([
-        vue_class_component_common_default.a
-    ], Sidebar);
-    return Sidebar;
-}(vue_esm["default"]));
-/* harmony default export */ var sidebarvue_type_script_lang_ts_ = (sidebarvue_type_script_lang_ts_Sidebar);
-
-// CONCATENATED MODULE: ./src/components/sidebar.vue?vue&type=script&lang=ts&
- /* harmony default export */ var components_sidebarvue_type_script_lang_ts_ = (sidebarvue_type_script_lang_ts_); 
-// CONCATENATED MODULE: ./src/components/sidebar.vue
 
 
 
@@ -69141,10 +69464,10 @@ var sidebarvue_type_script_lang_ts_Sidebar = (function (_super) {
 
 /* normalize component */
 
-var sidebar_component = normalizeComponent(
-  components_sidebarvue_type_script_lang_ts_,
-  sidebarvue_type_template_id_00ac5c4a_render,
-  sidebarvue_type_template_id_00ac5c4a_staticRenderFns,
+var PermissionsList_component = normalizeComponent(
+  panels_PermissionsListvue_type_script_lang_ts_,
+  PermissionsListvue_type_template_id_5dacbfb1_render,
+  PermissionsListvue_type_template_id_5dacbfb1_staticRenderFns,
   false,
   null,
   null,
@@ -69152,8 +69475,8 @@ var sidebar_component = normalizeComponent(
   
 )
 
-sidebar_component.options.__file = "sidebar.vue"
-/* harmony default export */ var sidebar = (sidebar_component.exports);
+PermissionsList_component.options.__file = "PermissionsList.vue"
+/* harmony default export */ var PermissionsList = (PermissionsList_component.exports);
 // CONCATENATED MODULE: ./node_modules/ts-loader??ref--1!./node_modules/vue-loader/lib??vue-loader-options!./src/App.vue?vue&type=script&lang=ts&
 var Appvue_type_script_lang_ts_extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -69223,6 +69546,13 @@ var Appvue_type_script_lang_ts_generator = (undefined && undefined.__generator) 
 
 
 
+
+
+var routes = {
+    "/app/": Welcome,
+    "/app/server/permissions": PermissionsList,
+    "/app/server/notifications": ServerNotifications
+};
 var Appvue_type_script_lang_ts_App = (function (_super) {
     Appvue_type_script_lang_ts_extends(App, _super);
     function App() {
@@ -69255,6 +69585,9 @@ var Appvue_type_script_lang_ts_App = (function (_super) {
         });
         return _this;
     }
+    App.prototype.viewComponent = function () {
+        return routes[this.currentRoute] || Welcome;
+    };
     Object.defineProperty(App.prototype, "isGuildOwner", {
         get: function () {
             var _this = this;
@@ -69313,14 +69646,24 @@ var Appvue_type_script_lang_ts_App = (function (_super) {
             console.log(i, g.id);
             return g.id === id;
         });
-        if (guild) {
+        console.log("guild", guild);
+        if (guild > -1) {
             console.log("updateSelectedGuild.index =>", guild);
             this.state.focusedGuild = this.bot.user.guilds[guild];
             console.log("state.focusedGuild =>", this.state);
             this.state.focusedPanel = "";
             this.state.focusedView = "";
+            this.state.isGuildOwner = this.bot.user.guilds[guild].owner;
+            console.log("guild.owner", this.bot.user.guilds[guild].owner);
+        }
+        else {
+            this.state.isGuildOwner = false;
         }
     };
+    Appvue_type_script_lang_ts_decorate([
+        Prop({ default: "/app/" }),
+        Appvue_type_script_lang_ts_metadata("design:type", String)
+    ], App.prototype, "currentRoute", void 0);
     Appvue_type_script_lang_ts_decorate([
         Prop({
             default: function () { return state; }
@@ -69346,8 +69689,10 @@ var Appvue_type_script_lang_ts_App = (function (_super) {
             components: {
                 AccountDropdown: account_dropdown,
                 CenterLoader: center_loader,
-                PermissionsPanel: permissions,
-                Sidebar: sidebar
+                Sidebar: sidebar,
+                WelcomePanel: Welcome,
+                ServerNotificationsPanel: ServerNotifications,
+                PermissionsPanel: PermissionsList
             }
         }),
         Appvue_type_script_lang_ts_metadata("design:paramtypes", [])

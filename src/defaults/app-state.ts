@@ -17,6 +17,7 @@ export const state = {
   focusedView: '',
   // Server in focus
   focusedGuildId: '',
-  focusedGuild: focusedGuild
+  focusedGuild: focusedGuild,
+  isGuildOwner: false
 }
 

@@ -8,3 +8,9 @@ export function buildRequestHeaders() {
       .pop()
   }
 }
+
+export function getUserID() {
+  return (<any>document.cookie)
+    .match("(^|;)\\s*kiera-discord-id\\s*=\\s*([^;]+)")
+    .pop()
+}

@@ -11,7 +11,7 @@
       <nav class="center"></nav>
 
       <nav class="right">
-        <AccountDropdown/>
+        <AccountDropdown :bot="bot"></AccountDropdown>
       </nav>
     </div>
 
@@ -37,10 +37,14 @@
           </el-option-group>
         </el-select>
 
-        <Sidebar v-show="isGuildOwner" v-on:onPanelChange="handlePanelChange"/>
+        <Sidebar
+          v-show="state.focusedGuildId !== ''"
+          :state="state"
+          v-on:onPanelChange="handlePanelChange"
+        ></Sidebar>
       </div>
       <div class="column-8">
-        <component v-bind:is="state.focusedPanel" :state="state"></component>
+        <component v-bind:is="state.focusedPanel" :bot="bot" :state="state"></component>
       </div>
     </div>
 
@@ -65,18 +69,33 @@ import { mappedGuilds, DiscordGuild } from "./defaults/guilds";
 
 import AccountDropdown from "./components/account-dropdown.vue";
 import CenterLoader from "./components/center-loader.vue";
-import PermissionsPanel from "./panels/permissions.vue";
 import Sidebar from "./components/sidebar.vue";
+
+// Panels
+import WelcomePanel from "./panels/Welcome.vue";
+import ServerNotificationsPanel from "./panels/ServerNotifications.vue";
+import PermissionsPanel from "./panels/PermissionsList.vue";
+
+export const routes: { [key: string]: any } = {
+  "/app/": WelcomePanel,
+  "/app/server/permissions": PermissionsPanel,
+  "/app/server/notifications": ServerNotificationsPanel
+};
 
 @Component({
   components: {
     AccountDropdown,
     CenterLoader,
-    PermissionsPanel,
-    Sidebar
+    Sidebar,
+    // Panels
+    WelcomePanel,
+    ServerNotificationsPanel,
+    PermissionsPanel
   }
 })
 export default class App extends Vue {
+  @Prop({ default: "/app/" })
+  private currentRoute!: string;
   @Prop({
     default: () => state
   })
@@ -95,6 +114,10 @@ export default class App extends Vue {
     user: typeof user;
     guilds: typeof mappedGuilds;
   };
+
+  public viewComponent() {
+    return routes[this.currentRoute] || WelcomePanel;
+  }
 
   public get isGuildOwner() {
     const _guild = this.bot.user.guilds.find(
@@ -173,8 +196,9 @@ export default class App extends Vue {
         return g.id === id;
       }
     );
+    console.log("guild", guild);
 
-    if (guild) {
+    if (guild > -1) {
       console.log("updateSelectedGuild.index =>", guild);
       // Update focused Guild object
       this.state.focusedGuild = this.bot.user.guilds[guild];
@@ -182,6 +206,10 @@ export default class App extends Vue {
       // If guild is now owned by this user clear the panel
       this.state.focusedPanel = "";
       this.state.focusedView = "";
+      this.state.isGuildOwner = this.bot.user.guilds[guild].owner;
+      console.log("guild.owner", this.bot.user.guilds[guild].owner);
+    } else {
+      this.state.isGuildOwner = false;
     }
   }
 }
@@ -224,5 +252,4 @@ export default class App extends Vue {
 .server-select {
   width: 100%;
 }
-
 </style>
