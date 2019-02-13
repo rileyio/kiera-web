@@ -63,6 +63,10 @@ typings/
 # ignore compiled directory
 #app/build
 
+# ignore build files
+app/build.js
+app/build.js.map
+
 # ignore databases folder contents
 db/*.db
 
@@ -72,3 +76,7 @@ server.crt
 ca.crt
 *.rdb
 .DS_Store
+
+# Ignore server files
+*.pem
+*.save
