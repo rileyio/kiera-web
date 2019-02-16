@@ -1,18 +1,26 @@
 <template>
   <div>
-    <div v-for="(allowed, i) in data.row.allowed" :key="i">
-      <el-switch
-        v-model="allowed.allow"
-        active-color="#13ce66"
-        inactive-color="#ff4949"
-        @change="updatePermission(data.row._id, data.row.serverID, data.row.command, allowed.target, $event)"
-      ></el-switch>
-      {{allowed.name}}
-    </div>
+    <el-row>
+      <el-input placeholder="Filter Channels" size="mini" v-model="filterInput"></el-input>
+    </el-row>
+    <br/>
+    <el-row>
+      <div
+        v-for="(allowed, i) in data.row.allowed.filter(a => !filterInput || a.name.toLowerCase().includes(filterInput.toLowerCase()))"
+        :key="i"
+      >
+        <el-switch
+          v-model="allowed.allow"
+          active-color="#13ce66"
+          inactive-color="#ff4949"
+          @change="updatePermission(data.row._id, data.row.serverID, data.row.command, allowed.target, $event)"
+        ></el-switch>
+        {{allowed.name}}
+      </div>
+    </el-row>
   </div>
 </template>
 
-F
 <script lang="ts">
 declare var process: any;
 
@@ -39,6 +47,9 @@ export default class PermissionsSub extends Vue {
   private watchData(_old: any, _new: any) {
     console.log(_old, _new);
   }
+
+  @Prop({ default: "" })
+  private filterInput!: string;
 
   private async updatePermission(
     _id: string,

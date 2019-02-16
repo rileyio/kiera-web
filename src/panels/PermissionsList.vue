@@ -62,7 +62,10 @@ import { buildRequestHeaders } from "../utils";
 import PermissionsSub from "../components/permissions-sub.vue";
 import { user } from "../defaults/user";
 import { mappedGuilds } from "../defaults/guilds";
-import { CommandPermissions } from "../types/permissions";
+import {
+  CommandPermissions,
+  CommandPermissionsAllowed
+} from "../types/permissions";
 
 @Component({
   components: {
@@ -113,6 +116,11 @@ export default class PermissionsPanel extends Vue {
       });
 
       if (resp.status === 200) {
+        // Sort incoming data by channels
+        (<Array<CommandPermissions>>resp.data)
+          .map(pp => pp.allowed.sort((a, b) => a.name > b.name ? 1 : -1 ))
+
+        // Update cached data
         this.permissions = resp.data;
         console.log(this.permissions);
       }
