@@ -6,6 +6,7 @@
       @open="handleOpen"
       @close="handleClose"
     >
+      <!-- Menu Item -->
       <el-menu-item
         index="1-2"
         v-show="state.isGuildOwner"
@@ -14,12 +15,21 @@
         <i class="el-icon-menu"></i>
         <span>Command Permission</span>
       </el-menu-item>
+      <!-- Menu Item -->
       <el-menu-item
         index="1-3"
         @click="$emit('onPanelChange', { panel: 'ServerNotificationsPanel', view: 'all' })"
       >
         <i class="el-icon-bell"></i>
         <span>Server Notifications</span>
+      </el-menu-item>
+      <!-- Menu Item -->
+      <el-menu-item
+        index="1-4"
+        @click="$emit('onPanelChange', { panel: 'DecisionsPanel', view: 'all' })"
+      >
+        <i class="el-icon-tickets"></i>
+        <span>Decisions Manager</span>
       </el-menu-item>
     </el-menu>
   </div>

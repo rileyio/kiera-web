@@ -75,6 +75,7 @@ import Sidebar from "./components/sidebar.vue";
 import WelcomePanel from "./panels/Welcome.vue";
 import ServerNotificationsPanel from "./panels/ServerNotifications.vue";
 import PermissionsPanel from "./panels/PermissionsList.vue";
+import DecisionsPanel from "./panels/DecisionsList.vue";
 
 export const routes: { [key: string]: any } = {
   "/app/": WelcomePanel,
@@ -90,7 +91,8 @@ export const routes: { [key: string]: any } = {
     // Panels
     WelcomePanel,
     ServerNotificationsPanel,
-    PermissionsPanel
+    PermissionsPanel,
+    DecisionsPanel
   }
 })
 export default class App extends Vue {
