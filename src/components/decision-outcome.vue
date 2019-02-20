@@ -114,7 +114,7 @@ export default class DecisionOutcome extends Vue {
   }
 
   private async addDecitionOutcome(_id: string, text: string) {
-    console.log(_id);
+    console.log('addDecitionOutcome', _id, text);
     const resp = await Axios(`${process.env.BOT_HOST}/decision/outcome/add`, {
       method: "POST",
       data: {
@@ -136,7 +136,7 @@ export default class DecisionOutcome extends Vue {
           _isChanged: false,
           _originalText: resp.data.return.text,
           _deleteVisible: false,
-          _id: resp.data.return.id,
+          _id: resp.data.return._id,
           text: resp.data.return.text
         });
       }
