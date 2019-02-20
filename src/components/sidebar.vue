@@ -8,6 +8,15 @@
     >
       <!-- Menu Item -->
       <el-menu-item
+        index="1-1"
+        v-show="state.isGuildOwner"
+        @click="$emit('onPanelChange', { panel: 'ServerSettingsPanel', view: 'all' })"
+      >
+        <i class="el-icon-setting"></i>
+        <span>Server Settings</span>
+      </el-menu-item>
+      <!-- Menu Item -->
+      <el-menu-item
         index="1-2"
         v-show="state.isGuildOwner"
         @click="$emit('onPanelChange', { panel: 'PermissionsPanel', view: 'all' })"

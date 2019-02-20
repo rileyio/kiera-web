@@ -115,23 +115,30 @@ export default class DecisionOutcome extends Vue {
 
   private async addDecitionOutcome(_id: string, text: string) {
     console.log(_id);
-    const resp = await Axios(
-      `${process.env.BOT_HOST}/decision/outcome/add`,
-      {
-        method: "POST",
-        data: {
-          _id: _id,
-          text: text
-        },
-        headers: buildRequestHeaders()
-      }
-    );
+    const resp = await Axios(`${process.env.BOT_HOST}/decision/outcome/add`, {
+      method: "POST",
+      data: {
+        _id: _id,
+        text: text
+      },
+      headers: buildRequestHeaders()
+    });
 
     console.log("addDecitionOutcome outcome =>", resp.data);
     // If successful refresh
     if (resp.status === 200) {
       if (resp.data.success) {
-        this.$emit('requestRefresh')
+        // this.$emit('requestRefresh')
+        // Use successful data return with _id to dynamically
+        // popuplate the table
+        this.data.row.options.push({
+          _isUpdating: false,
+          _isChanged: false,
+          _originalText: resp.data.return.text,
+          _deleteVisible: false,
+          _id: resp.data.return.id,
+          text: resp.data.return.text
+        });
       }
     }
   }
@@ -142,7 +149,7 @@ export default class DecisionOutcome extends Vue {
       cancelButtonText: "Cancel"
     })
       .then(async ({ value }) => {
-        this.addDecitionOutcome(_id, value)
+        this.addDecitionOutcome(_id, value);
         this.$message({
           type: "success",
           message: "New outcome: " + value

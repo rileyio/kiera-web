@@ -72,10 +72,11 @@ import CenterLoader from "./components/center-loader.vue";
 import Sidebar from "./components/sidebar.vue";
 
 // Panels
-import WelcomePanel from "./panels/Welcome.vue";
-import ServerNotificationsPanel from "./panels/ServerNotifications.vue";
-import PermissionsPanel from "./panels/PermissionsList.vue";
 import DecisionsPanel from "./panels/DecisionsList.vue";
+import PermissionsPanel from "./panels/PermissionsList.vue";
+import ServerNotificationsPanel from "./panels/ServerNotifications.vue";
+import ServerSettingsPanel from "./panels/ServerSettings.vue";
+import WelcomePanel from "./panels/Welcome.vue";
 
 export const routes: { [key: string]: any } = {
   "/app/": WelcomePanel,
@@ -89,10 +90,11 @@ export const routes: { [key: string]: any } = {
     CenterLoader,
     Sidebar,
     // Panels
-    WelcomePanel,
-    ServerNotificationsPanel,
+    DecisionsPanel,
     PermissionsPanel,
-    DecisionsPanel
+    ServerNotificationsPanel,
+    ServerSettingsPanel,
+    WelcomePanel
   }
 })
 export default class App extends Vue {
