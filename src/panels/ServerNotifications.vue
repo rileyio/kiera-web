@@ -40,8 +40,7 @@ import Axios from "axios";
 import { Component, Prop } from "vue-property-decorator";
 import { state } from "../defaults/app-state";
 import {
-  defaultNotifications,
-  TrackedNotification
+  TrackedNotification, defaultNotifications
 } from "../defaults/notification";
 import { buildRequestHeaders, getUserID } from "../utils";
 import { user } from "../defaults/user";
@@ -68,7 +67,7 @@ export default class ServerNotificationsPanel extends Vue {
   };
 
   @Prop({
-    default: () => defaultNotifications
+    default: []
   })
   private notifications!: Array<TrackedNotification>;
 
@@ -89,6 +88,9 @@ export default class ServerNotificationsPanel extends Vue {
 
   private async getServerNotifications() {
     try {
+      // Get defaults available first 
+      this.notifications = await defaultNotifications(this.state.focusedGuildId)
+      // Now get user's configiured
       const resp = await Axios(`${process.env.BOT_HOST}/notifications`, {
         method: "POST",
         data: {
