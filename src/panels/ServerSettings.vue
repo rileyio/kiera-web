@@ -107,17 +107,14 @@ export default class ServerSettingsPanel extends Vue {
 
       if (resp.status === 200) {
         console.log("resp.data", resp.data);
-        resp.data.forEach((setting: TrackedServerSetting) => {
-          var defaultSetting = this.settings.find(n => n.key === setting.key);
-          // Merge objects
-          Object.assign(defaultSetting || {}, setting);
+        this.settings = resp.data.map((setting: TrackedServerSetting) => {
           // Handle local state changes
-          (<TrackedServerSetting>defaultSetting)._originalValue = setting.value;
+          (<TrackedServerSetting>setting)._originalValue = setting.value;
 
-          console.log("defaultSetting", defaultSetting);
+          return setting
         });
 
-        // console.log(this.settings);
+        console.log(this.settings);
       }
     } catch (error) {}
     // Stop spinner
