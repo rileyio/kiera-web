@@ -1,7 +1,7 @@
 <template>
   <div id="sidebar">
     <el-row>
-      <el-table v-loading="loading.isLoading" :data="notifications" style="width: 100%">
+      <el-table v-loading="loading.isLoading" :data="notifications" style="width: 100%" size="mini">
         <el-table-column label="Name" prop="_title"></el-table-column>
         <el-table-column align="right" label="Notification state" prop="state">
           <template slot-scope="scope">
@@ -22,6 +22,7 @@
               inactive-color="#ff4949"
               inactive-text="Web"
               active-text="Discord"
+              disabled="true"
               @change="updateNotification(scope.row.name, { _discordEnabled: $event, state: scope.row.state })"
             ></el-switch>
           </template>
@@ -39,9 +40,8 @@ import Axios from "axios";
 
 import { Component, Prop } from "vue-property-decorator";
 import { state } from "../defaults/app-state";
-import {
-  TrackedNotification, defaultNotifications
-} from "../defaults/notification";
+import { defaultNotifications } from "../defaults/notification";
+import { TrackedNotification } from "../types/notifications";
 import { buildRequestHeaders, getUserID } from "../utils";
 import { user } from "../defaults/user";
 import { mappedGuilds } from "../defaults/guilds";
@@ -88,8 +88,10 @@ export default class ServerNotificationsPanel extends Vue {
 
   private async getServerNotifications() {
     try {
-      // Get defaults available first 
-      this.notifications = await defaultNotifications(this.state.focusedGuildId)
+      // Get defaults available first
+      this.notifications = await defaultNotifications(
+        this.state.focusedGuildId
+      );
       // Now get user's configiured
       const resp = await Axios(`${process.env.BOT_HOST}/notifications`, {
         method: "POST",
@@ -109,6 +111,8 @@ export default class ServerNotificationsPanel extends Vue {
           // Handle where override
           (<TrackedNotification>defaultNotification)._discordEnabled =
             (<TrackedNotification>defaultNotification).where === "Discord";
+
+            console.log(defaultNotification)
         });
       }
     } catch (error) {}

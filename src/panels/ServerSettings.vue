@@ -1,28 +1,35 @@
 <template>
   <div id="sidebar">
     <el-row>
-      <el-table v-loading="loading.isLoading" :data="notifications" style="width: 100%">
-        <el-table-column label="Name" prop="_title"></el-table-column>
-        <el-table-column align="right" label="Notification state" prop="state">
+      <el-table v-loading="loading.isLoading" :data="settings" style="width: 100%" size="mini">
+        <el-table-column label="Setting">
           <template slot-scope="scope">
+            <span>{{scope.row.key}}</span>
+            <el-input
+              placeholder="Setting value"
+              v-model="scope.row.value"
+              class="input"
+              size="mini"
+            ></el-input>
+          </template>
+        </el-table-column>
+        <el-table-column fixed="right" label="Enable/Save" width="125">
+          <template slot-scope="scope">
+            <el-button-group>
+              <el-button size="mini" icon="el-icon-delete" :disabled="true"></el-button>
+              <el-button
+                size="mini"
+                icon="el-icon-check"
+                type="success"
+                @click="updateSetting(scope.row.key, { state: scope.row.state, value: scope.row.value })"
+              ></el-button>
+            </el-button-group>
             <el-switch
+              style="display: block"
               v-model="scope.row.state"
               active-color="#13ce66"
               inactive-color="#ff4949"
-              @change="updateNotification(scope.row.name, { _discordEnabled: scope.row._discordEnabled, state: $event })"
-            ></el-switch>
-          </template>
-        </el-table-column>
-        <el-table-column align="right" label="Notify in" prop="_discordEnabled">
-          <template slot-scope="scope">
-            <el-switch
-              style="display: block"
-              v-model="scope.row._discordEnabled"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              inactive-text="Web"
-              active-text="Discord"
-              @change="updateNotification(scope.row.name, { _discordEnabled: $event, state: scope.row.state })"
+              @change="updateSetting(scope.row.key, { state: $event, value: scope.row.value })"
             ></el-switch>
           </template>
         </el-table-column>
@@ -39,10 +46,8 @@ import Axios from "axios";
 
 import { Component, Prop } from "vue-property-decorator";
 import { state } from "../defaults/app-state";
-import {
-  defaultNotifications,
-  TrackedNotification
-} from "../defaults/notification";
+import { defaultServerSettings } from "../defaults/setting";
+import { TrackedServerSetting } from "../types/server-settings";
 import { buildRequestHeaders, getUserID } from "../utils";
 import { user } from "../defaults/user";
 import { mappedGuilds } from "../defaults/guilds";
@@ -68,9 +73,9 @@ export default class ServerSettingsPanel extends Vue {
   };
 
   @Prop({
-    default: () => defaultNotifications
+    default: () => []
   })
-  private notifications!: Array<TrackedNotification>;
+  private settings!: Array<TrackedServerSetting>;
 
   @Prop({ default: "" })
   private search!: string;
@@ -84,63 +89,72 @@ export default class ServerSettingsPanel extends Vue {
 
   constructor() {
     super();
-    this.getServerNotifications();
+    this.getServerSettings();
   }
 
-  private async getServerNotifications() {
+  private async getServerSettings() {
     try {
-      const resp = await Axios(`${process.env.BOT_HOST}/notifications`, {
-        method: "POST",
+      // Get defaults available first
+      this.settings = await defaultServerSettings();
+      // Now get user's configiured
+      const resp = await Axios(`${process.env.BOT_HOST}/server/settings`, {
         data: {
           serverID: this.state.focusedGuildId
         },
+        method: "POST",
         headers: buildRequestHeaders()
       });
 
       if (resp.status === 200) {
-        resp.data.forEach((notification: TrackedNotification) => {
-          var defaultNotification = this.notifications.find(
-            n => n.name === notification.name
-          );
+        console.log("resp.data", resp.data);
+        resp.data.forEach((setting: TrackedServerSetting) => {
+          var defaultSetting = this.settings.find(n => n.key === setting.key);
           // Merge objects
-          Object.assign(defaultNotification || {}, notification);
-          // Handle where override
-          (<TrackedNotification>defaultNotification)._discordEnabled =
-            (<TrackedNotification>defaultNotification).where === "Discord";
+          Object.assign(defaultSetting || {}, setting);
+          // Handle local state changes
+          (<TrackedServerSetting>defaultSetting)._originalValue = setting.value;
+
+          console.log("defaultSetting", defaultSetting);
         });
+
+        // console.log(this.settings);
       }
     } catch (error) {}
     // Stop spinner
     this.loading.isLoading = false;
   }
 
-  private async updateNotification(
-    name: string,
-    update: Partial<TrackedNotification>
+  private async updateSetting(
+    key: string,
+    update: { state: boolean; value: string }
   ) {
-    console.log(name, update, {
-      owner: this.bot.user._id,
-      authorID: getUserID(),
-      serverID: this.state.focusedGuildId,
-      name: name,
-      state: update.state,
-      where: update._discordEnabled ? "Discord" : "Web"
-    });
-
-    const resp = await Axios(`${process.env.BOT_HOST}/notification/update`, {
+    console.log(key, update);
+    const resp = await Axios(`${process.env.BOT_HOST}/server/setting/update`, {
       method: "POST",
       data: {
-        owner: this.bot.user._id,
-        authorID: getUserID(),
         serverID: this.state.focusedGuildId,
-        name: name,
-        state: update.state,
-        where: update._discordEnabled ? "Discord" : "Web"
+        state:
+          update.state === undefined
+            ? (<TrackedServerSetting>this.settings.find(s => s.key === key))
+                .state
+            : update.state,
+        value: update.value
       },
       headers: buildRequestHeaders()
     });
 
-    console.log("updateNotification outcome =>", resp.data);
+    if (resp.status === 200) {
+      const serverSetting = <TrackedServerSetting>(
+        this.settings.find(s => s.key === key)
+      );
+      serverSetting._originalValue = update.value;
+      this.$message({
+        type: "success",
+        message: `Updated setting: ${key}`
+      });
+      console.log(this.settings);
+    }
+    console.log("updateSetting outcome =>", resp.data);
   }
 }
 </script>
