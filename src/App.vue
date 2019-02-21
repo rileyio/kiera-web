@@ -75,6 +75,7 @@ import Sidebar from "./components/sidebar.vue";
 import DecisionsPanel from "./panels/DecisionsList.vue";
 import PermissionsPanel from "./panels/PermissionsList.vue";
 import ServerNotificationsPanel from "./panels/ServerNotifications.vue";
+import ServerSettingsUserPanel from "./panels/ServerSettingsUser.vue";
 import ServerSettingsPanel from "./panels/ServerSettings.vue";
 import WelcomePanel from "./panels/Welcome.vue";
 
@@ -94,6 +95,7 @@ export const routes: { [key: string]: any } = {
     PermissionsPanel,
     ServerNotificationsPanel,
     ServerSettingsPanel,
+    ServerSettingsUserPanel,
     WelcomePanel
   }
 })

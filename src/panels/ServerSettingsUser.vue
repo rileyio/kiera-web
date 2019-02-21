@@ -21,7 +21,7 @@
                 size="mini"
                 icon="el-icon-check"
                 type="success"
-                @click="updateSetting(scope.row._id, scope.row.key, { state: scope.row.state, value: scope.row.value })"
+                @click="updateSetting(scope.row.key, { state: scope.row.state, value: scope.row.value })"
               ></el-button>
             </el-button-group>
             <el-switch
@@ -29,7 +29,7 @@
               v-model="scope.row.state"
               active-color="#13ce66"
               inactive-color="#ff4949"
-              @change="updateSetting(scope.row._id, scope.row.key, { state: $event, value: scope.row.value })"
+              @change="updateSetting(scope.row.key, { state: $event, value: scope.row.value })"
             ></el-switch>
           </template>
         </el-table-column>
@@ -46,7 +46,7 @@ import Axios from "axios";
 
 import { Component, Prop } from "vue-property-decorator";
 import { state } from "../defaults/app-state";
-import { defaultServerSettings } from "../defaults/setting";
+import { defaultServerSettings, defaultServerSettingsUser } from "../defaults/setting";
 import { TrackedServerSetting } from "../types/server-settings";
 import { buildRequestHeaders, getUserID } from "../utils";
 import { user } from "../defaults/user";
@@ -57,7 +57,7 @@ import { mappedGuilds } from "../defaults/guilds";
     //
   }
 })
-export default class ServerSettingsPanel extends Vue {
+export default class ServerSettingsUserPanel extends Vue {
   @Prop({ default: () => state })
   private state!: typeof state;
 
@@ -95,9 +95,9 @@ export default class ServerSettingsPanel extends Vue {
   private async getServerSettings() {
     try {
       // Get defaults available first
-      this.settings = await defaultServerSettings();
+      this.settings = await defaultServerSettingsUser();
       // Now get user's configiured
-      const resp = await Axios(`${process.env.BOT_HOST}/server/settings`, {
+      const resp = await Axios(`${process.env.BOT_HOST}/user`, {
         data: {
           serverID: this.state.focusedGuildId
         },
@@ -122,17 +122,19 @@ export default class ServerSettingsPanel extends Vue {
   }
 
   private async updateSetting(
-    _id: string,
     key: string,
     update: { state: boolean; value: string }
   ) {
     console.log(key, update);
-    const resp = await Axios(`${process.env.BOT_HOST}/server/setting/update`, {
+    const resp = await Axios(`${process.env.BOT_HOST}/user/update`, {
       method: "POST",
       data: {
         serverID: this.state.focusedGuildId,
-        _id: _id,
-        state: update.state,
+        state:
+          update.state === undefined
+            ? (<TrackedServerSetting>this.settings.find(s => s.key === key))
+                .state
+            : update.state,
         value: update.value
       },
       headers: buildRequestHeaders()

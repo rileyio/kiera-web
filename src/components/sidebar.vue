@@ -13,11 +13,19 @@
         @click="$emit('onPanelChange', { panel: 'ServerSettingsPanel', view: 'all' })"
       >
         <i class="el-icon-setting"></i>
-        <span>Server Settings</span>
+        <span>Server Settings (Server Owner)</span>
       </el-menu-item>
       <!-- Menu Item -->
-      <el-menu-item
+      <!-- <el-menu-item
         index="1-2"
+        @click="$emit('onPanelChange', { panel: 'ServerSettingsUserPanel', view: 'all' })"
+      >
+        <i class="el-icon-edit"></i>
+        <span>Server/User Settings</span>
+      </el-menu-item> -->
+      <!-- Menu Item -->
+      <el-menu-item
+        index="1-3"
         v-show="state.isGuildOwner"
         @click="$emit('onPanelChange', { panel: 'PermissionsPanel', view: 'all' })"
       >
@@ -26,7 +34,7 @@
       </el-menu-item>
       <!-- Menu Item -->
       <el-menu-item
-        index="1-3"
+        index="1-4"
         @click="$emit('onPanelChange', { panel: 'ServerNotificationsPanel', view: 'all' })"
       >
         <i class="el-icon-bell"></i>
@@ -34,7 +42,7 @@
       </el-menu-item>
       <!-- Menu Item -->
       <el-menu-item
-        index="1-4"
+        index="1-5"
         @click="$emit('onPanelChange', { panel: 'DecisionsPanel', view: 'all' })"
       >
         <i class="el-icon-tickets"></i>
