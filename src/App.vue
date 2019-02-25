@@ -66,6 +66,7 @@ import * as SocketIO from "socket.io-client";
 import { state, focusedGuild } from "./defaults/app-state";
 import { user } from "./defaults/user";
 import { mappedGuilds, DiscordGuild } from "./defaults/guilds";
+import { defaultStats } from "./defaults/bot-statistics";
 
 import AccountDropdown from "./components/account-dropdown.vue";
 import CenterLoader from "./components/center-loader.vue";
@@ -78,6 +79,7 @@ import ServerNotificationsPanel from "./panels/ServerNotifications.vue";
 import ServerSettingsUserPanel from "./panels/ServerSettingsUser.vue";
 import ServerSettingsPanel from "./panels/ServerSettings.vue";
 import WelcomePanel from "./panels/Welcome.vue";
+import { BotStatistics } from "./types/statistics";
 
 export const routes: { [key: string]: any } = {
   "/app/": WelcomePanel,
@@ -102,23 +104,32 @@ export const routes: { [key: string]: any } = {
 export default class App extends Vue {
   @Prop({ default: "/app/" })
   private currentRoute!: string;
+
   @Prop({
     default: () => state
   })
   private state!: typeof state;
+
   @Prop({
     default: () => SocketIO.connect(process.env.BOT_SOCKET)
   })
   public socket!: SocketIOClient.Socket;
+
   @Prop({
     default: () => {
-      return { webToken: "", user: user, guilds: mappedGuilds };
+      return {
+        webToken: "",
+        user: user,
+        guilds: mappedGuilds,
+        stats: defaultStats
+      };
     }
   })
   public bot!: {
     webToken: string;
     user: typeof user;
     guilds: typeof mappedGuilds;
+    stats: BotStatistics;
   };
 
   public viewComponent() {
@@ -149,6 +160,9 @@ export default class App extends Vue {
     });
     this.socket.on("heartbeat", (data: any) => {
       console.log("socket heartbeat", data);
+      // Update stats
+      this.bot.stats = data.stats
+      console.log("socket heartbeat", this.bot.stats);
     });
     this.socket.on("disconnect", () => {
       this.state.isConnected = false;

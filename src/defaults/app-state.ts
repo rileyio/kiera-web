@@ -13,7 +13,7 @@ export const state = {
   isConnected: false,
   isConnecting: true,
   // Panel in focus
-  focusedPanel: '',
+  focusedPanel: 'WelcomePanel',
   focusedView: '',
   // Server in focus
   focusedGuildId: '',
