@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <el-row>
       <el-col>
         <div class="welcome-text">
@@ -14,60 +14,38 @@
       </el-col>
     </el-row>
     <el-row class="statistics">
-      <el-col :span="6" class="statistic">
-        <div class="grid-content title">Bot Uptime</div>
-        <div class="grid-content value">{{calculateHumanTime(bot.stats.uptime)}}</div>
-      </el-col>
+      <BotStatistic :text="'Bot Uptime'" :value="calculateHumanTime(bot.stats.uptime)"/>
     </el-row>
     <el-row class="statistics">
-      <el-col :span="6" class="statistic">
-        <div class="grid-content title">Total Users Seen</div>
-        <div class="grid-content value">{{bot.stats.users.total}}</div>
-      </el-col>
-      <el-col :span="6" class="statistic">
-        <div class="grid-content title">Users Online</div>
-        <div class="grid-content value">{{bot.stats.users.online}}</div>
-      </el-col>
-      <el-col :span="6" class="statistic">
-        <div class="grid-content title">Users Registered</div>
-        <div class="grid-content value">{{bot.stats.users.registered}}</div>
-      </el-col>
+      <BotStatistic :text="'Total Users Seen'" :value="bot.stats.users.total"/>
+      <BotStatistic :text="'Users Online'" :value="bot.stats.users.online"/>
+      <BotStatistic :text="'Users Registered'" :value="bot.stats.users.registered"/>
     </el-row>
     <el-row class="statistics">
-      <el-col :span="6" class="statistic success">
-        <div class="grid-content title">Completed Commands</div>
-        <div class="grid-content value">{{bot.stats.commands.completed}}</div>
-      </el-col>
-      <el-col :span="6" class="statistic success-ish">
-        <div class="success-perc">
-          <div class="successful" :style="{ 'width': calculateSuccessPerc() + '%' }"></div>
-          <div class="failed" :style="{ 'width': calculateFailedPerc() + '%' }"></div>
-        </div>
-        <div class="grid-content title">Total Commands</div>
-        <div
-          class="grid-content value"
-        >{{(bot.stats.commands.completed + bot.stats.commands.invalid)}}</div>
-      </el-col>
-      <el-col :span="6" class="statistic fail">
-        <div class="grid-content title">Invalid Commands</div>
-        <div class="grid-content value">{{bot.stats.commands.invalid}}</div>
-      </el-col>
-      <el-col :span="6" class="statistic">
-        <div class="grid-content title">Messages Seen</div>
-        <div class="grid-content value">{{bot.stats.messages.seen}}</div>
-      </el-col>
-      <el-col :span="6" class="statistic">
-        <div class="grid-content title">Messages Sent</div>
-        <div class="grid-content value">{{bot.stats.messages.sent}}</div>
-      </el-col>
-      <el-col :span="6" class="statistic">
-        <div class="grid-content title">DMs Received</div>
-        <div class="grid-content value">{{bot.stats.dms.received}}</div>
-      </el-col>
-      <el-col :span="6" class="statistic">
-        <div class="grid-content title">DMs Sent</div>
-        <div class="grid-content value">{{bot.stats.dms.sent}}</div>
-      </el-col>
+      <BotStatistic
+        :text="'Completed Commands'"
+        :value="bot.stats.commands.completed"
+        :backgroundColor="'#05b770'"
+        :fontColor="'#fff'"
+      />
+      <BotStatistic
+        :text="'Total Commands'"
+        :value="(bot.stats.commands.completed + bot.stats.commands.invalid)"
+        :backgroundColor="'#13506d'"
+        :fontColor="'#fff'"
+        :percentageBar="{ show: true, values: generateCommandStatsArray(), colors: [ '#05b770', '#cb4332' ] }"
+      />
+      <BotStatistic
+        :text="'Invalid Commands'"
+        :value="bot.stats.commands.invalid"
+        :backgroundColor="'#c0392b'"
+        :fontColor="'#fff'"
+      />
+
+      <BotStatistic :text="'Messages Seen'" :value="bot.stats.messages.seen"/>
+      <BotStatistic :text="'Messages Sent'" :value="bot.stats.messages.sent"/>
+      <BotStatistic :text="'DMs Received'" :value="bot.stats.dms.received"/>
+      <BotStatistic :text="'DMs Sent'" :value="bot.stats.dms.sent"/>
     </el-row>
   </div>
 </template>
@@ -81,9 +59,11 @@ import { mappedGuilds, DiscordGuild } from "../defaults/guilds";
 import { defaultStats } from "../defaults/bot-statistics";
 import { BotStatistics } from "../types/statistics";
 
+import BotStatistic from "../components/statistic.vue";
+
 @Component({
   components: {
-    //
+    BotStatistic
   }
 })
 export default class WelcomePanel extends Vue {
@@ -121,18 +101,24 @@ export default class WelcomePanel extends Vue {
     return `${timeToShowDays}:${timeToShowHours}:${timeToShowMins}`;
   }
 
+  private generateCommandStatsArray() {
+    return [this.bot.stats.commands.completed, this.bot.stats.commands.invalid];
+  }
+
   private calculateSuccessPerc() {
     return (
-      this.bot.stats.commands.completed /
-      (this.bot.stats.commands.completed + this.bot.stats.commands.invalid)
-    ) * 100;
+      (this.bot.stats.commands.completed /
+        (this.bot.stats.commands.completed + this.bot.stats.commands.invalid)) *
+      100
+    );
   }
 
   private calculateFailedPerc() {
     return (
-      this.bot.stats.commands.invalid /
-      (this.bot.stats.commands.completed + this.bot.stats.commands.invalid)
-    ) * 100;
+      (this.bot.stats.commands.invalid /
+        (this.bot.stats.commands.completed + this.bot.stats.commands.invalid)) *
+      100
+    );
   }
 }
 </script>
@@ -146,64 +132,4 @@ export default class WelcomePanel extends Vue {
   margin: 15px 0px;
 }
 
-.statistic {
-  padding: 10px;
-  text-align: center;
-  color: rgb(142, 150, 179);
-  display: block;
-  line-height: 1.5em;
-  background-color: #1f273a;
-  border-radius: 2px;
-  margin: 2px;
-  display: block;
-  position: relative;
-  overflow: hidden;
-  &.success {
-    background-color: #27ae60;
-    color: #fff;
-  }
-  &.success-ish {
-    background-color: #13506d;
-    color: #ffffff;
-  }
-  &.fail {
-    background-color: #c0392b;
-    color: #fff;
-  }
-}
-
-.statistic > .title {
-  font-size: 12px;
-  font-weight: 200;
-}
-
-.statistic > .value {
-  font-size: 20px;
-  font-weight: 100;
-}
-
-.success-perc {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 6px;
-  > .successful {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 66.6%;
-    height: 100%;
-    background-color: #05b770;
-  }
-
-  > .failed {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 66.6%;
-    height: 100%;
-    background-color: #cb4332;
-  }
-}
 </style>

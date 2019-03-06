@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <div class="header small top header-img" id="status-header">
+    <div
+      class="header top header-img"
+      :class="{ page: !state.isLoggedIn, small: state.isLoggedIn }"
+      id="status-header"
+    >
       <span class="title center">Kiera Bot</span>
       <span class="sub-title center">Welcome to my web portal ^_^</span>
       <span class="sub-title center" id="bot-connectivity">
@@ -8,11 +12,56 @@
         <span v-if="state.isConnecting">⛔</span>
       </span>
 
-      <nav class="center"></nav>
+      <Login v-if="!state.isLoggedIn">
+        <template slot="stats">
+          <el-row type="flex" class="row-bg" justify="center">
+            <BotStatistic
+              :span="3"
+              :text="'Total Users Seen'"
+              :value="bot.stats.users.total"
+              :backgroundColor="'#1f273adb'"
+            />
+            <BotStatistic
+              :span="3"
+              :text="'Users Online'"
+              :value="bot.stats.users.online"
+              :backgroundColor="'#1f273adb'"
+            />
+            <BotStatistic
+              :span="3"
+              :text="'Users Registered'"
+              :value="bot.stats.users.registered"
+              :backgroundColor="'#1f273adb'"
+            />
+          </el-row>
+          <el-row type="flex" class="row-bg" justify="center">
+            <BotStatistic
+              span="4"
+              :text="'Completed Commands'"
+              :value="bot.stats.commands.completed"
+              :backgroundColor="'#05b770c4'"
+              :fontColor="'#fff'"
+            />
+            <BotStatistic
+              span="4"
+              :text="'Total Commands'"
+              :value="(bot.stats.commands.completed + bot.stats.commands.invalid)"
+              :backgroundColor="'#13506dc4'"
+              :fontColor="'#fff'"
+              :percentageBar="{ show: true, values: [ bot.stats.commands.completed, bot.stats.commands.invalid ], colors: [ '#05b770c4', '#c0392bc4' ] }"
+            />
+            <BotStatistic
+              span="4"
+              :text="'Invalid Commands'"
+              :value="bot.stats.commands.invalid"
+              :backgroundColor="'#c0392bc4'"
+              :fontColor="'#fff'"
+            />
+          </el-row>
+        </template>
+      </Login>
 
-      <nav class="right">
-        <AccountDropdown :bot="bot"></AccountDropdown>
-      </nav>
+      <AccountDropdown :bot="bot"></AccountDropdown>
     </div>
 
     <div class="content centered max-width-1000">
@@ -49,7 +98,7 @@
     </div>
 
     <transition name="fade">
-      <CenterLoader v-if="state.isConnecting"/>
+      <CenterLoader v-if="!state.isConnected"/>
     </transition>
   </div>
 </template>
@@ -70,7 +119,9 @@ import { defaultStats } from "./defaults/bot-statistics";
 
 import AccountDropdown from "./components/account-dropdown.vue";
 import CenterLoader from "./components/center-loader.vue";
+import Login from "./components/login.vue";
 import Sidebar from "./components/sidebar.vue";
+import BotStatistic from "./components/statistic.vue";
 
 // Panels
 import DecisionsPanel from "./panels/DecisionsList.vue";
@@ -90,7 +141,9 @@ export const routes: { [key: string]: any } = {
 @Component({
   components: {
     AccountDropdown,
+    BotStatistic,
     CenterLoader,
+    Login,
     Sidebar,
     // Panels
     DecisionsPanel,
@@ -154,14 +207,20 @@ export default class App extends Vue {
       this.state.isConnecting = false;
       // Connect and get user data
       this.bot.user = await this.getUser();
-      // Remap guilds
-      this.remapGuilds(this.bot.user.guilds);
+      // If user is authenticated
+      if (this.bot.user && this.state.isLoggedIn === false) {
+        // Remap guilds
+        this.state.isLoggedIn = true;
+        this.remapGuilds(this.bot.user.guilds);
+      } else {
+        this.state.isLoggedIn = false;
+      }
       console.log(this.bot);
     });
     this.socket.on("heartbeat", (data: any) => {
       console.log("socket heartbeat", data);
       // Update stats
-      this.bot.stats = data.stats
+      this.bot.stats = data.stats;
       console.log("socket heartbeat", this.bot.stats);
     });
     this.socket.on("disconnect", () => {
@@ -239,6 +298,7 @@ export default class App extends Vue {
 @import "./less/kii.less";
 @import "https://unpkg.com/element-ui/lib/theme-chalk/index.css";
 .header {
+  -webkit-transition: all 0.6s;
   .sub-title {
     width: 200px;
     margin: auto;
@@ -255,12 +315,16 @@ export default class App extends Vue {
     width: 33px;
     margin-left: 10px;
   }
+  &.page {
+    position: fixed;
+    z-index: 100;
+  }
 }
 
 // Loader transitions
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s;
+  transition: opacity 0.75s;
 }
 
 .fade-enter,

@@ -52,7 +52,7 @@
   </div>
 </template>
 
-<script <script lang="ts">
+<script lang="ts">
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 import { state } from "../defaults/app-state";

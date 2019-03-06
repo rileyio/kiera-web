@@ -12,6 +12,7 @@ export const state = {
   // Connectivity
   isConnected: false,
   isConnecting: true,
+  isLoggedIn: false,
   // Panel in focus
   focusedPanel: 'WelcomePanel',
   focusedView: '',

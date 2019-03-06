@@ -1,30 +1,21 @@
 <template>
-  <div id="center-loader">
-    <span class="status">Getting things ready</span>
-    <div class="loader-wrapper">
-      <div class="la-ball-8bits la-dark">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+  <div id="center-loader-wrapper">
+    <div id="center-loader">
+      <div class="socket-status">
+        <span class="status">Getting things ready</span>
+        <div class="loader-wrapper">
+          <div class="la-ball-beat">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
-<script <script lang="ts">
+<script lang="ts">
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 
@@ -37,313 +28,200 @@ export default class CenterLoader extends Vue {
 </script>
 
 <style lang="less">
-#center-loader {
+#center-loader-wrapper {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  width: 300px;
-  height: 200px;
-  margin: auto;
-  display: block;
-  background-color: #eaeaea;
+  width: 100%;
+  height: 100%;
+  background-image: url(/assets/img/abstract-astro-astronomy-956999.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: top;
   z-index: 100;
-  -webkit-box-shadow: 0px 0px 26px -4px rgba(79, 79, 79, 1);
-  -moz-box-shadow: 0px 0px 26px -4px rgba(79, 79, 79, 1);
-  box-shadow: 0px 0px 10px -1px rgb(142, 142, 142);
-
-  > .status {
-    position: absolute;
-    display: block;
-    bottom: 60px;
-    width: 100%;
-    text-align: center;
-  }
-
-  > .loader-wrapper {
-    position: relative;
-    width: 10px;
-    top: 75px;
+  #center-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    height: 200px;
     margin: auto;
-    /*!
+    display: block;
+    background: inherit;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 0 15px 0 #131929;
+
+    &:after {
+      position: absolute;
+      content: "";
+      width: 350px;
+      height: 300px;
+      background: inherit;
+      left: -25px;
+      top: -25px;
+      box-shadow: inset 0 0 0 150px rgba(189, 189, 189, 0.05);
+      filter: blur(8px);
+    }
+
+    .socket-status {
+      position: relative;
+      margin-top: 60px;
+      text-align: center;
+      z-index: 1;
+      color: #fff;
+
+      > .status {
+        position: absolute;
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-weight: 100 !important;
+      }
+
+      > .loader-wrapper {
+        position: relative;
+        width: 50px;
+        top: 60px;
+        margin: auto;
+        /*!
     * Load Awesome v1.1.0 (http://github.danielcardoso.net/load-awesome/)
     * Copyright 2015 Daniel Cardoso <@DanielCardoso>
     * Licensed under MIT
     */
-    .la-ball-8bits,
-    .la-ball-8bits > div {
-      position: relative;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-    }
-    .la-ball-8bits {
-      display: block;
-      font-size: 0;
-      color: #fff;
-    }
-    .la-ball-8bits.la-dark {
-      color: #333;
-    }
-    .la-ball-8bits > div {
-      display: inline-block;
-      float: none;
-      background-color: currentColor;
-      border: 0 solid currentColor;
-    }
-    .la-ball-8bits {
-      width: 12px;
-      height: 12px;
-    }
-    .la-ball-8bits > div {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 4px;
-      height: 4px;
-      border-radius: 0;
-      opacity: 0;
-      -webkit-transform: translate(100%, 100%);
-      -moz-transform: translate(100%, 100%);
-      -ms-transform: translate(100%, 100%);
-      -o-transform: translate(100%, 100%);
-      transform: translate(100%, 100%);
-      -webkit-animation: ball-8bits 1s 0s ease infinite;
-      -moz-animation: ball-8bits 1s 0s ease infinite;
-      -o-animation: ball-8bits 1s 0s ease infinite;
-      animation: ball-8bits 1s 0s ease infinite;
-    }
-    .la-ball-8bits > div:nth-child(1) {
-      -webkit-animation-delay: -0.9375s;
-      -moz-animation-delay: -0.9375s;
-      -o-animation-delay: -0.9375s;
-      animation-delay: -0.9375s;
-    }
-    .la-ball-8bits > div:nth-child(2) {
-      -webkit-animation-delay: -0.875s;
-      -moz-animation-delay: -0.875s;
-      -o-animation-delay: -0.875s;
-      animation-delay: -0.875s;
-    }
-    .la-ball-8bits > div:nth-child(3) {
-      -webkit-animation-delay: -0.8125s;
-      -moz-animation-delay: -0.8125s;
-      -o-animation-delay: -0.8125s;
-      animation-delay: -0.8125s;
-    }
-    .la-ball-8bits > div:nth-child(4) {
-      -webkit-animation-delay: -0.75s;
-      -moz-animation-delay: -0.75s;
-      -o-animation-delay: -0.75s;
-      animation-delay: -0.75s;
-    }
-    .la-ball-8bits > div:nth-child(5) {
-      -webkit-animation-delay: -0.6875s;
-      -moz-animation-delay: -0.6875s;
-      -o-animation-delay: -0.6875s;
-      animation-delay: -0.6875s;
-    }
-    .la-ball-8bits > div:nth-child(6) {
-      -webkit-animation-delay: -0.625s;
-      -moz-animation-delay: -0.625s;
-      -o-animation-delay: -0.625s;
-      animation-delay: -0.625s;
-    }
-    .la-ball-8bits > div:nth-child(7) {
-      -webkit-animation-delay: -0.5625s;
-      -moz-animation-delay: -0.5625s;
-      -o-animation-delay: -0.5625s;
-      animation-delay: -0.5625s;
-    }
-    .la-ball-8bits > div:nth-child(8) {
-      -webkit-animation-delay: -0.5s;
-      -moz-animation-delay: -0.5s;
-      -o-animation-delay: -0.5s;
-      animation-delay: -0.5s;
-    }
-    .la-ball-8bits > div:nth-child(9) {
-      -webkit-animation-delay: -0.4375s;
-      -moz-animation-delay: -0.4375s;
-      -o-animation-delay: -0.4375s;
-      animation-delay: -0.4375s;
-    }
-    .la-ball-8bits > div:nth-child(10) {
-      -webkit-animation-delay: -0.375s;
-      -moz-animation-delay: -0.375s;
-      -o-animation-delay: -0.375s;
-      animation-delay: -0.375s;
-    }
-    .la-ball-8bits > div:nth-child(11) {
-      -webkit-animation-delay: -0.3125s;
-      -moz-animation-delay: -0.3125s;
-      -o-animation-delay: -0.3125s;
-      animation-delay: -0.3125s;
-    }
-    .la-ball-8bits > div:nth-child(12) {
-      -webkit-animation-delay: -0.25s;
-      -moz-animation-delay: -0.25s;
-      -o-animation-delay: -0.25s;
-      animation-delay: -0.25s;
-    }
-    .la-ball-8bits > div:nth-child(13) {
-      -webkit-animation-delay: -0.1875s;
-      -moz-animation-delay: -0.1875s;
-      -o-animation-delay: -0.1875s;
-      animation-delay: -0.1875s;
-    }
-    .la-ball-8bits > div:nth-child(14) {
-      -webkit-animation-delay: -0.125s;
-      -moz-animation-delay: -0.125s;
-      -o-animation-delay: -0.125s;
-      animation-delay: -0.125s;
-    }
-    .la-ball-8bits > div:nth-child(15) {
-      -webkit-animation-delay: -0.0625s;
-      -moz-animation-delay: -0.0625s;
-      -o-animation-delay: -0.0625s;
-      animation-delay: -0.0625s;
-    }
-    .la-ball-8bits > div:nth-child(16) {
-      -webkit-animation-delay: 0s;
-      -moz-animation-delay: 0s;
-      -o-animation-delay: 0s;
-      animation-delay: 0s;
-    }
-    .la-ball-8bits > div:nth-child(1) {
-      top: -100%;
-      left: 0;
-    }
-    .la-ball-8bits > div:nth-child(2) {
-      top: -100%;
-      left: 33.3333333333%;
-    }
-    .la-ball-8bits > div:nth-child(3) {
-      top: -66.6666666667%;
-      left: 66.6666666667%;
-    }
-    .la-ball-8bits > div:nth-child(4) {
-      top: -33.3333333333%;
-      left: 100%;
-    }
-    .la-ball-8bits > div:nth-child(5) {
-      top: 0;
-      left: 100%;
-    }
-    .la-ball-8bits > div:nth-child(6) {
-      top: 33.3333333333%;
-      left: 100%;
-    }
-    .la-ball-8bits > div:nth-child(7) {
-      top: 66.6666666667%;
-      left: 66.6666666667%;
-    }
-    .la-ball-8bits > div:nth-child(8) {
-      top: 100%;
-      left: 33.3333333333%;
-    }
-    .la-ball-8bits > div:nth-child(9) {
-      top: 100%;
-      left: 0;
-    }
-    .la-ball-8bits > div:nth-child(10) {
-      top: 100%;
-      left: -33.3333333333%;
-    }
-    .la-ball-8bits > div:nth-child(11) {
-      top: 66.6666666667%;
-      left: -66.6666666667%;
-    }
-    .la-ball-8bits > div:nth-child(12) {
-      top: 33.3333333333%;
-      left: -100%;
-    }
-    .la-ball-8bits > div:nth-child(13) {
-      top: 0;
-      left: -100%;
-    }
-    .la-ball-8bits > div:nth-child(14) {
-      top: -33.3333333333%;
-      left: -100%;
-    }
-    .la-ball-8bits > div:nth-child(15) {
-      top: -66.6666666667%;
-      left: -66.6666666667%;
-    }
-    .la-ball-8bits > div:nth-child(16) {
-      top: -100%;
-      left: -33.3333333333%;
-    }
-    .la-ball-8bits.la-sm {
-      width: 6px;
-      height: 6px;
-    }
-    .la-ball-8bits.la-sm > div {
-      width: 2px;
-      height: 2px;
-    }
-    .la-ball-8bits.la-2x {
-      width: 24px;
-      height: 24px;
-    }
-    .la-ball-8bits.la-2x > div {
-      width: 8px;
-      height: 8px;
-    }
-    .la-ball-8bits.la-3x {
-      width: 36px;
-      height: 36px;
-    }
-    .la-ball-8bits.la-3x > div {
-      width: 12px;
-      height: 12px;
-    }
-    /*
+        /*!
+ * Load Awesome v1.1.0 (http://github.danielcardoso.net/load-awesome/)
+ * Copyright 2015 Daniel Cardoso <@DanielCardoso>
+ * Licensed under MIT
+ */
+        .la-ball-beat,
+        .la-ball-beat > div {
+          position: relative;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+        }
+        .la-ball-beat {
+          display: block;
+          font-size: 0;
+          color: #fff;
+        }
+        .la-ball-beat.la-dark {
+          color: #333;
+        }
+        .la-ball-beat > div {
+          display: inline-block;
+          float: none;
+          background-color: currentColor;
+          border: 0 solid currentColor;
+        }
+        .la-ball-beat {
+          width: 54px;
+          height: 18px;
+        }
+        .la-ball-beat > div {
+          width: 10px;
+          height: 10px;
+          margin: 4px;
+          border-radius: 100%;
+          -webkit-animation: ball-beat 0.7s -0.15s infinite linear;
+          -moz-animation: ball-beat 0.7s -0.15s infinite linear;
+          -o-animation: ball-beat 0.7s -0.15s infinite linear;
+          animation: ball-beat 0.7s -0.15s infinite linear;
+        }
+        .la-ball-beat > div:nth-child(2n-1) {
+          -webkit-animation-delay: -0.5s;
+          -moz-animation-delay: -0.5s;
+          -o-animation-delay: -0.5s;
+          animation-delay: -0.5s;
+        }
+        .la-ball-beat.la-sm {
+          width: 26px;
+          height: 8px;
+        }
+        .la-ball-beat.la-sm > div {
+          width: 4px;
+          height: 4px;
+          margin: 2px;
+        }
+        .la-ball-beat.la-2x {
+          width: 108px;
+          height: 36px;
+        }
+        .la-ball-beat.la-2x > div {
+          width: 20px;
+          height: 20px;
+          margin: 8px;
+        }
+        .la-ball-beat.la-3x {
+          width: 162px;
+          height: 54px;
+        }
+        .la-ball-beat.la-3x > div {
+          width: 30px;
+          height: 30px;
+          margin: 12px;
+        }
+        /*
  * Animation
  */
-    @-webkit-keyframes ball-8bits {
-      0% {
-        opacity: 1;
+        @-webkit-keyframes ball-beat {
+          50% {
+            opacity: 0.2;
+            -webkit-transform: scale(0.75);
+            transform: scale(0.75);
+          }
+          100% {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+          }
+        }
+        @-moz-keyframes ball-beat {
+          50% {
+            opacity: 0.2;
+            -moz-transform: scale(0.75);
+            transform: scale(0.75);
+          }
+          100% {
+            opacity: 1;
+            -moz-transform: scale(1);
+            transform: scale(1);
+          }
+        }
+        @-o-keyframes ball-beat {
+          50% {
+            opacity: 0.2;
+            -o-transform: scale(0.75);
+            transform: scale(0.75);
+          }
+          100% {
+            opacity: 1;
+            -o-transform: scale(1);
+            transform: scale(1);
+          }
+        }
+        @keyframes ball-beat {
+          50% {
+            opacity: 0.2;
+            -webkit-transform: scale(0.75);
+            -moz-transform: scale(0.75);
+            -o-transform: scale(0.75);
+            transform: scale(0.75);
+          }
+          100% {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -o-transform: scale(1);
+            transform: scale(1);
+          }
+        }
       }
-      50% {
-        opacity: 1;
-      }
-      51% {
-        opacity: 0;
-      }
-    }
-    @-moz-keyframes ball-8bits {
-      0% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 1;
-      }
-      51% {
-        opacity: 0;
-      }
-    }
-    @-o-keyframes ball-8bits {
-      0% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 1;
-      }
-      51% {
-        opacity: 0;
-      }
-    }
-    @keyframes ball-8bits {
-      0% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 1;
-      }
-      51% {
-        opacity: 0;
-      }
+      // Ends here
     }
   }
 }

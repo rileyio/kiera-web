@@ -11,12 +11,10 @@ import cookieParser from 'cookie-parser'
 import connectRedis from 'connect-redis'
 import expressSession from 'express-session'
 import DiscordStrategy from 'passport-discord'
-import { routes } from './routes/app'
-import { Router } from './router'
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 export class Server {
-  constructor () {
+  constructor() {
     this.app = express()
     this.appPath = path.join(__dirname, '../app/')
     this.https = {
@@ -52,7 +50,7 @@ export class Server {
     this.app.use(cookieParser())
 
     // CORS
-    this.app.use(function(req, res, next) {
+    this.app.use(function (req, res, next) {
       res.header("Access-Control-Allow-Origin", "*");
       res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
       next();
@@ -62,27 +60,41 @@ export class Server {
     this.app.use('/assets', express.static(path.join(__dirname, '../app')))
 
     // Routes
-    this.app.get('/callback', passport.authenticate('discord', { successRedirect: '/app', failureRedirect: '/' }),  (req, res) => { res.redirect('/info') })
-    this.app.get('/logout', function (req, res) { req.logout(); res.redirect('/') })
-    this.app.get('/login', passport.authenticate('discord', { scope: this.discordScopes }),  (req, res) => {})
-    this.app.get('/info', this.checkAuth,  (req, res) => { res.json(req.user) })
-    this.app.get('/app', this.checkAuth, (req, res) => { res.status(200).sendFile(path.join(this.appPath, 'app.html')) })
-    this.app.get('/', (req, res) => {res.status(200).sendFile(path.join(this.appPath, 'index.html')) })
+    this.app.get('/callback', passport.authenticate('discord', {
+      successRedirect: '/',
+      failureRedirect: '/'
+    }), (req, res) => {
+      res.redirect('/info')
+    })
+    this.app.get('/logout', this.forceLogout, (req, res, next) => {
+      req.logout()
+      res.redirect('/')
+    })
+    this.app.get('/login', passport.authenticate('discord', {
+      scope: this.discordScopes
+    }), (req, res) => {})
+    this.app.get('/info', this.checkAuth, (req, res) => {
+      res.json(req.user)
+    })
+    // this.app.get('/app', this.checkAuth, (req, res) => { res.status(200).sendFile(path.join(this.appPath, 'app.html')) })
+    this.app.get('/', this.checkAuth, (req, res) => {
+      res.status(200).sendFile(path.join(this.appPath, 'app.html'))
+    })
 
     this.httpsServer = https.createServer(this.https, this.app)
   }
 
-  start () {
+  start() {
     this.listen()
   }
 
-  listen () {
+  listen() {
     this.httpsServer.listen(8235, () => {
       console.log(`kiera-web listening`)
     })
   }
 
-  passportConfig () {
+  passportConfig() {
     passport.serializeUser(function (user, done) {
       // console.log('SERIALIZE', user)
       done(null, user)
@@ -93,38 +105,44 @@ export class Server {
     })
 
     passport.use(new DiscordStrategy.Strategy({
-      clientID: process.env.DISCORD_APP_ID,
-      clientSecret: process.env.DISCORD_APP_SECRET,
-      callbackURL: process.env.DISCORD_APP_CALLBACK,
-      scope: this.discordScopes
-    },
-     async (accessToken, refreshToken, profile, done) => {
+        clientID: process.env.DISCORD_APP_ID,
+        clientSecret: process.env.DISCORD_APP_SECRET,
+        callbackURL: process.env.DISCORD_APP_CALLBACK,
+        scope: this.discordScopes
+      },
+      async (accessToken, refreshToken, profile, done) => {
         // console.log('profile', profile)
         // User.findOrCreate({ discordId: profile.id }, function (err, user) {
         // Talk to Bot for auth
         const resp = await this.loginWithBot(profile)
         console.log(resp.status)
         if (resp.status) {
-          return done(null, Object.assign({ webToken: resp.webToken }, profile))
-        }
-        else {
+          return done(null, Object.assign({
+            webToken: resp.webToken
+          }, profile))
+        } else {
           /// TODO: Fail login
         }
-      })
-    )
+      }))
   }
 
-  checkAuth (req, res, next) {
+  checkAuth(req, res, next) {
     console.log('checkAuth', req.isAuthenticated())
     if (req.isAuthenticated()) {
       res.cookie('kiera-discord-id', req.user.id)
       res.cookie('kiera-webToken', encodeURIComponent(req.user.webToken))
-      return next()
     }
-    res.send('not logged in :(')
+    // res.send('not logged in :(')
+    return next()
   }
 
-  async loginWithBot(profile){
+  forceLogout(req, res, next) {
+    res.cookie('kiera-discord-id', null)
+    res.cookie('kiera-webToken', null)
+    return next()
+  }
+
+  async loginWithBot(profile) {
     const resp = await Axios(`${process.env.BOT_HOST}/oauth`, {
       method: 'POST',
       data: profile,
