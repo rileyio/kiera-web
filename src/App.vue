@@ -2,69 +2,25 @@
   <div id="app">
     <div
       class="header top header-img"
+      :style="{ 'background-image': `url('/assets/img/${state.randomBG}.jpg')` }"
       :class="{ page: !state.isLoggedIn, small: state.isLoggedIn }"
       id="status-header"
     >
       <span class="title center">Kiera Bot</span>
-      <span class="sub-title center">Welcome to my web portal ^_^</span>
-      <span class="sub-title center" id="bot-connectivity">
+      <span class="sub-title center">
+        <span>Welcome to my web portal ^_^</span>
+      </span>
+      <span class="sub-title center" id="bot-connectivity" v-if="state.isLoggedIn">
         <span v-if="state.isConnected">🔌</span>
         <span v-if="state.isConnecting">⛔</span>
       </span>
 
-      <Login v-if="!state.isLoggedIn">
-        <template slot="stats">
-          <el-row type="flex" class="row-bg" justify="center">
-            <BotStatistic
-              :span="3"
-              :text="'Total Users Seen'"
-              :value="bot.stats.users.total"
-              :backgroundColor="'#1f273adb'"
-            />
-            <BotStatistic
-              :span="3"
-              :text="'Users Online'"
-              :value="bot.stats.users.online"
-              :backgroundColor="'#1f273adb'"
-            />
-            <BotStatistic
-              :span="3"
-              :text="'Users Registered'"
-              :value="bot.stats.users.registered"
-              :backgroundColor="'#1f273adb'"
-            />
-          </el-row>
-          <el-row type="flex" class="row-bg" justify="center">
-            <BotStatistic
-              span="4"
-              :text="'Completed Commands'"
-              :value="bot.stats.commands.completed"
-              :backgroundColor="'#05b770c4'"
-              :fontColor="'#fff'"
-            />
-            <BotStatistic
-              span="4"
-              :text="'Total Commands'"
-              :value="(bot.stats.commands.completed + bot.stats.commands.invalid)"
-              :backgroundColor="'#13506dc4'"
-              :fontColor="'#fff'"
-              :percentageBar="{ show: true, values: [ bot.stats.commands.completed, bot.stats.commands.invalid ], colors: [ '#05b770c4', '#c0392bc4' ] }"
-            />
-            <BotStatistic
-              span="4"
-              :text="'Invalid Commands'"
-              :value="bot.stats.commands.invalid"
-              :backgroundColor="'#c0392bc4'"
-              :fontColor="'#fff'"
-            />
-          </el-row>
-        </template>
-      </Login>
+      <Login :bot="bot" :state="state" v-if="!state.isLoggedIn"></Login>
 
-      <AccountDropdown :bot="bot"></AccountDropdown>
+      <AccountDropdown :bot="bot" v-if="state.isLoggedIn"></AccountDropdown>
     </div>
 
-    <div class="content centered max-width-1000">
+    <div class="content centered max-width-1000" v-if="state.isLoggedIn && state.isConnected">
       <div class="column-4">
         <el-select
           class="server-select"
@@ -98,7 +54,7 @@
     </div>
 
     <transition name="fade">
-      <CenterLoader v-if="!state.isConnected"/>
+      <CenterLoader :state="state" v-if="!state.isConnected"/>
     </transition>
   </div>
 </template>
@@ -121,7 +77,6 @@ import AccountDropdown from "./components/account-dropdown.vue";
 import CenterLoader from "./components/center-loader.vue";
 import Login from "./components/login.vue";
 import Sidebar from "./components/sidebar.vue";
-import BotStatistic from "./components/statistic.vue";
 
 // Panels
 import DecisionsPanel from "./panels/DecisionsList.vue";
@@ -141,7 +96,6 @@ export const routes: { [key: string]: any } = {
 @Component({
   components: {
     AccountDropdown,
-    BotStatistic,
     CenterLoader,
     Login,
     Sidebar,
@@ -203,15 +157,19 @@ export default class App extends Vue {
 
     this.socket.on("connect", async () => {
       console.log("socket connected");
-      this.state.isConnected = true;
+      setTimeout(() => {
+        this.state.isConnected = true;
+      }, 500);
       this.state.isConnecting = false;
       // Connect and get user data
       this.bot.user = await this.getUser();
       // If user is authenticated
       if (this.bot.user && this.state.isLoggedIn === false) {
-        // Remap guilds
-        this.state.isLoggedIn = true;
-        this.remapGuilds(this.bot.user.guilds);
+        setTimeout(() => {
+          // Remap guilds
+          this.state.isLoggedIn = true;
+          this.remapGuilds(this.bot.user.guilds);
+        }, 350);
       } else {
         this.state.isLoggedIn = false;
       }
@@ -297,28 +255,60 @@ export default class App extends Vue {
 <style lang="less">
 @import "./less/kii.less";
 @import "https://unpkg.com/element-ui/lib/theme-chalk/index.css";
+
+#app {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
 .header {
+  position: fixed;
   -webkit-transition: all 0.6s;
+  z-index: 100;
   .sub-title {
+    position: relative;
     width: 200px;
     margin: auto;
-    background-color: #3b466e;
+    background-color: #013955;
+    background: inherit;
+    overflow: hidden;
+    &:after {
+      position: absolute;
+      content: "";
+      width: 1000px;
+      height: 500px;
+      background: inherit;
+      left: -25px;
+      top: -10px;
+      box-shadow: inset 0 0 0 150px rgba(76, 76, 76, 0.05);
+      filter: blur(5px);
+      z-index: 1;
+    }
+    > span {
+      position: relative;
+      margin-top: 60px;
+      text-align: center;
+      z-index: 2;
+      color: #fff;
+    }
   }
   &.header-img {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     color: #ffffff;
-    background-image: url("/assets/img/abstract-astro-astronomy-956999.jpg");
   }
   #bot-connectivity {
     width: 33px;
     margin-left: 10px;
   }
-  &.page {
-    position: fixed;
-    z-index: 100;
-  }
+}
+
+// Content
+.content.centered {
+  margin-top: 200px;
 }
 
 // Loader transitions

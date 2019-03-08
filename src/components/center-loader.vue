@@ -1,5 +1,8 @@
 <template>
-  <div id="center-loader-wrapper">
+  <div
+    id="center-loader-wrapper"
+    :style="{ 'background-image': `url('/assets/img/${state.randomBG}.jpg')` }"
+  >
     <div id="center-loader">
       <div class="socket-status">
         <span class="status">Getting things ready</span>
@@ -19,8 +22,15 @@
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 
+import { state } from "../defaults/app-state";
+
 @Component
 export default class CenterLoader extends Vue {
+  @Prop({
+    default: () => state
+  })
+  private state!: typeof state;
+
   constructor() {
     super();
   }
@@ -34,11 +44,11 @@ export default class CenterLoader extends Vue {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(/assets/img/abstract-astro-astronomy-956999.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-position: top;
+  background-color: #3b466e;
   z-index: 100;
   #center-loader {
     position: fixed;

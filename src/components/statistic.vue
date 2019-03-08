@@ -24,7 +24,7 @@
 import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 
-@Component
+@Component({ components: {} })
 export default class BotStatistic extends Vue {
   @Prop({ default: "" })
   private text!: string;

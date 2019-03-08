@@ -1,5 +1,5 @@
 <template>
-  <div :class="[ {  } , 'account-dropdown' ]" @click="showAccountDropdown = !showAccountDropdown">
+  <div :class="[ { showAccountDropdown :showAccountDropdown } , 'account-dropdown' ]" @click="showAccountDropdown = !showAccountDropdown">
     <span class="username">{{bot.user.username}}#{{bot.user.discriminator}}</span>
     <div
       class="ui avatar image"
@@ -52,6 +52,10 @@ export default class AccountDropdown extends Vue {
   -webkit-transition: all 0.12s;
   &:hover {
     background-color: #16171da1;
+  }
+
+  &.showAccountDropdown {
+
   }
 }
 
