@@ -155,23 +155,27 @@ export default class App extends Vue {
 
     console.log("state", this.state);
 
+    // On socket connection event
     this.socket.on("connect", async () => {
-      console.log("socket connected");
+      console.log("socket connected", this);
+      // Short delay to prevent flickering
       setTimeout(() => {
         this.state.isConnected = true;
       }, 500);
       this.state.isConnecting = false;
       // Connect and get user data
       this.bot.user = await this.getUser();
-      // If user is authenticated
+      // If user is newly authenticated
       if (this.bot.user && this.state.isLoggedIn === false) {
         setTimeout(() => {
           // Remap guilds
           this.state.isLoggedIn = true;
           this.remapGuilds(this.bot.user.guilds);
         }, 350);
-      } else {
-        this.state.isLoggedIn = false;
+      }
+      // If user was already logged in and this was a socket reconnect
+      if (this.bot.user && this.state.isLoggedIn === true) {
+        // this.state.isLoggedIn = true;
       }
       console.log(this.bot);
     });

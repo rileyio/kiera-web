@@ -3,7 +3,7 @@
     <el-row>
       <el-input placeholder="Filter Channels" size="mini" v-model="filterInput"></el-input>
     </el-row>
-    <br/>
+    <br>
     <el-row>
       <div
         v-for="(allowed, i) in data.row.allowed.filter(a => !filterInput || a.name.toLowerCase().includes(filterInput.toLowerCase()))"

@@ -25,9 +25,23 @@
                 <PermissionsSub :data="scope"/>
               </template>
             </el-table-column>
-            <el-table-column label="Command" prop="command"></el-table-column>
+            <el-table-column label="Command" prop="command">
+              <template slot-scope="scope">
+                <span>{{scope.row.command}}</span>
+              </template>
+            </el-table-column>
             <el-table-column label="Global status" prop="enabled" align="right">
               <template slot-scope="scope">
+                <div class="permission-delete-global">
+                  <el-button
+                    type="danger"
+                    icon="el-icon-delete"
+                    circle
+                    size="mini"
+                    @click="deleteGlobalCommandConfirmation(scope.row._id)"
+                  ></el-button>
+                </div>
+
                 <div class="permission-override-stats">
                   <span>{{displaySubAllowed(scope.row)}} allowed</span>
                   <span>{{displaySubDenied(scope.row)}} denied</span>
@@ -117,8 +131,9 @@ export default class PermissionsPanel extends Vue {
 
       if (resp.status === 200) {
         // Sort incoming data by channels
-        (<Array<CommandPermissions>>resp.data)
-          .map(pp => pp.allowed.sort((a, b) => a.name > b.name ? 1 : -1 ))
+        (<Array<CommandPermissions>>resp.data).map(pp =>
+          pp.allowed.sort((a, b) => (a.name > b.name ? 1 : -1))
+        );
 
         // Update cached data
         this.permissions = resp.data;
@@ -163,6 +178,56 @@ export default class PermissionsPanel extends Vue {
 
     return count;
   }
+
+  private async deleteGlobalCommand(_id: string) {
+    console.log(_id);
+    const resp = await Axios(`${process.env.BOT_HOST}/permission/global/delete`, {
+      method: "DELETE",
+      data: {
+        _id: _id,
+        serverID: this.state.focusedGuildId 
+      },
+      headers: buildRequestHeaders()
+    });
+
+    console.log("deleteGlobalCommand outcome =>", resp.data);
+    // If successful remove it from the local collection
+    if (resp.status === 200) {
+      if (resp.data.success) {
+        this.permissions.splice(
+          this.permissions.findIndex(p => p._id === _id),
+          1
+        );
+      }
+    }
+  }
+
+  private deleteGlobalCommandConfirmation(_id: string) {
+    this.$confirm(
+      "This will permanently delete the command's permissions at the global scope.  They will not be rebuilt until the bot is next rebooted.  Continue?",
+      "Warning",
+      {
+        confirmButtonText: "OK",
+        cancelButtonText: "Cancel",
+        type: "warning"
+      }
+    )
+      .then(async () => {
+        // Send delete to API
+        await this.deleteGlobalCommand(_id);
+
+        this.$message({
+          type: "success",
+          message: "Delete completed"
+        });
+      })
+      .catch(() => {
+        this.$message({
+          type: "info",
+          message: "Delete canceled"
+        });
+      });
+  }
 }
 </script>
 
@@ -170,6 +235,12 @@ export default class PermissionsPanel extends Vue {
 i.header-icon.el-icon-info {
   position: absolute;
   right: 36px;
+}
+
+.permission-delete-global {
+  position: absolute;
+  right: 135px;
+  top: 10px;
 }
 
 .permission-override-stats {
