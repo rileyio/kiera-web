@@ -6,6 +6,19 @@ export interface BotUser {
   discriminator: string,
   avatar: string,
   guilds: Array<DiscordGuild>
+  ChastiKey: BotUserServiceChastiKey
+}
+
+export interface BotUserService {
+  username: string
+}
+
+export interface BotUserServiceChastiKey extends BotUserService {
+  ticker: {
+    date: string
+    type: number
+    showStarRatingScore: boolean
+  }
 }
 
 export const user: BotUser = {
@@ -13,5 +26,13 @@ export const user: BotUser = {
   username: '',
   discriminator: '',
   avatar: '',
-  guilds: []
+  guilds: [],
+  ChastiKey: {
+    username: '',
+    ticker: {
+      date: '',
+      type: 2,
+      showStarRatingScore: false
+    }
+  }
 }

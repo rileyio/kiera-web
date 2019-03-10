@@ -73,6 +73,7 @@ import { user } from "./defaults/user";
 import { mappedGuilds, DiscordGuild } from "./defaults/guilds";
 import { defaultStats } from "./defaults/bot-statistics";
 
+// Components
 import AccountDropdown from "./components/account-dropdown.vue";
 import CenterLoader from "./components/center-loader.vue";
 import Login from "./components/login.vue";
