@@ -27,7 +27,10 @@
             </el-table-column>
             <el-table-column label="Command" prop="command">
               <template slot-scope="scope">
-                <span>{{scope.row.command}}</span>
+                <span class="permission-wrapper">
+                  <span>{{scope.row.command}}</span>
+                  <span class="permissin-example">{{scope.row.example}}</span>
+                </span>
               </template>
             </el-table-column>
             <el-table-column label="Global status" prop="enabled" align="right">
@@ -181,14 +184,17 @@ export default class PermissionsPanel extends Vue {
 
   private async deleteGlobalCommand(_id: string) {
     console.log(_id);
-    const resp = await Axios(`${process.env.BOT_HOST}/permission/global/delete`, {
-      method: "DELETE",
-      data: {
-        _id: _id,
-        serverID: this.state.focusedGuildId 
-      },
-      headers: buildRequestHeaders()
-    });
+    const resp = await Axios(
+      `${process.env.BOT_HOST}/permission/global/delete`,
+      {
+        method: "DELETE",
+        data: {
+          _id: _id,
+          serverID: this.state.focusedGuildId
+        },
+        headers: buildRequestHeaders()
+      }
+    );
 
     console.log("deleteGlobalCommand outcome =>", resp.data);
     // If successful remove it from the local collection
@@ -237,6 +243,10 @@ i.header-icon.el-icon-info {
   right: 36px;
 }
 
+.permission-wrapper {
+  line-height: 1.2em;
+}
+
 .permission-delete-global {
   position: absolute;
   right: 135px;
@@ -254,6 +264,12 @@ i.header-icon.el-icon-info {
   font-size: 10px;
   display: block;
   line-height: 1em;
+}
+
+.permissin-example {
+  display: block;
+  font-size: 11px;
+  color: #909090;
 }
 
 // Panel
