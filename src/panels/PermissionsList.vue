@@ -29,7 +29,7 @@
               <template slot-scope="scope">
                 <span class="permission-wrapper">
                   <span>{{scope.row.command}}</span>
-                  <span class="permissin-example">{{scope.row.example}}</span>
+                  <span class="row-example">{{scope.row.example}}</span>
                 </span>
               </template>
             </el-table-column>
@@ -266,7 +266,7 @@ i.header-icon.el-icon-info {
   line-height: 1em;
 }
 
-.permissin-example {
+.row-example {
   display: block;
   font-size: 11px;
   color: #909090;

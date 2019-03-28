@@ -80,6 +80,7 @@ import Login from "./components/login.vue";
 import Sidebar from "./components/sidebar.vue";
 
 // Panels
+import AuditPanel from "./panels/AuditLog.vue";
 import DecisionsPanel from "./panels/DecisionsList.vue";
 import PermissionsPanel from "./panels/PermissionsList.vue";
 import ServerNotificationsPanel from "./panels/ServerNotifications.vue";
@@ -101,6 +102,7 @@ export const routes: { [key: string]: any } = {
     Login,
     Sidebar,
     // Panels
+    AuditPanel,
     DecisionsPanel,
     PermissionsPanel,
     ServerNotificationsPanel,

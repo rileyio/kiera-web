@@ -48,6 +48,14 @@
         <i class="el-icon-tickets"></i>
         <span>Decisions Manager</span>
       </el-menu-item>
+      <!-- Menu Item -->
+      <el-menu-item
+        index="1-6"
+        @click="$emit('onPanelChange', { panel: 'AuditPanel', view: 'all' })"
+      >
+        <i class="el-icon-news"></i>
+        <span>Audit Log</span>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>
