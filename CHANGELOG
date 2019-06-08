@@ -1,3 +1,6 @@
+1.8.0
+- Fixed: Header overlap issue hiding the dropdown menu
+
 1.7.0
 - Added basic user audit log
 

@@ -1,6 +1,6 @@
 {
   "name": "kiera-web",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "Web portal for kiera-bot",
   "main": "index.js",
   "author": "Emma (RileyIO)",
@@ -8,6 +8,7 @@
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "dev": "NODE_ENV='production' webpack --watch",
+    "dev:ps": "set NODE_ENV=production&&webpack --watch",
     "start": "node --experimental-modules ./start.js"
   },
   "dependencies": {
