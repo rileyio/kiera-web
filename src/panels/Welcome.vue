@@ -131,5 +131,4 @@ export default class WelcomePanel extends Vue {
 .statistics {
   margin: 15px 0px;
 }
-
 </style>

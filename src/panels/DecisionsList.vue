@@ -1,5 +1,5 @@
 <template>
-  <div id="sidebar">
+  <div>
     <el-row v-if="state.focusedView === 'all'">
       <el-col :span="24">
         <div class="grid-content bg-purple-dark">

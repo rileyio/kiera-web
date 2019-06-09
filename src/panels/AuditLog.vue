@@ -1,9 +1,10 @@
 <template>
-  <div id="sidebar">
-    <el-row v-if="state.focusedView === 'all'">
+  <div>
+    <el-row>
       <el-col :span="24">
         <div class="grid-content bg-purple-dark">
-          <div class="h3">Audit Log
+          <div class="h3">
+            Audit Log ({{auditEvents.length}})
             <el-button
               type="primary"
               plain
@@ -85,14 +86,8 @@
                       <div class="details">{{scope.row.runtime}}ms</div>
                       <div class="details">{{scope.row.type}}</div>
                       <div class="details">{{scope.row.where}}</div>
-                      <div
-                        class="details"
-                        v-if="scope.row.guild"
-                      >{{scope.row.guild}}</div>
-                      <div
-                        class="details"
-                        v-if="scope.row.error"
-                      >{{scope.row.error}}</div>
+                      <div class="details" v-if="scope.row.guild">{{scope.row.guild}}</div>
+                      <div class="details" v-if="scope.row.error">{{scope.row.error}}</div>
                     </div>
                   </el-col>
                 </el-row>

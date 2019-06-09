@@ -13,7 +13,7 @@
             ></el-switch>
           </template>
         </el-table-column>
-        <el-table-column align="right" label="Notify in" prop="_discordEnabled">
+        <!-- <el-table-column align="right" label="Notify in" prop="_discordEnabled">
           <template slot-scope="scope">
             <el-switch
               style="display: block"
@@ -26,7 +26,7 @@
               @change="updateNotification(scope.row.name, { _discordEnabled: $event, state: scope.row.state })"
             ></el-switch>
           </template>
-        </el-table-column>
+        </el-table-column> -->
       </el-table>
     </el-row>
   </div>
@@ -92,7 +92,7 @@ export default class ServerNotificationsPanel extends Vue {
       this.notifications = await defaultNotifications(
         this.state.focusedGuildId
       );
-      // Now get user's configiured
+      // Now get user's configured
       const resp = await Axios(`${process.env.BOT_HOST}/notifications`, {
         method: "POST",
         data: {
@@ -103,6 +103,7 @@ export default class ServerNotificationsPanel extends Vue {
 
       if (resp.status === 200) {
         resp.data.forEach((notification: TrackedNotification) => {
+          if (state.focusedGuildId !== '473856867768991744') return
           var defaultNotification = this.notifications.find(
             n => n.name === notification.name
           );

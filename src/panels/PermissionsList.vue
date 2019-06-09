@@ -19,7 +19,18 @@
             <br>Coming Soon: Global stats toggle will modify the first descended level.
           </span>
 
-          <el-table :data="permissions" style="width: 100%" v-loading="loading.isLoading">
+          <el-tabs v-model="permissionsFilterCategory">
+            <el-tab-pane label="Admin" name="Admin"></el-tab-pane>
+            <el-tab-pane label="ChastiKey" name="ChastiKey"></el-tab-pane>
+            <el-tab-pane label="Fun" name="Fun"></el-tab-pane>
+            <el-tab-pane label="Info" name="Info"></el-tab-pane>
+            <!-- <el-tab-pane label="Integration" name="Integration"></el-tab-pane> -->
+            <!-- <el-tab-pane label="Reddit" name="Reddit"></el-tab-pane> -->
+            <!-- <el-tab-pane label="Session" name="Session"></el-tab-pane> -->
+            <el-tab-pane label="User" name="User"></el-tab-pane>
+          </el-tabs>
+
+          <el-table :data="permissions.filter(p => p.category === permissionsFilterCategory)" style="width: 100%" v-loading="loading.isLoading">
             <el-table-column type="expand" prop="allowed">
               <template slot-scope="scope">
                 <PermissionsSub :data="scope"/>
@@ -109,6 +120,17 @@ export default class PermissionsPanel extends Vue {
     default: () => []
   })
   public permissions!: Array<any>;
+
+  @Prop({ default: "Fun" })
+  public permissionsFilterCategory!:
+    | "Admin"
+    | "ChastiKey"
+    | "Fun"
+    | "Info"
+    | "Integration"
+    | "Reddit"
+    | "Session"
+    | "User";
 
   @Prop({
     default: () => {

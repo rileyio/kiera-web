@@ -148,7 +148,7 @@ export default class DecisionOutcome extends Vue {
       confirmButtonText: "Add",
       cancelButtonText: "Cancel"
     })
-      .then(async ({ value }) => {
+      .then(async ({ value }: any) => {
         this.addDecitionOutcome(_id, value);
         this.$message({
           type: "success",
