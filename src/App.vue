@@ -17,40 +17,74 @@
 
       <Login :bot="bot" :state="state" v-if="!state.isLoggedIn"></Login>
 
-      <AccountDropdown :bot="bot" v-if="state.isLoggedIn"></AccountDropdown>
+      <!-- <AccountDropdown :bot="bot" v-if="state.isLoggedIn"></AccountDropdown> -->
+      <div :class="[ 'account-dropdown' ]">
+        <span class="username">{{bot.user.username}}#{{bot.user.discriminator}}</span>
+        <div
+          class="ui avatar image"
+          :style="{ 'background-image': `url('https://cdn.discordapp.com/avatars/146439529824256000/${bot.user.avatar}.png')` }"
+        ></div>
+      </div>
     </div>
 
     <div class="content centered max-width-1000" v-if="state.isLoggedIn && state.isConnected">
-      <div class="column-4">
-        <el-select
-          class="server-select"
-          v-model="state.focusedGuildId"
-          placeholder="Select a Discord server"
-          @input="updateSelectedGuild"
-        >
-          <el-option-group
-            v-for="guildGroup in bot.guilds"
-            :key="guildGroup.label"
-            :label="guildGroup.label"
-          >
-            <el-option
-              v-for="guild in guildGroup.options"
-              :key="guild.id"
-              :label="guild.name"
-              :value="guild.id"
-            ></el-option>
-          </el-option-group>
-        </el-select>
+      <el-tabs type="border-card">
+        <el-tab-pane>
+          <span slot="label">
+            <i class="el-icon-s-operation"></i> Server
+          </span>
+          <div class="column-4">
+            <el-select
+              class="server-select"
+              v-model="state.focusedGuildId"
+              placeholder="Select a Discord server"
+              @input="updateSelectedGuild"
+            >
+              <el-option-group
+                v-for="guildGroup in bot.guilds"
+                :key="guildGroup.label"
+                :label="guildGroup.label"
+              >
+                <el-option
+                  v-for="guild in guildGroup.options"
+                  :key="guild.id"
+                  :label="guild.name"
+                  :value="guild.id"
+                ></el-option>
+              </el-option-group>
+            </el-select>
 
-        <Sidebar
-          v-show="state.focusedGuildId !== ''"
-          :state="state"
-          v-on:onPanelChange="handlePanelChange"
-        ></Sidebar>
-      </div>
-      <div class="column-8">
-        <component v-bind:is="state.focusedPanel" :bot="bot" :state="state"></component>
-      </div>
+            <Sidebar
+              v-show="state.focusedGuildId !== ''"
+              :state="state"
+              v-on:onPanelChange="handlePanelChange"
+            ></Sidebar>
+          </div>
+          <div class="column-8">
+            <component v-bind:is="state.focusedPanel" :bot="bot" :state="state"></component>
+          </div>
+        </el-tab-pane>
+        <el-tab-pane label="Audit Log">
+          <span slot="label">
+            <i class="el-icon-tickets"></i> Audit Log
+          </span>
+          <AuditPanel :bot="bot" :state="state"/>
+        </el-tab-pane>
+        <el-tab-pane label="Account">
+          <span slot="label">
+            <i class="el-icon-user"></i> Account
+          </span>
+          <Account :bot="bot" :state="state"/>
+        </el-tab-pane>
+        <el-tab-pane label="Logout">
+          <span slot="label">
+            <el-link type="danger" @click="logout()">
+              <i class="el-icon-user"></i> Logout
+            </el-link>
+          </span>
+          <el-row>Logging you out...</el-row>
+        </el-tab-pane>
+      </el-tabs>
     </div>
 
     <transition name="fade">
@@ -74,13 +108,15 @@ import { mappedGuilds, DiscordGuild } from "./defaults/guilds";
 import { defaultStats } from "./defaults/bot-statistics";
 
 // Components
-import AccountDropdown from "./components/account-dropdown.vue";
+// import AccountDropdown from "./components/account-dropdown.vue";
 import CenterLoader from "./components/center-loader.vue";
 import Login from "./components/login.vue";
 import Sidebar from "./components/sidebar.vue";
 
 // Panels
+import Account from "./panels/Account.vue";
 import AuditPanel from "./panels/AuditLog.vue";
+import ChastiKey from "./panels/ChastiKey.vue";
 import DecisionsPanel from "./panels/DecisionsList.vue";
 import PermissionsPanel from "./panels/PermissionsList.vue";
 import ServerNotificationsPanel from "./panels/ServerNotifications.vue";
@@ -97,12 +133,14 @@ export const routes: { [key: string]: any } = {
 
 @Component({
   components: {
-    AccountDropdown,
+    // AccountDropdown,
     CenterLoader,
     Login,
     Sidebar,
     // Panels
+    Account,
     AuditPanel,
+    ChastiKey,
     DecisionsPanel,
     PermissionsPanel,
     ServerNotificationsPanel,
@@ -256,6 +294,10 @@ export default class App extends Vue {
       this.state.isGuildOwner = false;
     }
   }
+
+  private logout(url: string) {
+    window.location.href = `/logout`;
+  }
 }
 </script>
 
@@ -308,6 +350,8 @@ export default class App extends Vue {
     color: #ffffff;
   }
   #bot-connectivity {
+    position: absolute;
+    bottom: 10px;
     width: 33px;
     margin-left: 10px;
   }
@@ -332,5 +376,33 @@ export default class App extends Vue {
 // Dropdown
 .server-select {
   width: 100%;
+}
+
+// Account - top right
+.account-dropdown {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 195px;
+  height: 55px;
+  display: block;
+  -webkit-transition: all 0.12s;
+}
+
+.ui.avatar.image {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  background-size: contain;
+}
+
+span.username {
+  position: absolute;
+  right: 55px;
+  top: 20px;
+  display: block;
 }
 </style>

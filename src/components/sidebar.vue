@@ -22,7 +22,7 @@
       >
         <i class="el-icon-edit"></i>
         <span>Server/User Settings</span>
-      </el-menu-item> -->
+      </el-menu-item>-->
       <!-- Menu Item -->
       <el-menu-item
         index="1-3"
@@ -48,13 +48,16 @@
         <i class="el-icon-tickets"></i>
         <span>Decisions Manager</span>
       </el-menu-item>
-      <!-- Menu Item -->
+      <!-- Menu Item (Only shown if a member of the ChastiKey server) -->
       <el-menu-item
-        index="1-6"
-        @click="$emit('onPanelChange', { panel: 'AuditPanel', view: 'all' })"
+        index="1-10"
+        v-if="state.focusedGuildId === '473856867768991744'"
+        @click="$emit('onPanelChange', { panel: 'ChastiKey', view: 'all' })"
       >
-        <i class="el-icon-news"></i>
-        <span>Audit Log</span>
+        <i
+          class="chastikey-icon"
+        ></i>
+        <span>ChastiKey Account</span>
       </el-menu-item>
     </el-menu>
   </div>
@@ -71,3 +74,17 @@ export default class Sidebar extends Vue {
   private state!: typeof state;
 }
 </script>
+
+<style lang="less">
+.chastikey-icon {
+  background-image: url(https://www.chastikey.com/assets/images/chastikey-website-logo-122x122.png);
+  margin-right: 5px;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  font-size: 18px;
+  vertical-align: middle;
+  display: inline-block;
+  background-size: contain;
+}
+</style>
