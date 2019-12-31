@@ -1,10 +1,10 @@
 <template>
   <div>
     <nav class="center">
-      <span v-if="!state.isLoggedIn" class="center-button" onclick="window.location='/login'">
+      <!--<span v-if="!state.isLoggedIn" class="center-button" onclick="window.location='/login'">
         <span v-if="bot.user._id === ''">Login</span>
         <span v-else>...</span>
-      </span>
+      </span>-->
     </nav>
     <el-row type="flex" class="row-bg" justify="center">
       <BotStatistic
