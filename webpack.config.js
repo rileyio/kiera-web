@@ -9,8 +9,8 @@ module.exports = {
   entry: './src/index.ts',
   devtool: 'inline-source-map',
   output: {
-    path: path.resolve(__dirname, './app'),
-    publicPath: '/app/',
+    path: path.resolve(__dirname, './production-app'),
+    publicPath: '/production-app/',
     filename: 'build.js'
   },
   plugins: [

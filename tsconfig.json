@@ -10,22 +10,13 @@
     "preserveConstEnums": true,
     "declaration": false,
     "sourceMap": false,
-    "outDir": "app",
+    "outDir": "production-app",
     "rootDir": "./src",
     "skipLibCheck": true,
-    "typeRoots" : ["./src/types"],
+    "typeRoots": ["./src/types"],
     // "inlineSourceMap": true,
-    "lib": [
-      "es2016",
-      "dom",
-      "dom.iterable"
-    ]
+    "lib": ["es2016", "dom", "dom.iterable"]
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "app/**/*"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "production-app/**/*"]
 }

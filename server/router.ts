@@ -1,5 +1,11 @@
+import { Server } from '.'
+import { Route } from './objects/route'
+
 export class Router {
-  constructor (routes, server) {
+  private server: Server
+  private routes: Array<Route>
+
+  constructor(server: Server, routes: Array<Route>) {
     this.server = server
     this.routes = routes
 

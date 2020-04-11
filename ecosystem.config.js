@@ -1,11 +1,7 @@
 module.exports = {
   apps : [{
     name: 'kiera-web',
-    script: './start.js',
-
-    // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
-    // args: 'one two',
-    node_args: '-r esm --experimental-modules',
+    script: './production-server/start.js',
     instances: 1,
     autorestart: true,
     watch: false,

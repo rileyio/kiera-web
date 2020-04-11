@@ -80,3 +80,6 @@ ca.crt
 # Ignore server files
 *.pem
 *.save
+
+# kiera-web Specific build dirs
+production*
