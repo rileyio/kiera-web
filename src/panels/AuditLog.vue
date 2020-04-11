@@ -193,7 +193,7 @@ export default class AuditPanel extends Vue {
     el.select();
     document.execCommand("copy");
     el.disabled = true;
-    this.$message(`${_id} copied to clipboard`);
+    this.$bvToast.toast(`${_id} copied to clipboard`);
   }
 }
 </script>

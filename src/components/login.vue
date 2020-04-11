@@ -7,65 +7,38 @@
       </span>-->
     </nav>
     <el-row type="flex" class="row-bg" justify="center">
-      <BotStatistic
-        :span="3"
-        :text="'Total Users Seen'"
-        :value="bot.stats.users.total"
-        :backgroundColor="'#1f273adb'"
-      />
-      <BotStatistic
-        :span="3"
-        :text="'Users Online'"
-        :value="bot.stats.users.online"
-        :backgroundColor="'#1f273adb'"
-      />
-      <BotStatistic
-        :span="3"
-        :text="'Users Registered'"
-        :value="bot.stats.users.registered"
-        :backgroundColor="'#1f273adb'"
-      />
+      <BotStatistic :span="3" :text="'Total Users Seen'" :value="bot.stats.users.total" :backgroundColor="'#1f273adb'" />
+      <BotStatistic :span="3" :text="'Users Online'" :value="bot.stats.users.online" :backgroundColor="'#1f273adb'" />
+      <BotStatistic :span="3" :text="'Users Registered'" :value="bot.stats.users.registered" :backgroundColor="'#1f273adb'" />
     </el-row>
     <el-row type="flex" class="row-bg" justify="center">
-      <BotStatistic
-        span="4"
-        :text="'Completed Commands'"
-        :value="bot.stats.commands.completed"
-        :backgroundColor="'#05b770c4'"
-        :fontColor="'#fff'"
-      />
+      <BotStatistic span="4" :text="'Completed Commands'" :value="bot.stats.commands.completed" :backgroundColor="'#05b770c4'" :fontColor="'#fff'" />
       <BotStatistic
         span="4"
         :text="'Total Commands'"
         :value="(bot.stats.commands.completed + bot.stats.commands.invalid)"
         :backgroundColor="'#13506dc4'"
         :fontColor="'#fff'"
-        :percentageBar="{ show: true, values: [ bot.stats.commands.completed, bot.stats.commands.invalid ], colors: [ '#05b770c4', '#c0392bc4' ] }"
+        :percentageBar="{ show: true, values: [bot.stats.commands.completed, bot.stats.commands.invalid], colors: ['#05b770c4', '#c0392bc4'] }"
       />
-      <BotStatistic
-        span="4"
-        :text="'Invalid Commands'"
-        :value="bot.stats.commands.invalid"
-        :backgroundColor="'#c0392bc4'"
-        :fontColor="'#fff'"
-      />
+      <BotStatistic span="4" :text="'Invalid Commands'" :value="bot.stats.commands.invalid" :backgroundColor="'#c0392bc4'" :fontColor="'#fff'" />
     </el-row>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component, Prop } from "vue-property-decorator";
-import { BotStatistics } from "../types/statistics";
+import Vue from 'vue'
+import { Component, Prop } from 'vue-property-decorator'
+import { BotStatistics } from '../types/statistics'
 
 // Components
-import BotStatistic from "./statistic.vue";
+import BotStatistic from './statistic.vue'
 
 // Defaults
-import { state } from "../defaults/app-state";
-import { user } from "../defaults/user";
-import { mappedGuilds } from "../defaults/guilds";
-import { defaultStats } from "../defaults/bot-statistics";
+import { state } from '../defaults/app-state'
+import { user } from '../defaults/user'
+import { mappedGuilds } from '../defaults/guilds'
+import { defaultStats } from '../defaults/bot-statistics'
 
 @Component({
   components: {
@@ -74,24 +47,24 @@ import { defaultStats } from "../defaults/bot-statistics";
 })
 export default class Login extends Vue {
   @Prop({ default: () => state })
-  private state!: typeof state;
+  private state!: typeof state
 
   @Prop({
     default: () => {
       return {
-        webToken: "",
+        webToken: '',
         user: user,
         guilds: mappedGuilds,
         stats: defaultStats
-      };
+      }
     }
   })
   public bot!: {
-    webToken: string;
-    user: typeof user;
-    guilds: typeof mappedGuilds;
-    stats: BotStatistics;
-  };
+    webToken: string
+    user: typeof user
+    guilds: typeof mappedGuilds
+    stats: BotStatistics
+  }
 }
 </script>
 

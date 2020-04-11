@@ -6,6 +6,6 @@ export interface TrackedNotification {
   serverID: string
   owner: string
   name: string
-  state: boolean,
+  state: boolean
   where: string
 }

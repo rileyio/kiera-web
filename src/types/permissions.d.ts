@@ -7,7 +7,7 @@ export class CommandPermissions {
    */
   public sid: ObjectID
   /**
-   * Discord server ID - quicker lookup to avoid multiple queries 
+   * Discord server ID - quicker lookup to avoid multiple queries
    * at command validate runtime
    * @type {string}
    * @memberof CommandPermissions
@@ -43,9 +43,9 @@ export class CommandPermissionsAllowed {
   public target: string
   /**
    * Flat: Is it allowed
-   * 
+   *
    * Defaults to allow
-   * 
+   *
    * @type {boolean}
    * @memberof CommandPermissionsAllowed
    */

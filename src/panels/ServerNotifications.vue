@@ -1,7 +1,7 @@
 <template>
   <div id="sidebar">
     <el-row>
-      <el-table v-loading="loading.isLoading" :data="notifications" style="width: 100%" size="mini">
+      <el-table v-loading="loading.isLoading" :data="notifications" style="width: 100%;" size="mini">
         <el-table-column label="Name" prop="_title"></el-table-column>
         <el-table-column align="right" label="Notification state" prop="state">
           <template slot-scope="scope">
@@ -33,18 +33,18 @@
 </template>
 
 <script lang="ts">
-declare var process: any;
+declare var process: any
 
-import Vue from "vue";
-import Axios from "axios";
+import Vue from 'vue'
+import Axios from 'axios'
 
-import { Component, Prop } from "vue-property-decorator";
-import { state } from "../defaults/app-state";
-import { defaultNotifications } from "../defaults/notification";
-import { TrackedNotification } from "../types/notifications";
-import { buildRequestHeaders, getUserID } from "../utils";
-import { user } from "../defaults/user";
-import { mappedGuilds } from "../defaults/guilds";
+import { Component, Prop } from 'vue-property-decorator'
+import { state } from '../defaults/app-state'
+import { defaultNotifications } from '../defaults/notification'
+import { TrackedNotification } from '../types/notifications'
+import { buildRequestHeaders, getUserID } from '../utils'
+import { user } from '../defaults/user'
+import { mappedGuilds } from '../defaults/guilds'
 
 @Component({
   components: {
@@ -53,105 +53,95 @@ import { mappedGuilds } from "../defaults/guilds";
 })
 export default class ServerNotificationsPanel extends Vue {
   @Prop({ default: () => state })
-  private state!: typeof state;
+  private state!: typeof state
 
   @Prop({
     default: () => {
-      return { webToken: "", user: user, guilds: mappedGuilds };
+      return { webToken: '', user: user, guilds: mappedGuilds }
     }
   })
   public bot!: {
-    webToken: string;
-    user: typeof user;
-    guilds: typeof mappedGuilds;
-  };
+    webToken: string
+    user: typeof user
+    guilds: typeof mappedGuilds
+  }
 
   @Prop({
     default: []
   })
-  private notifications!: Array<TrackedNotification>;
+  private notifications!: Array<TrackedNotification>
 
-  @Prop({ default: "" })
-  private search!: string;
+  @Prop({ default: '' })
+  private search!: string
 
   @Prop({
     default: () => {
-      return { isLoading: true, loaded: false };
+      return { isLoading: true, loaded: false }
     }
   })
-  public loading!: { isLoading: boolean; loaded: boolean };
+  public loading!: { isLoading: boolean; loaded: boolean }
 
   constructor() {
-    super();
-    this.getServerNotifications();
+    super()
+    this.getServerNotifications()
   }
 
   private async getServerNotifications() {
     try {
       // Get defaults available first
-      this.notifications = await defaultNotifications(
-        this.state.focusedGuildId
-      );
+      this.notifications = await defaultNotifications(this.state.focusedGuildId)
       // Now get user's configured
       const resp = await Axios(`${process.env.BOT_HOST}/notifications`, {
-        method: "POST",
+        method: 'POST',
         data: {
           serverID: this.state.focusedGuildId
         },
         headers: buildRequestHeaders()
-      });
+      })
 
       if (resp.status === 200) {
         resp.data.forEach((notification: TrackedNotification) => {
           if (state.focusedGuildId !== '473856867768991744') return
-          var defaultNotification = this.notifications.find(
-            n => n.name === notification.name
-          );
+          var defaultNotification = this.notifications.find((n) => n.name === notification.name)
           // Merge objects
-          Object.assign(defaultNotification || {}, notification);
+          Object.assign(defaultNotification || {}, notification)
           // Handle where override
-          (<TrackedNotification>defaultNotification)._discordEnabled =
-            (<TrackedNotification>defaultNotification).where === "Discord";
+          ;(<TrackedNotification>defaultNotification)._discordEnabled = (<TrackedNotification>defaultNotification).where === 'Discord'
 
-            console.log(defaultNotification)
-        });
+          console.log(defaultNotification)
+        })
       }
     } catch (error) {}
     // Stop spinner
-    this.loading.isLoading = false;
+    this.loading.isLoading = false
   }
 
-  private async updateNotification(
-    name: string,
-    update: Partial<TrackedNotification>
-  ) {
+  private async updateNotification(name: string, update: Partial<TrackedNotification>) {
     console.log(name, update, {
       owner: this.bot.user._id,
       authorID: getUserID(),
       serverID: this.state.focusedGuildId,
       name: name,
       state: update.state,
-      where: update._discordEnabled ? "Discord" : "Web"
-    });
+      where: update._discordEnabled ? 'Discord' : 'Web'
+    })
 
     const resp = await Axios(`${process.env.BOT_HOST}/notification/update`, {
-      method: "POST",
+      method: 'POST',
       data: {
         owner: this.bot.user._id,
         authorID: getUserID(),
         serverID: this.state.focusedGuildId,
         name: name,
         state: update.state,
-        where: update._discordEnabled ? "Discord" : "Web"
+        where: update._discordEnabled ? 'Discord' : 'Web'
       },
       headers: buildRequestHeaders()
-    });
+    })
 
-    console.log("updateNotification outcome =>", resp.data);
+    console.log('updateNotification outcome =>', resp.data)
   }
 }
 </script>
 
-<style lang="less">
-</style>
-
+<style lang="less"></style>

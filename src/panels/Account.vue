@@ -1,31 +1,25 @@
 <template>
   <div>
     More coming soon!
-    <br>
-    <br>If you require any assistance in the meantime you can reach the author (Emma) via the
-    Kiera-Bot development server.
-    <br>
-    <br>
-    <img
-      src="https://discordapp.com/api/guilds/389204362959781899/widget.png?style=banner2"
-      alt="Join the Kiera-Bot development community"
-      @click="openDiscord"
-    >
+    <br />
+    <br />If you require any assistance in the meantime you can reach the author (Emma) via the Kiera-Bot development server.
+    <br />
+    <br />
+    <img src="https://discordapp.com/api/guilds/389204362959781899/widget.png?style=banner2" alt="Join the Kiera-Bot development community" @click="openDiscord" />
   </div>
 </template>
 
-
 <script lang="ts">
-declare var process: any;
+declare var process: any
 
-import Vue from "vue";
-import Axios from "axios";
+import Vue from 'vue'
+import Axios from 'axios'
 
-import { Component, Prop, Watch } from "vue-property-decorator";
-import { state } from "../defaults/app-state";
-import { mappedGuilds } from "../defaults/guilds";
-import { user } from "../defaults/user";
-import { buildRequestHeaders } from "../utils";
+import { Component, Prop, Watch } from 'vue-property-decorator'
+import { state } from '../defaults/app-state'
+import { mappedGuilds } from '../defaults/guilds'
+import { user } from '../defaults/user'
+import { buildRequestHeaders } from '../utils'
 
 @Component({
   components: {
@@ -34,42 +28,42 @@ import { buildRequestHeaders } from "../utils";
 })
 export default class Account extends Vue {
   @Prop({ default: () => state })
-  private state!: typeof state;
+  private state!: typeof state
 
   @Prop({
     default: () => {
-      return { webToken: "", user: user, guilds: mappedGuilds };
+      return { webToken: '', user: user, guilds: mappedGuilds }
     }
   })
   public bot!: {
-    webToken: string;
-    user: typeof user;
-    guilds: typeof mappedGuilds;
-  };
+    webToken: string
+    user: typeof user
+    guilds: typeof mappedGuilds
+  }
 
   @Prop({ default: false })
-  private showAccountSettings!: boolean;
+  private showAccountSettings!: boolean
 
   private async updateUser(key: string, value: any) {
-    console.log(key, value);
+    console.log(key, value)
     const resp = await Axios(`${process.env.BOT_HOST}/user/update`, {
-      method: "POST",
+      method: 'POST',
       data: {
         key: key,
         value: value
       },
       headers: buildRequestHeaders()
-    });
+    })
 
-    console.log("updateUser outcome =>", resp.data);
+    console.log('updateUser outcome =>', resp.data)
   }
 
   private logout(url: string) {
-    window.location.href = `/logout`;
+    window.location.href = `/logout`
   }
 
   private openDiscord() {
-    window.open("https://discord.gg/tuyk2k3", "_blank");
+    window.open('https://discord.gg/tuyk2k3', '_blank')
   }
 }
 </script>

@@ -49,19 +49,15 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'less-loader'
-        ]
-      }
-
+        use: ['vue-style-loader', 'css-loader', 'less-loader']
+      },
+      { test: /\.css?$/, loaders: ['css-loader'] }
     ]
   },
   resolve: {
     extensions: ['.ts', '.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      vue$: 'vue/dist/vue.esm.js'
     }
   },
   devServer: {
@@ -75,10 +71,10 @@ module.exports = {
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
-        include: /\/includes/,
-      }),
-    ],
-  },
+        include: /\/includes/
+      })
+    ]
+  }
 }
 
 if (process.env.NODE_ENV === 'production') {

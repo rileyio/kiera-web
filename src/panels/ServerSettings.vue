@@ -1,16 +1,11 @@
 <template>
   <div id="sidebar">
     <el-row>
-      <el-table v-loading="loading.isLoading" :data="settings" style="width: 100%" size="mini">
+      <el-table v-loading="loading.isLoading" :data="settings" style="width: 100%;" size="mini">
         <el-table-column label="Setting">
           <template slot-scope="scope">
-            <span>{{scope.row.key}}</span>
-            <el-input
-              placeholder="Setting value"
-              v-model="scope.row.value"
-              class="input"
-              size="mini"
-            ></el-input>
+            <span>{{ scope.row.key }}</span>
+            <el-input placeholder="Setting value" v-model="scope.row.value" class="input" size="mini"></el-input>
           </template>
         </el-table-column>
         <el-table-column fixed="right" label="Enable/Save" width="125">
@@ -25,7 +20,7 @@
               ></el-button>
             </el-button-group>
             <el-switch
-              style="display: block"
+              style="display: block;"
               v-model="scope.row.state"
               active-color="#13ce66"
               inactive-color="#ff4949"
@@ -39,18 +34,18 @@
 </template>
 
 <script lang="ts">
-declare var process: any;
+declare var process: any
 
-import Vue from "vue";
-import Axios from "axios";
+import Vue from 'vue'
+import Axios from 'axios'
 
-import { Component, Prop } from "vue-property-decorator";
-import { state } from "../defaults/app-state";
-import { defaultServerSettings } from "../defaults/setting";
-import { TrackedServerSetting } from "../types/server-settings";
-import { buildRequestHeaders, getUserID } from "../utils";
-import { user } from "../defaults/user";
-import { mappedGuilds } from "../defaults/guilds";
+import { Component, Prop } from 'vue-property-decorator'
+import { state } from '../defaults/app-state'
+import { defaultServerSettings } from '../defaults/setting'
+import { TrackedServerSetting } from '../types/server-settings'
+import { buildRequestHeaders, getUserID } from '../utils'
+import { user } from '../defaults/user'
+import { mappedGuilds } from '../defaults/guilds'
 
 @Component({
   components: {
@@ -59,76 +54,72 @@ import { mappedGuilds } from "../defaults/guilds";
 })
 export default class ServerSettingsPanel extends Vue {
   @Prop({ default: () => state })
-  private state!: typeof state;
+  private state!: typeof state
 
   @Prop({
     default: () => {
-      return { webToken: "", user: user, guilds: mappedGuilds };
+      return { webToken: '', user: user, guilds: mappedGuilds }
     }
   })
   public bot!: {
-    webToken: string;
-    user: typeof user;
-    guilds: typeof mappedGuilds;
-  };
+    webToken: string
+    user: typeof user
+    guilds: typeof mappedGuilds
+  }
 
   @Prop({
     default: () => []
   })
-  private settings!: Array<TrackedServerSetting>;
+  private settings!: Array<TrackedServerSetting>
 
-  @Prop({ default: "" })
-  private search!: string;
+  @Prop({ default: '' })
+  private search!: string
 
   @Prop({
     default: () => {
-      return { isLoading: true, loaded: false };
+      return { isLoading: true, loaded: false }
     }
   })
-  public loading!: { isLoading: boolean; loaded: boolean };
+  public loading!: { isLoading: boolean; loaded: boolean }
 
   constructor() {
-    super();
-    this.getServerSettings();
+    super()
+    this.getServerSettings()
   }
 
   private async getServerSettings() {
     try {
       // Get defaults available first
-      this.settings = await defaultServerSettings();
+      this.settings = await defaultServerSettings()
       // Now get user's configiured
       const resp = await Axios(`${process.env.BOT_HOST}/server/settings`, {
         data: {
           serverID: this.state.focusedGuildId
         },
-        method: "POST",
+        method: 'POST',
         headers: buildRequestHeaders()
-      });
+      })
 
       if (resp.status === 200) {
-        console.log("resp.data", resp.data);
+        console.log('resp.data', resp.data)
         this.settings = resp.data.map((setting: TrackedServerSetting) => {
           // Handle local state changes
-          (<TrackedServerSetting>setting)._originalValue = setting.value;
+          ;(<TrackedServerSetting>setting)._originalValue = setting.value
 
           return setting
-        });
+        })
 
-        console.log(this.settings);
+        console.log(this.settings)
       }
     } catch (error) {}
     // Stop spinner
-    this.loading.isLoading = false;
+    this.loading.isLoading = false
   }
 
-  private async updateSetting(
-    _id: string,
-    key: string,
-    update: { state: boolean; value: string }
-  ) {
-    console.log(key, update);
+  private async updateSetting(_id: string, key: string, update: { state: boolean; value: string }) {
+    console.log(key, update)
     const resp = await Axios(`${process.env.BOT_HOST}/server/setting/update`, {
-      method: "POST",
+      method: 'POST',
       data: {
         serverID: this.state.focusedGuildId,
         _id: _id,
@@ -136,24 +127,17 @@ export default class ServerSettingsPanel extends Vue {
         value: update.value
       },
       headers: buildRequestHeaders()
-    });
+    })
 
     if (resp.status === 200) {
-      const serverSetting = <TrackedServerSetting>(
-        this.settings.find(s => s.key === key)
-      );
-      serverSetting._originalValue = update.value;
-      this.$message({
-        type: "success",
-        message: `Updated setting: ${key}`
-      });
-      console.log(this.settings);
+      const serverSetting = <TrackedServerSetting>this.settings.find((s) => s.key === key)
+      serverSetting._originalValue = update.value
+      this.$bvToast.toast(`Updated setting: ${key}`)
+      console.log(this.settings)
     }
-    console.log("updateSetting outcome =>", resp.data);
+    console.log('updateSetting outcome =>', resp.data)
   }
 }
 </script>
 
-<style lang="less">
-</style>
-
+<style lang="less"></style>

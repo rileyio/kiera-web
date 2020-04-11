@@ -8,11 +8,11 @@ export interface DiscordGuild {
 
 export const mappedGuilds = [
   {
-    label: "⭐️ Owner",
+    label: '⭐️ Owner',
     options: []
   },
   {
-    label: "Member Only",
+    label: 'Member Only',
     options: []
   }
 ]

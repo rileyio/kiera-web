@@ -1,10 +1,10 @@
-import { DiscordGuild } from './guilds';
+import { DiscordGuild } from './guilds'
 
 export interface BotUser {
-  _id: string,
-  username: string,
-  discriminator: string,
-  avatar: string,
+  _id: string
+  username: string
+  discriminator: string
+  avatar: string
   guilds: Array<DiscordGuild>
   ChastiKey: BotUserServiceChastiKey
 }

@@ -1,4 +1,4 @@
-import { BotStatistics } from '../types/statistics';
+import { BotStatistics } from '../types/statistics'
 
 export const defaultStats: BotStatistics = {
   name: '',

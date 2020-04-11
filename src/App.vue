@@ -88,7 +88,6 @@ import Sidebar from './components/sidebar.vue'
 import Account from './panels/Account.vue'
 import AuditPanel from './panels/AuditLog.vue'
 import ChastiKey from './panels/ChastiKey.vue'
-import DecisionsPanel from './panels/DecisionsList.vue'
 import PermissionsPanel from './panels/PermissionsList.vue'
 import ServerNotificationsPanel from './panels/ServerNotifications.vue'
 import ServerSettingsUserPanel from './panels/ServerSettingsUser.vue'
@@ -112,7 +111,6 @@ export const routes: { [key: string]: any } = {
     Account,
     AuditPanel,
     ChastiKey,
-    DecisionsPanel,
     PermissionsPanel,
     ServerNotificationsPanel,
     ServerSettingsPanel,

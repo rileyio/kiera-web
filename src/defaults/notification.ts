@@ -1,6 +1,6 @@
-declare var process: any;
-import Axios from "axios";
-import { buildRequestHeaders } from '../utils';
+declare var process: any
+import Axios from 'axios'
+import { buildRequestHeaders } from '../utils'
 
 // export const defaultNotifications: Array<TrackedNotification> = [
 //   {
@@ -19,15 +19,17 @@ import { buildRequestHeaders } from '../utils';
 export async function defaultNotifications(serverID: string) {
   try {
     const resp = await Axios(`${process.env.BOT_HOST}/available/notifications`, {
-      method: "POST",
+      method: 'POST',
       data: {
         serverID: serverID
       },
       headers: buildRequestHeaders()
-    });
+    })
 
     if (resp.status === 200) {
       return resp.data
     }
-  } catch (error) { return [] }
+  } catch (error) {
+    return []
+  }
 }
