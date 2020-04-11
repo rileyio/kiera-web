@@ -32,7 +32,7 @@ import { Component, Prop } from 'vue-property-decorator'
 import { BotStatistics } from '../types/statistics'
 
 // Components
-import BotStatistic from './statistic.vue'
+import BotStatistic from './BotStatistic.vue'
 
 // Defaults
 import { state } from '../defaults/app-state'

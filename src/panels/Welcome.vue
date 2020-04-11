@@ -47,7 +47,7 @@ import { mappedGuilds, DiscordGuild } from '../defaults/guilds'
 import { defaultStats } from '../defaults/bot-statistics'
 import { BotStatistics } from '../types/statistics'
 
-import BotStatistic from '../components/statistic.vue'
+import BotStatistic from '../components/BotStatistic.vue'
 
 @Component({
   components: {
