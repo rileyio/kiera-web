@@ -28,8 +28,8 @@ export default class PermissionsPanel extends Vue {
     if (queryString.length < 2) {
       cb(this.loadBasic())
     }
-    var links = this.props.links
-    var results = queryString ? links.filter(this.createFilter(queryString)) : links
+    const links = this.props.links
+    const results = queryString ? links.filter(this.createFilter(queryString)) : links
 
     clearTimeout(this.props.timeout)
     this.props.timeout = setTimeout(() => {

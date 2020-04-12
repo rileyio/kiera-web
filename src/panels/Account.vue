@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-declare var process: any
+declare let process: any
 
 import Vue from 'vue'
 import Axios from 'axios'
@@ -46,7 +46,7 @@ export default class Account extends Vue {
 
   private async updateUser(key: string, value: any) {
     console.log(key, value)
-    const resp = await Axios(`${process.env.BOT_HOST}/user/update`, {
+    const resp = await Axios(`${process.env.VUE_APP_BOT_HOST}/user/update`, {
       method: 'POST',
       data: {
         key: key,
@@ -69,20 +69,6 @@ export default class Account extends Vue {
 </script>
 
 <style lang="less">
-.account-dropdown {
-  position: absolute;
-  right: 2px;
-  bottom: 2px;
-  width: 195px;
-  height: 55px;
-  display: block;
-  cursor: pointer;
-  -webkit-transition: all 0.12s;
-  &:hover {
-    background-color: #16171da1;
-  }
-}
-
 span.username {
   position: absolute;
   right: 55px;
@@ -126,7 +112,7 @@ span.username {
     margin: 0 0 5px 0;
     top: 0;
     left: 0;
-    background-image: url(/assets/img/abstract-art-590697.jpg);
+    background-image: url(/img/abstract-art-590697.jpg);
     width: 100%;
   }
   .modal-body {

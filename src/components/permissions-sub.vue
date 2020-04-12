@@ -1,10 +1,10 @@
 <template>
   <div>
-    <el-row>
+    <b-row>
       <el-input placeholder="Filter Channels" size="mini" v-model="filterInput"></el-input>
-    </el-row>
+    </b-row>
     <br />
-    <el-row>
+    <b-row>
       <div v-for="(allowed, i) in data.row.allowed.filter((a) => !filterInput || a.name.toLowerCase().includes(filterInput.toLowerCase()))" :key="i">
         <el-switch
           v-model="allowed.allow"
@@ -14,12 +14,12 @@
         ></el-switch>
         {{ allowed.name }}
       </div>
-    </el-row>
+    </b-row>
   </div>
 </template>
 
 <script lang="ts">
-declare var process: any
+declare let process: any
 
 import Vue from 'vue'
 import Axios from 'axios'
@@ -50,7 +50,7 @@ export default class PermissionsSub extends Vue {
 
   private async updatePermission(_id: string, serverID: string, command: string, target: string, $e: any) {
     console.log(_id, $e)
-    const resp = await Axios(`${process.env.BOT_HOST}/permission/allowed/update`, {
+    const resp = await Axios(`${process.env.VUE_APP_BOT_HOST}/permission/allowed/update`, {
       method: 'POST',
       data: {
         _id: _id,

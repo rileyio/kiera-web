@@ -15,13 +15,6 @@ export const state = {
   isConnected: false,
   isConnecting: true,
   isLoggedIn: false,
-  // Panel in focus
-  focusedPanel: 'WelcomePanel',
-  focusedView: '',
-  // Server in focus
-  focusedGuildId: '',
-  focusedGuild: focusedGuild,
-  isGuildOwner: false,
   // Style related
   randomBG: backgrounds[Math.floor(Math.random() * backgrounds.length)]
 }

@@ -1,11 +1,10 @@
-declare var process: any
+declare let process: any
 import Axios from 'axios'
 import { buildRequestHeaders } from '../utils'
-import { TrackedServerSetting } from '../types/server-settings'
 
 export async function defaultServerSettings() {
   try {
-    const resp = await Axios(`${process.env.BOT_HOST}/available/settings`, {
+    const resp = await Axios(`${process.env.VUE_APP_BOT_HOST}/available/settings`, {
       method: 'POST',
       headers: buildRequestHeaders()
     })
@@ -20,7 +19,7 @@ export async function defaultServerSettings() {
 
 export async function defaultServerSettingsUser() {
   try {
-    const resp = await Axios(`${process.env.BOT_HOST}/available/user`, {
+    const resp = await Axios(`${process.env.VUE_APP_BOT_HOST}/available/user`, {
       method: 'POST',
       headers: buildRequestHeaders()
     })

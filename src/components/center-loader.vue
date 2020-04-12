@@ -1,5 +1,5 @@
 <template>
-  <div id="center-loader-wrapper" :style="{ 'background-image': `url('/assets/img/${state.randomBG}.jpg')` }">
+  <div id="center-loader-wrapper" :style="{ 'background-image': `url('/img/${state.randomBG}.jpg')` }">
     <div id="center-loader">
       <div class="socket-status">
         <span class="status">Getting things ready</span>

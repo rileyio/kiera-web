@@ -52,7 +52,7 @@ export default class Sidebar extends Vue {
 
 <style lang="less">
 .chastikey-icon {
-  background-image: url(https://www.chastikey.com/assets/images/chastikey-website-logo-122x122.png);
+  background-image: url(https://www.chastikey.com/images/chastikey-website-logo-122x122.png);
   margin-right: 5px;
   width: 24px;
   height: 24px;

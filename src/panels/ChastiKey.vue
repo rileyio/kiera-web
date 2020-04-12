@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-row v-if="state.focusedView === 'all'">
+    <b-row v-if="state.focusedView === 'all'">
       <el-col :span="24">
         <div class="grid-content bg-purple-dark">
           <div class="h3">Your ChastiKey Account</div>
@@ -44,12 +44,12 @@
           </el-form>
         </div>
       </el-col>
-    </el-row>
+    </b-row>
   </div>
 </template>
 
 <script lang="ts">
-declare var process: any
+declare let process: any
 
 import Vue from 'vue'
 import Axios from 'axios'
@@ -85,7 +85,7 @@ export default class ChastiKey extends Vue {
 
   private async updateUser(key: string, value: any) {
     console.log(key, value)
-    const resp = await Axios(`${process.env.BOT_HOST}/user/update`, {
+    const resp = await Axios(`${process.env.VUE_APP_BOT_HOST}/user/update`, {
       method: 'POST',
       data: {
         key: key,

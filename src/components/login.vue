@@ -6,12 +6,12 @@
         <span v-else>...</span>
       </span>-->
     </nav>
-    <el-row type="flex" class="row-bg" justify="center">
+    <b-row type="flex" class="row-bg" justify="center">
       <BotStatistic :span="3" :text="'Total Users Seen'" :value="bot.stats.users.total" :backgroundColor="'#1f273adb'" />
       <BotStatistic :span="3" :text="'Users Online'" :value="bot.stats.users.online" :backgroundColor="'#1f273adb'" />
       <BotStatistic :span="3" :text="'Users Registered'" :value="bot.stats.users.registered" :backgroundColor="'#1f273adb'" />
-    </el-row>
-    <el-row type="flex" class="row-bg" justify="center">
+    </b-row>
+    <b-row type="flex" class="row-bg" justify="center">
       <BotStatistic span="4" :text="'Completed Commands'" :value="bot.stats.commands.completed" :backgroundColor="'#05b770c4'" :fontColor="'#fff'" />
       <BotStatistic
         span="4"
@@ -22,7 +22,7 @@
         :percentageBar="{ show: true, values: [bot.stats.commands.completed, bot.stats.commands.invalid], colors: ['#05b770c4', '#c0392bc4'] }"
       />
       <BotStatistic span="4" :text="'Invalid Commands'" :value="bot.stats.commands.invalid" :backgroundColor="'#c0392bc4'" :fontColor="'#fff'" />
-    </el-row>
+    </b-row>
   </div>
 </template>
 
