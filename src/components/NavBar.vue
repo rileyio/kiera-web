@@ -47,12 +47,10 @@ import { bot } from '@/defaults/bot'
 import { state } from '@/defaults/app-state'
 
 // Components
-import Login from '@/components/login.vue'
 import CenterLoader from '@/components/center-loader.vue'
 
 @Component({
   components: {
-    Login,
     CenterLoader
   }
 })
