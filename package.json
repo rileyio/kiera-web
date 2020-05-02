@@ -9,23 +9,17 @@
     "url": "https://github.com/rileyio/kiera-web"
   },
   "scripts": {
-    "serve": "vue-cli-service serve --mode development",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "app:build": "webpack --config webpack.config.js",
-    "app:dev": "NODE_ENV='production' webpack --watch",
-    "app:dev:ps": "set NODE_ENV=production&&webpack --watch",
-    "server:build": "tsc --project tsconfig.server.json",
-    "server:dev": "tsc -w --project tsconfig.server.json",
-    "server:start": "DEBUG='kiera-web-server:*' node ./production-server/start.js"
+    "app:dev": "vue-cli-service serve --mode development",
+    "app:build": "vue-cli-service build --mode production",
+    "app:lint": "vue-cli-service lint"
   },
-  "main": "index.js",
   "dependencies": {
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "socket.io-client": "^2.3.0",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
+    "vue-cookies": "^1.7.0",
     "vue-property-decorator": "^8.4.1",
     "vue-router": "^3.1.6",
     "vuex": "^3.1.3"

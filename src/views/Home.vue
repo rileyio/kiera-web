@@ -3,7 +3,7 @@
     <div class="header top header-img home" :style="{ 'background-image': `url('/img/${state.randomBG}.jpg')` }" :class="{ page: !state.isLoggedIn, small: state.isLoggedIn }">
       <div class="center-login-invite">
         <b-button variant="dark" size="lg" @click="openInviteURL">Invite to Server</b-button>
-        <b-button variant="info" size="lg">Login</b-button>
+        <b-button variant="info" size="lg" @click="openLoginURL">Login</b-button>
       </div>
       <div class="center-stats">
         <b-row class="mt-2">
@@ -71,6 +71,10 @@ export default class Home extends Vue {
 
   private openInviteURL() {
     window.location = process.env.VUE_APP_BOT_INVITE_URL
+  }
+
+  private openLoginURL() {
+    window.location = process.env.VUE_APP_SERVER_LOGIN_URL
   }
 }
 </script>
