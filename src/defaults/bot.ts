@@ -1,10 +1,10 @@
 import { user } from '@/defaults/user'
 import { mappedGuilds } from '@/defaults/guilds'
-import { state } from '@/defaults/app-state'
+import { defaultStats } from '@/defaults/bot-statistics'
 
 export const bot = {
   webToken: '',
   user: user,
   guilds: mappedGuilds,
-  stats: state
+  stats: defaultStats
 }
