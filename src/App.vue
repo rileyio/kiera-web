@@ -18,9 +18,8 @@ declare var process: any
 
 import Vue from 'vue'
 import Axios from 'axios'
-import { Component, Prop } from 'vue-property-decorator'
 import * as SocketIO from 'socket.io-client'
-import * as Utils from './utils'
+import { Component, Prop } from 'vue-property-decorator'
 import { BotStatistics } from './types/statistics'
 
 // Defaults
@@ -96,9 +95,9 @@ export default class App extends Vue {
     const resp = await Axios(`${process.env.VUE_APP_BOT_HOST}/user`, {
       method: 'POST',
       data: {
-        id: Utils.getUserID()
+        id: this.$session.getID()
       },
-      headers: Utils.buildRequestHeaders()
+      headers: this.$session.get()
     })
 
     // On valid resp

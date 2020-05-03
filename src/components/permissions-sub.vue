@@ -24,7 +24,6 @@ declare let process: any
 import Vue from 'vue'
 import Axios from 'axios'
 import { Component, Prop, Watch } from 'vue-property-decorator'
-import { buildRequestHeaders } from '../utils'
 
 @Component({
   components: {
@@ -59,7 +58,7 @@ export default class PermissionsSub extends Vue {
         target: target,
         state: $e
       },
-      headers: buildRequestHeaders()
+      headers: this.$session.get()
     })
 
     console.log('updatePermission outcome =>', resp.data)

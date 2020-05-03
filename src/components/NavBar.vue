@@ -14,25 +14,25 @@
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-        <b-nav-item-dropdown text="Lang" right>
-          <b-dropdown-item href="#">EN</b-dropdown-item>
-        </b-nav-item-dropdown>
-
-        <b-nav-item-dropdown right v-if="state.isLoggedIn">
-          <!-- Using 'button-content' slot -->
-          <template v-slot:button-content>
-            <em>{{ bot.user.username }}</em>
-          </template>
-          <b-dropdown-item href="#">Profile</b-dropdown-item>
-          <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-        </b-nav-item-dropdown>
-
         <b-nav-item>
           <span class="bot-connectivity">
             <span v-if="state.isConnected">🔌</span>
             <span v-if="state.isConnecting">⛔</span>
           </span>
         </b-nav-item>
+
+        <b-nav-item-dropdown text="Lang: EN" right>
+          <b-dropdown-item href="#">EN</b-dropdown-item>
+        </b-nav-item-dropdown>
+
+        <b-nav-item-dropdown right v-if="state.isLoggedIn">
+          <!-- Using 'button-content' slot -->
+          <template v-slot:button-content>
+            <em>{{ bot.user.username }}#{{ bot.user.discriminator }}</em>
+          </template>
+          <b-dropdown-item href="#">Profile</b-dropdown-item>
+          <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+        </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>

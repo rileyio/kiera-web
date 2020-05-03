@@ -95,6 +95,7 @@ import { state } from '../defaults/app-state'
 import { user } from '../defaults/user'
 import { mappedGuilds } from '../defaults/guilds'
 import { AuditEntry } from '../types/audit'
+import { bot } from '../defaults/bot'
 
 @Component({
   // components: {
@@ -104,16 +105,8 @@ export default class AuditPanel extends Vue {
   @Prop({ default: () => state })
   private state!: typeof state
 
-  @Prop({
-    default: () => {
-      return { webToken: '', user: user, guilds: mappedGuilds }
-    }
-  })
-  public bot!: {
-    webToken: string
-    user: typeof user
-    guilds: typeof mappedGuilds
-  }
+  @Prop({ default: bot })
+  public bot!: typeof bot
 
   @Prop({
     default: () => []

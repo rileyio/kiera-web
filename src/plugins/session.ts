@@ -11,22 +11,22 @@ export default {
     Cookies.set('kiera-discord-id', value, { expires: 7 })
   },
 
-  setWebToken(value: any) {
-    Cookies.set('kiera-webToken', value, { expires: 7 })
+  setSessionToken(value: any) {
+    Cookies.set('kiera-sessionToken', value, { expires: 7 })
   },
 
   getID() {
     return Cookies.get('kiera-discord-id')
   },
 
-  getWebToken() {
-    return Cookies.get('kiera-webToken')
+  getSessionToken() {
+    return Cookies.get('kiera-sessionToken')
   },
 
   get() {
     return {
-      id: this.getID(),
-      webToken: this.getWebToken()
+      userID: this.getID(),
+      session: this.getSessionToken()
     }
   },
 
@@ -34,16 +34,16 @@ export default {
     Cookies.remove('kiera-discord-id')
   },
 
-  removeWebToken() {
-    Cookies.remove('kiera-webToken')
+  removeSessionToken() {
+    Cookies.remove('kiera-sessionToken')
   },
 
   remove() {
     Cookies.remove('kiera-discord-id')
-    Cookies.remove('kiera-webToken')
+    Cookies.remove('kiera-sessionToken')
   },
 
   isSession() {
-    return this.getID() && this.getWebToken()
+    return this.getID() !== undefined && this.getSessionToken() !== undefined
   }
 }

@@ -19,7 +19,7 @@ import { Component, Prop, Watch } from 'vue-property-decorator'
 import { state } from '../defaults/app-state'
 import { mappedGuilds } from '../defaults/guilds'
 import { user } from '../defaults/user'
-import { buildRequestHeaders } from '../utils'
+import { bot } from '../defaults/bot'
 
 @Component({
   components: {
@@ -30,16 +30,8 @@ export default class Account extends Vue {
   @Prop({ default: () => state })
   private state!: typeof state
 
-  @Prop({
-    default: () => {
-      return { webToken: '', user: user, guilds: mappedGuilds }
-    }
-  })
-  public bot!: {
-    webToken: string
-    user: typeof user
-    guilds: typeof mappedGuilds
-  }
+  @Prop({ default: bot })
+  public bot!: typeof bot
 
   @Prop({ default: false })
   private showAccountSettings!: boolean
@@ -52,7 +44,7 @@ export default class Account extends Vue {
         key: key,
         value: value
       },
-      headers: buildRequestHeaders()
+      headers: this.$session.get()
     })
 
     console.log('updateUser outcome =>', resp.data)
