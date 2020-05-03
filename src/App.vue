@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <!-- Header -->
-    <header><NavBar :state="state" :bot="bot" /></header>
+    <header><NavBar :AppState="AppState" /></header>
 
     <!-- Main Content -->
     <!-- <b-container :class="$route.name === 'home' ? 'fill-height' : ''" :fluid="$route.name === 'home' ? true : false"> -->
-    <router-view :state="state" :isAuthenticated="state.isLoggedIn"></router-view>
+    <router-view :AppState="AppState" :isAuthenticated="AppState.state.isLoggedIn"></router-view>
     <!-- </b-container> -->
 
     <!-- Footer -->
@@ -23,10 +23,9 @@ import { Component, Prop } from 'vue-property-decorator'
 import { BotStatistics } from './types/statistics'
 
 // Defaults
-import { state, focusedGuild } from './defaults/app-state'
-import { bot } from './defaults/bot'
 import { mappedGuilds, DiscordGuild } from './defaults/guilds'
 import { defaultStats } from './defaults/bot-statistics'
+import { AppState } from './defaults/app-state'
 
 // Components
 import NavBar from '@/components/NavBar.vue'
@@ -41,53 +40,50 @@ import CenterLoader from './components/center-loader.vue'
   }
 })
 export default class App extends Vue {
-  @Prop({ default: () => state })
-  private state!: typeof state
+  @Prop({ default: () => AppState })
+  private AppState!: typeof AppState
 
   @Prop({
     default: () => SocketIO.connect(process.env.VUE_APP_BOT_SOCKET)
   })
   public socket!: SocketIOClient.Socket
 
-  @Prop({ default: () => bot })
-  public bot!: typeof bot
-
   constructor() {
     super()
-    console.log('state', this.state)
+    console.log('state', this.AppState.state)
 
     // On socket connection event
     this.socket.on('connect', async () => {
       console.log('socket connected', this)
       // Short delay to prevent flickering
       setTimeout(() => {
-        this.state.isConnected = true
+        this.AppState.state.isConnected = true
       }, 500)
-      this.state.isConnecting = false
+      this.AppState.state.isConnecting = false
       // Connect and get user data
-      this.bot.user = await this.getUser()
+      this.AppState.user = await this.getUser()
       // If user is newly authenticated
-      if (this.bot.user && this.state.isLoggedIn === false) {
+      if (this.AppState.user && this.AppState.state.isLoggedIn === false) {
         setTimeout(() => {
           // Remap guilds
-          this.state.isLoggedIn = true
+          this.AppState.state.isLoggedIn = true
         }, 350)
       }
       // If user was already logged in and this was a socket reconnect
-      if (this.bot.user && this.state.isLoggedIn === true) {
-        // this.state.isLoggedIn = true;
+      if (this.AppState.user && this.AppState.state.isLoggedIn === true) {
+        // this.AppState.state.isLoggedIn = true;
       }
-      console.log(this.bot)
+      console.log(this.AppState)
     })
     this.socket.on('heartbeat', (data: any) => {
       // console.log('socket heartbeat', data)
       // Update stats
-      this.bot.stats = data.stats
-      // console.log('socket heartbeat', this.bot.stats)
+      this.AppState.stats = data.stats
+      // console.log('socket heartbeat', this.AppState.stats)
     })
     this.socket.on('disconnect', () => {
-      this.state.isConnected = false
-      this.state.isConnecting = false
+      this.AppState.state.isConnected = false
+      this.AppState.state.isConnecting = false
     })
   }
 

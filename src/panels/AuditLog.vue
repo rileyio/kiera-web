@@ -90,27 +90,20 @@ declare var process: any
 import Vue from 'vue'
 import Axios from 'axios'
 import { Component, Prop, Watch } from 'vue-property-decorator'
-import { state } from '../defaults/app-state'
+
+// Import Component Base
+import BaseComponent from '@/components/BaseComponent.vue'
 
 import { user } from '../defaults/user'
 import { mappedGuilds } from '../defaults/guilds'
 import { AuditEntry } from '../types/audit'
-import { bot } from '../defaults/bot'
 
 @Component({
   // components: {
   // }
 })
-export default class AuditPanel extends Vue {
-  @Prop({ default: () => state })
-  private state!: typeof state
-
-  @Prop({ default: bot })
-  public bot!: typeof bot
-
-  @Prop({
-    default: () => []
-  })
+export default class AuditPanel extends BaseComponent {
+  @Prop({ default: () => [] })
   public auditEvents!: Array<any>
 
   @Prop({

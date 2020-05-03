@@ -16,8 +16,8 @@
       <b-navbar-nav class="ml-auto">
         <b-nav-item>
           <span class="bot-connectivity">
-            <span v-if="state.isConnected">🔌</span>
-            <span v-if="state.isConnecting">⛔</span>
+            <span v-if="AppState.state.isConnected">🔌</span>
+            <span v-if="AppState.state.isConnecting">⛔</span>
           </span>
         </b-nav-item>
 
@@ -27,10 +27,10 @@
         </b-nav-item-dropdown>
 
         <!-- Account Dropdown -->
-        <b-nav-item-dropdown right v-if="state.isLoggedIn">
+        <b-nav-item-dropdown right v-if="AppState.state.isLoggedIn">
           <!-- Using 'button-content' slot -->
           <template v-slot:button-content>
-            <em>{{ bot.user.username }}#{{ bot.user.discriminator }}</em>
+            <em>{{ AppState.user.username }}#{{ AppState.user.discriminator }}</em>
           </template>
           <b-dropdown-item href="#">Profile</b-dropdown-item>
           <b-dropdown-item href="#">Dashboard</b-dropdown-item>
@@ -46,9 +46,8 @@
 import Vue from 'vue'
 import { Component, Prop } from 'vue-property-decorator'
 
-// Defaults
-import { bot } from '@/defaults/bot'
-import { state } from '@/defaults/app-state'
+// Import Component Base
+import BaseComponent from '@/components/BaseComponent.vue'
 
 // Components
 import CenterLoader from '@/components/center-loader.vue'
@@ -58,13 +57,7 @@ import CenterLoader from '@/components/center-loader.vue'
     CenterLoader
   }
 })
-export default class NavBar extends Vue {
-  @Prop({ default: () => state })
-  private state!: typeof state
-
-  @Prop({ default: () => bot })
-  private bot!: typeof bot
-}
+export default class NavBar extends BaseComponent {}
 </script>
 
 <style lang="less" scoped></style>

@@ -15,24 +15,19 @@ declare let process: any
 import Vue from 'vue'
 import Axios from 'axios'
 
+// Import Component Base
+import BaseComponent from '@/components/BaseComponent.vue'
+
 import { Component, Prop, Watch } from 'vue-property-decorator'
-import { state } from '../defaults/app-state'
 import { mappedGuilds } from '../defaults/guilds'
 import { user } from '../defaults/user'
-import { bot } from '../defaults/bot'
 
 @Component({
   components: {
     // AccountPopup
   }
 })
-export default class Account extends Vue {
-  @Prop({ default: () => state })
-  private state!: typeof state
-
-  @Prop({ default: bot })
-  public bot!: typeof bot
-
+export default class Account extends BaseComponent {
   @Prop({ default: false })
   private showAccountSettings!: boolean
 

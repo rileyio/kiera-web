@@ -1,5 +1,5 @@
 <template>
-  <div id="center-loader-wrapper" :style="{ 'background-image': `url('/img/${state.randomBG}.jpg')` }">
+  <div id="center-loader-wrapper" :style="{ 'background-image': `url('/img/${AppState.randomBG}.jpg')` }">
     <div id="center-loader">
       <div class="socket-status">
         <span class="status">Getting things ready</span>
@@ -19,19 +19,11 @@
 import Vue from 'vue'
 import { Component, Prop } from 'vue-property-decorator'
 
-import { state } from '../defaults/app-state'
+// Import Component Base
+import BaseComponent from '@/components/BaseComponent.vue'
 
 @Component
-export default class CenterLoader extends Vue {
-  @Prop({
-    default: () => state
-  })
-  private state!: typeof state
-
-  constructor() {
-    super()
-  }
-}
+export default class CenterLoader extends BaseComponent {}
 </script>
 
 <style lang="less">
