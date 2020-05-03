@@ -91,7 +91,6 @@ import Vue from 'vue'
 import Axios from 'axios'
 import { Component, Prop, Watch } from 'vue-property-decorator'
 import { state } from '../defaults/app-state'
-import { buildRequestHeaders } from '../utils'
 
 import { user } from '../defaults/user'
 import { mappedGuilds } from '../defaults/guilds'
@@ -141,7 +140,7 @@ export default class AuditPanel extends Vue {
         data: {
           serverLimited: false
         },
-        headers: buildRequestHeaders()
+        headers: this.$session.get()
       })
 
       if (resp.status === 200) {

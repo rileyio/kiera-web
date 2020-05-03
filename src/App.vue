@@ -81,10 +81,10 @@ export default class App extends Vue {
       console.log(this.bot)
     })
     this.socket.on('heartbeat', (data: any) => {
-      console.log('socket heartbeat', data)
+      // console.log('socket heartbeat', data)
       // Update stats
       this.bot.stats = data.stats
-      console.log('socket heartbeat', this.bot.stats)
+      // console.log('socket heartbeat', this.bot.stats)
     })
     this.socket.on('disconnect', () => {
       this.state.isConnected = false
