@@ -15,10 +15,10 @@
             <BotStatistic :span="3" :text="'Servers Joined'" :value="AppState.stats.servers.total" :backgroundColor="'#1f273ae8'" />
           </b-col>
           <b-col>
-            <BotStatistic :span="3" :text="'Current Version'" :value="AppState.stats.users.total" :backgroundColor="'#1f273ae8'" />
+            <BotStatistic :span="3" :text="'Current Version'" :value="AppState.stats.version" :backgroundColor="'#1f273ae8'" />
           </b-col>
           <b-col>
-            <BotStatistic :span="3" :text="'Commands Available'" :value="AppState.stats.users.online" :backgroundColor="'#1f273ae8'" />
+            <BotStatistic :span="3" :text="'Current Uptime'" :value="DateTimeUtils.calculateHumanTimeDDHHMM(AppState.stats.uptime / 1000)" :backgroundColor="'#1f273ae8'" />
           </b-col>
         </b-row>
         <b-row class="mt-2">
@@ -62,6 +62,9 @@ import { AppState } from '@/defaults/app-state'
 import BotStatistic from '@/components/BotStatistic.vue'
 import CenterLoader from '@/components/center-loader.vue'
 
+// Utils
+import * as DateTimeUtils from '@/utils/date'
+
 @Component({
   components: {
     BotStatistic,
@@ -69,6 +72,9 @@ import CenterLoader from '@/components/center-loader.vue'
   }
 })
 export default class Home extends BaseComponent {
+  @Prop({ default: () => DateTimeUtils })
+  private DateTimeUtils!: typeof DateTimeUtils
+
   private openInviteURL() {
     console.log('Opening OAuth2 link')
     window.location = process.env.VUE_APP_BOT_INVITE_URL
