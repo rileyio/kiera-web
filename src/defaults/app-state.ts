@@ -9,7 +9,6 @@ export const Backgrounds: Array<string> = ['abstract-art-590697', 'abstract-art-
 // App State
 export const AppState = {
   user: user, // User logged in
-  guilds: mappedGuilds, // User guilds fetched at login
   stats: defaultStats, // Sets default stats until provided by socket
   state: {
     // Connectivity

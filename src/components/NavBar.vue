@@ -1,15 +1,18 @@
 <template>
   <b-navbar toggleable="lg" type="dark">
-    <b-navbar-brand href="#">Kiera Bot </b-navbar-brand>
+    <b-navbar-brand href="#" @click="goto('/')">Kiera Bot</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item href="#">Home</b-nav-item>
+        <b-nav-item @click="goto('/')">
+          Home
+        </b-nav-item>
         <b-nav-item href="#">Commands</b-nav-item>
         <b-nav-item href="https://github.com/rileyio/kiera-bot">GitHub</b-nav-item>
         <b-nav-item href="https://status.kierabot.xyz">Status</b-nav-item>
+        <b-nav-item href="https://kierabot.xyz/translate">Translate</b-nav-item>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
@@ -22,9 +25,9 @@
         </b-nav-item>
 
         <!-- Lang Dropdown -->
-        <b-nav-item-dropdown text="Lang: EN" right>
+        <!-- <b-nav-item-dropdown text="Lang: EN" right>
           <b-dropdown-item href="#">EN</b-dropdown-item>
-        </b-nav-item-dropdown>
+        </b-nav-item-dropdown> -->
 
         <!-- Account Dropdown -->
         <b-nav-item-dropdown right v-if="AppState.state.isLoggedIn">
@@ -32,10 +35,12 @@
           <template v-slot:button-content>
             <em>{{ AppState.user.username }}#{{ AppState.user.discriminator }}</em>
           </template>
-          <b-dropdown-item href="#">Profile</b-dropdown-item>
-          <b-dropdown-item href="#">Dashboard</b-dropdown-item>
+          <b-dropdown-item @click="goto('/account')">Account</b-dropdown-item>
+          <b-dropdown-item href="#">...</b-dropdown-item>
           <b-dropdown-item class="dropdown-divider"></b-dropdown-item>
-          <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+          <b-dropdown-item @click="goto('/logout')">
+            Sign Out
+          </b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
@@ -57,7 +62,11 @@ import CenterLoader from '@/components/center-loader.vue'
     CenterLoader
   }
 })
-export default class NavBar extends BaseComponent {}
+export default class NavBar extends BaseComponent {
+  private goto(path: string) {
+    this.$router.push(path)
+  }
+}
 </script>
 
 <style lang="less" scoped></style>

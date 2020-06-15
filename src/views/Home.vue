@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="header top header-img home"
+      class="header header-img home"
       :style="{ 'background-image': `url('/img/${AppState.state.randomBG}.jpg')` }"
       :class="{ page: !AppState.isLoggedIn, small: AppState.isLoggedIn }"
     >
@@ -12,13 +12,13 @@
       <div class="center-stats">
         <b-row class="mt-2">
           <b-col>
-            <BotStatistic :span="3" :text="'Servers: Count'" :value="AppState.stats.servers.total" :backgroundColor="'#1f273ae8'" />
+            <BotStatistic :span="3" :text="'Servers Joined'" :value="AppState.stats.servers.total" :backgroundColor="'#1f273ae8'" />
           </b-col>
           <b-col>
-            <BotStatistic :span="3" :text="'Servers: Users Total'" :value="AppState.stats.users.total" :backgroundColor="'#1f273ae8'" />
+            <BotStatistic :span="3" :text="'Current Version'" :value="AppState.stats.users.total" :backgroundColor="'#1f273ae8'" />
           </b-col>
           <b-col>
-            <BotStatistic :span="3" :text="'Servers: Users Online'" :value="AppState.stats.users.online" :backgroundColor="'#1f273ae8'" />
+            <BotStatistic :span="3" :text="'Commands Available'" :value="AppState.stats.users.online" :backgroundColor="'#1f273ae8'" />
           </b-col>
         </b-row>
         <b-row class="mt-2">
@@ -70,6 +70,7 @@ import CenterLoader from '@/components/center-loader.vue'
 })
 export default class Home extends BaseComponent {
   private openInviteURL() {
+    console.log('Opening OAuth2 link')
     window.location = process.env.VUE_APP_BOT_INVITE_URL
   }
 

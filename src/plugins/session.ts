@@ -24,10 +24,13 @@ export default {
   },
 
   get() {
-    return {
+    const session = {
       userID: this.getID(),
       session: this.getSessionToken()
     }
+
+    if (session.session && session.userID) return session
+    return null
   },
 
   removeID() {

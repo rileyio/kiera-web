@@ -1,12 +1,15 @@
 <template>
   <div id="app">
     <!-- Header -->
-    <header><NavBar :AppState="AppState" /></header>
+    <header :style="{ 'z-index': 1 }">
+      <div class="bg" :style="{ 'background-image': `url('/img/${AppState.state.randomBG}.jpg')` }"></div>
+      <NavBar :AppState="AppState" />
+    </header>
 
     <!-- Main Content -->
-    <!-- <b-container :class="$route.name === 'home' ? 'fill-height' : ''" :fluid="$route.name === 'home' ? true : false"> -->
-    <router-view :AppState="AppState" :isAuthenticated="AppState.state.isLoggedIn"></router-view>
-    <!-- </b-container> -->
+    <div class="content" :class="{ home: $route.name === 'home' }">
+      <router-view :AppState="AppState" :isAuthenticated="AppState.state.isLoggedIn"> </router-view>
+    </div>
 
     <!-- Footer -->
     <footer></footer>
@@ -61,7 +64,7 @@ export default class App extends Vue {
       }, 500)
       this.AppState.state.isConnecting = false
       // Connect and get user data
-      this.AppState.user = await this.getUser()
+      this.AppState.user = await this.verifyAuth()
       // If user is newly authenticated
       if (this.AppState.user && this.AppState.state.isLoggedIn === false) {
         setTimeout(() => {
@@ -87,12 +90,9 @@ export default class App extends Vue {
     })
   }
 
-  private async getUser() {
-    const resp = await Axios(`${process.env.VUE_APP_BOT_HOST}/user`, {
+  private async verifyAuth() {
+    const resp = await Axios(`${process.env.VUE_APP_BOT_HOST}/web/verify`, {
       method: 'POST',
-      data: {
-        id: this.$session.getID()
-      },
       headers: this.$session.get()
     })
 
@@ -110,12 +110,16 @@ export default class App extends Vue {
 <style lang="less">
 #app {
   width: 100%;
-  background-color: #333;
 }
 
 // Content
-.content.centered {
-  margin-top: 200px;
+.content {
+  position: relative;
+  background-color: #fff;
+  padding: 10px;
+  &.home {
+    padding: 0;
+  }
 }
 
 // Loader transitions
@@ -127,5 +131,22 @@ export default class App extends Vue {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  filter: blur(8px);
+  transform: scale(1.05);
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navbar {
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.2) !important;
 }
 </style>

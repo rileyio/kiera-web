@@ -1,12 +1,16 @@
 <template>
-  <div>
-    More coming soon!
-    <br />
-    <br />If you require any assistance in the meantime you can reach the author (Emma) via the Kiera-Bot development server.
-    <br />
-    <br />
-    <img src="https://discordapp.com/api/guilds/389204362959781899/widget.png?style=banner2" alt="Join the Kiera-Bot development community" @click="openDiscord" />
-  </div>
+  <b-container fluid>
+    <b-row>
+      <b-col>
+        More coming soon!
+        <br />
+        <br />If you require any assistance in the meantime you can reach the author (Emma) via the Kiera-Bot development server.
+        <br />
+        <br />
+        <img src="https://discordapp.com/api/guilds/389204362959781899/widget.png?style=banner2" alt="Join the Kiera-Bot development community" @click="openDiscord" />
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script lang="ts">
