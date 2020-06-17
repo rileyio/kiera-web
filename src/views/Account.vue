@@ -2,12 +2,16 @@
   <b-container fluid>
     <b-row>
       <b-col>
-        More coming soon!
-        <br />
-        <br />If you require any assistance in the meantime you can reach the author (Emma) via the Kiera-Bot development server.
-        <br />
-        <br />
-        <img src="https://discordapp.com/api/guilds/389204362959781899/widget.png?style=banner2" alt="Join the Kiera-Bot development community" @click="openDiscord" />
+        <b-card no-body>
+          <b-tabs pills card vertical>
+            <b-tab title="Audit Log"
+              ><b-card-text><AuditLog /></b-card-text
+            ></b-tab>
+            <b-tab title="Decision Rolls"><b-card-text>Decision Rolls</b-card-text></b-tab>
+            <b-tab title="My Data"><b-card-text>My Data</b-card-text></b-tab>
+          </b-tabs>
+        </b-card>
+        <!-- <img src="https://discordapp.com/api/guilds/389204362959781899/widget.png?style=banner2" alt="Join the Kiera-Bot development community" @click="openDiscord" /> -->
       </b-col>
     </b-row>
   </b-container>
@@ -20,6 +24,7 @@ import Vue from 'vue'
 import Axios from 'axios'
 
 // Import Component Base
+import AuditLog from '@/panels/AuditLog.vue'
 import BaseComponent from '@/components/BaseComponent.vue'
 
 import { Component, Prop, Watch } from 'vue-property-decorator'
@@ -28,7 +33,7 @@ import { user } from '../defaults/user'
 
 @Component({
   components: {
-    // AccountPopup
+    AuditLog
   }
 })
 export default class Account extends BaseComponent {

@@ -13,6 +13,11 @@ export function calculateHumanTimeDDHHMM(seconds: number, dropZeros?: boolean) {
 
   if (dropZeros && days === 0 && hrs === 0) return `${timeToShowMins}`
   if (dropZeros && days === 0) return `${timeToShowHours} ${timeToShowMins}`
-  
+
   return `${timeToShowDays} ${timeToShowHours} ${timeToShowMins}`
+}
+
+export function convertToLocaleDateString(datestamp: string) {
+  const date = new Date(datestamp)
+  return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`
 }
