@@ -58,7 +58,7 @@ import * as DateTimeUtils from '@/utils/date'
 
 @Component({})
 export default class MyData extends BaseComponent {
-  public myDataTotals = [{ thirdParty: false, scope: '', name: '', count: null }] as Array<{ thirdParty: boolean; scope: string; name: string; count: number }>
+  public myDataTotals = [{ thirdParty: false, scope: '', name: '', count: 0 }] as Array<{ thirdParty: boolean; scope: string; name: string; count: number }>
 
   @Prop({ default: () => DateTimeUtils })
   private DateTimeUtils!: typeof DateTimeUtils
