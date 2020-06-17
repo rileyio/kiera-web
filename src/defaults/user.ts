@@ -2,6 +2,7 @@ import { DiscordGuild } from './guilds'
 
 export interface BotUser {
   _id: string
+  userID: string
   username: string
   discriminator: string
   avatar: string
@@ -23,6 +24,7 @@ export interface BotUserServiceChastiKey extends BotUserService {
 
 export const user: BotUser = {
   _id: '',
+  userID: '',
   username: '',
   discriminator: '',
   avatar: '',
