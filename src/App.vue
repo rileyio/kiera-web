@@ -47,12 +47,16 @@ export default class App extends Vue {
   private AppState!: typeof AppState
 
   @Prop({
-    default: () => SocketIO.connect(process.env.VUE_APP_BOT_SOCKET)
+    default: () => {
+      console.log('ws:', process.env.VUE_APP_BOT_SOCKET ? process.env.VUE_APP_BOT_SOCKET : 'https://alpha.kierabot.xyz/')
+      return SocketIO.connect(process.env.VUE_APP_BOT_SOCKET ? process.env.VUE_APP_BOT_SOCKET : 'https://alpha.kierabot.xyz/', { secure: true })
+    }
   })
   public socket!: SocketIOClient.Socket
 
   constructor() {
     super()
+    console.log('ws:', process.env.VUE_APP_BOT_SOCKET ? process.env.VUE_APP_BOT_SOCKET : 'https://alpha.kierabot.xyz/')
     console.log('state', this.AppState.state)
 
     // On socket connection event

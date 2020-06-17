@@ -1,5 +1,5 @@
 <template>
-  <b-col :span="span" class="statistic" :style="{ 'background-color': backgroundColor, color: fontColor }">
+  <b-col class="statistic" :style="{ 'background-color': backgroundColor, color: fontColor }">
     <div class="percentage-bar" v-if="percentageBar.show">
       <div
         class="bar"

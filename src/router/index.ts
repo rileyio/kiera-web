@@ -53,8 +53,8 @@ router.beforeEach((to, from, next) => {
 
   // Auth required + Session is MISSING
   if (requiresAuth && !cachedSession) {
-    console.log('router before => Auth required, Re-routing to /login', to.path)
-    next('/login')
+    console.log('router before => Auth required, Re-routing to /app/login', to.path)
+    next('/app/login')
   }
   if (requiresAuth && cachedSession) {
     console.log('router before => Auth required, Session stored, Proceed!', to.path)
