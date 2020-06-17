@@ -65,10 +65,7 @@ import { AuditEntry } from '../types/audit'
 // Utils
 import * as DateTimeUtils from '@/utils/date'
 
-@Component({
-  // components: {
-  // }
-})
+@Component({})
 export default class AuditPanel extends BaseComponent {
   public auditEvents: Array<any> = []
 
@@ -98,21 +95,6 @@ export default class AuditPanel extends BaseComponent {
       })
 
       if (resp.status === 200) {
-        // Merge in gui opts
-        // (<Array<AuditEntry>>resp.data).map(d => {
-        //   d._deleteVisible = false;
-        //   // Update outcomes with GUI props
-        //   d.options.map(o => {
-        //     o._isUpdating = false;
-        //     o._isChanged = false;
-        //     o._deleteVisible = false;
-        //     o._originalText = o.text;
-        //     return o;
-        //   });
-
-        //   return d;
-        // });
-
         // Update cached data
         this.auditEvents = resp.data
         console.log(resp.data)
@@ -124,47 +106,4 @@ export default class AuditPanel extends BaseComponent {
 }
 </script>
 
-<style lang="less">
-i.header-icon.el-icon-info {
-  position: absolute;
-  right: 36px;
-}
-
-// Panel
-.panel-description {
-  font-size: 12px;
-  display: block;
-  padding: 10px 4px;
-}
-
-// Audit specific
-.audit-entry {
-  .details {
-    font-size: 11px;
-    margin: 4px 0px;
-    .property {
-      color: #f3f3f3;
-      background-color: #a2a2a2;
-      padding: 1px 2px;
-    }
-  }
-}
-
-.row-example {
-  display: block;
-  font-size: 11px;
-  color: #909090;
-}
-
-// Text modifiers
-span.md {
-  padding: 2px 4px;
-  background-color: #e4e7edbd;
-  font-family: monospace;
-  font-size: 12px;
-  color: #484848;
-  border-radius: 2px;
-}
-</style>
-
-;
+<style lang="less"></style>

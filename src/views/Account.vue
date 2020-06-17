@@ -8,7 +8,9 @@
               ><b-card-text><AuditLog /></b-card-text
             ></b-tab>
             <b-tab title="Decision Rolls"><b-card-text>Decision Rolls</b-card-text></b-tab>
-            <b-tab title="My Data"><b-card-text>My Data</b-card-text></b-tab>
+            <b-tab title="My Data"
+              ><b-card-text><MyData /></b-card-text
+            ></b-tab>
           </b-tabs>
         </b-card>
         <!-- <img src="https://discordapp.com/api/guilds/389204362959781899/widget.png?style=banner2" alt="Join the Kiera-Bot development community" @click="openDiscord" /> -->
@@ -26,6 +28,7 @@ import Axios from 'axios'
 // Import Component Base
 import AuditLog from '@/panels/AuditLog.vue'
 import BaseComponent from '@/components/BaseComponent.vue'
+import MyData from '@/panels/MyData.vue'
 
 import { Component, Prop, Watch } from 'vue-property-decorator'
 import { mappedGuilds } from '../defaults/guilds'
@@ -33,7 +36,8 @@ import { user } from '../defaults/user'
 
 @Component({
   components: {
-    AuditLog
+    AuditLog,
+    MyData
   }
 })
 export default class Account extends BaseComponent {
